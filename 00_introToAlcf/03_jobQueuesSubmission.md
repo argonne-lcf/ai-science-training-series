@@ -1,4 +1,7 @@
 # How to run jobs on the system
+
+![gpu-qsub](./img/theta-gpu-qsub.gif)
+
 Most of the time, there are not enough ThetaGPU compute nodes to run everyone's
 workloads simultaneously.  Batch queueing systems solve this problem by
 requiring that you submit your workload as a **batch job script** to a
