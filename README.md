@@ -2,6 +2,6 @@
 
 test
 
-[https://www.alcf.anl.gov/alcf-ai-science-training-series](2021-2022 Sesson website)
+[2021-2022 Sesson website](https://www.alcf.anl.gov/alcf-ai-science-training-series)
 
 
