@@ -32,7 +32,7 @@ ThetaGPU Machine Specs
 
 # Cluster/HPC Computing Hardware Setup
 
-![Hardware](imgs/supercomputer_diagram.png)
+![Hardware](img/supercomputer_diagram.png)
 
 In large supercomputers, like Theta, you combine multiple computer processors (CPUs) and/or graphics processors (GPUs) into a single _node_. A _node_ is like your desktop computer. It has a CPU on which the local operating system runs. It has local memory for running software. It may have GPUs for doing intensive calculations. Each node has a high-speed network connection that allows it to communicate with other nodes and to a large shared filesystem.
 
