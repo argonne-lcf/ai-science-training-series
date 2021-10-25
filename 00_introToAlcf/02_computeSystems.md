@@ -4,6 +4,7 @@
 
 ## Theta
 ![Theta](https://www.alcf.anl.gov/sites/default/files/styles/965x543/public/2019-10/09_ALCF-Theta_111016_rgb.jpg?itok=lcvZKE6k)
+
 Theta is an 11.7-petaflops supercomputer based on Intel processors and interconnect technology, an advanced memory architecture, and a Lustre-based parallel file system, all integrated by Cray’s HPC software stack.
 
 Theta Machine Specs
