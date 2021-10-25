@@ -30,4 +30,8 @@ ThetaGPU Machine Specs
 * Racks: 7
 
 
-# Difference between Login Nodes, Service Nodes, Mom Nodes, Worker Nodes
+# Cluster/HPC Computing Hardware Setup
+
+![Hardware](https://user-images.githubusercontent.com/10742392/138757649-5a780c4c-b185-4a3b-9a41-7490fe8da777.png)
+
+In large supercomputers like Theta, you combine multiple computer processors (CPUs) and/or graphics processors (GPUs) into a single _node_. A _node_ is effectively like your desktop computer. It has a CPU on which the local operating system runs. It has local memory for running software. It may have GPUs for doing intensive calculations. 
