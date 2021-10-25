@@ -90,12 +90,14 @@ $ qsub-gpu hello.sh
 ```
 
 There are many other Cobalt flags that you can use to control how your jobs run.
-You should visit the ALCF website to read more about [running jobs and submission scripts in general](https://www.alcf.anl.gov/support-center/theta/running-jobs-and-submission-scripts), as well as specific details on [ThetaGPU job queueing](https://www.alcf.anl.gov/support-center/theta-gpu-nodes/job-and-queue-scheduling-thetagpu).
+You should visit the ALCF website to read more about:
+- [running jobs on ThetaGPU](https://www.alcf.anl.gov/support-center/theta-gpu-nodes/running-jobs-thetagpu) 
+- [running jobs and submission scripts in general](https://www.alcf.anl.gov/support-center/theta/running-jobs-and-submission-scripts) 
+- [ThetaGPU job queueing](https://www.alcf.anl.gov/support-center/theta-gpu-nodes/job-and-queue-scheduling-thetagpu).
 
 # Interactive jobs
 
-Once you have figured out exactly what to run, Batch jobs are a great way to submit workloads and allow the system to take over scheduling.  
-You can go do something else and log back onto the system another day to check on the status of your jobs.
+Once you have figured out exactly what to run, Batch jobs are a great way to submit workloads and allow the system to take over scheduling. You can go do something else and log back onto the system another day to check on the status of your jobs.
 
 When testing new ideas or developing a project, however, it's more useful to be able to **SSH directly onto a compute node** and run commands locally.  If you get something wrong, you can stay on the node while fixing bugs, instead of being kicked off and having to wait repeatedly for the next batch job to start.  To obtain a node interactively, all you have to do is **replace the batch job script** (`hello.sh`) **with the interactive flag** (`-I`):
 
