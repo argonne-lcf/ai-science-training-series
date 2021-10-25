@@ -40,7 +40,7 @@ module load conda/tensorflow
 python -c 'print(1 + 1)'
 ```
 
-Save this into a file called `hello.sh` then run:
+Save this script into a file called `hello.sh` then run:
 
 ```shell
 # Make the hello.sh script executable:
@@ -57,9 +57,18 @@ now waiting in the queue by checking `qstat-gpu`:
 $ qstat-gpu -u $USER
 ```
 
-Once the job starts running, you should find files ending with the `.output` and `.error` suffixes, which represent the standard output and standard error streams written from our executing batch job script.
+Once the job starts running, you should find files ending with the `.output` and `.error` suffixes, which represent the standard output and standard error streams written from our executing batch job script:
 
-As an alternative to passing the Cobalt parameters on the command line to `qsub-gpu`, we can also include these flags as **Cobalt directives** directly underneath the `#!/bin/bash -l` line of our job script, like this:
+```shell
+$ ls
+12345.output 12345.error
+
+$ cat 12345.output
+Hello world!
+2
+```
+
+Instead of passing Cobalt parameters on the command line to `qsub-gpu`, we can also include these flags as **Cobalt directives** directly underneath the `#!/bin/bash -l` line:
 
 ```bash
 #!/bin/bash -l
@@ -74,8 +83,7 @@ module load conda/tensorflow
 python -c 'print(1 + 1)'
 ```
 
-If you changed `hello.sh` to contain these `#COBALT` directives,
-then you could simply submit the job without any of these flags on the command line:
+If you change `hello.sh` to contain these `#COBALT` directives, you can submit the script without repeating any flags in the shell:
 
 ```bash
 $ qsub-gpu hello.sh
@@ -86,9 +94,10 @@ You should visit the ALCF website to read more about [running jobs and submissio
 
 # Interactive jobs
 
-Once you have figured out exactly what to run, Batch jobs are a great way to submit the workloads and allow the system to take over scheduling them and running them as availability permits.  You can go do something else and log back onto the system another day to check on the status of your queued jobs.
+Once you have figured out exactly what to run, Batch jobs are a great way to submit workloads and allow the system to take over scheduling.  
+You can go do something else and log back onto the system another day to check on the status of your jobs.
 
-When testing new ideas or developing a new project, however, it's much more useful to be able to **SSH directly onto a DGX compute node** and run commands directly.  If you get something wrong or need to fix bugs, you can stay on the node while fixing things, instead of being kicked off and having to wait again for the next batch job to start.  To obtain a node interactively, all we have to do is **replace the batch job script** (`hello.sh`) **with the interactive flag** (`-I`):
+When testing new ideas or developing a project, however, it's more useful to be able to **SSH directly onto a compute node** and run commands locally.  If you get something wrong, you can stay on the node while fixing bugs, instead of being kicked off and having to wait repeatedly for the next batch job to start.  To obtain a node interactively, all you have to do is **replace the batch job script** (`hello.sh`) **with the interactive flag** (`-I`):
 
 
 ```bash
