@@ -1,15 +1,40 @@
-# How To Login to ALCF Systems
+# How To Login to ALCF[^1] Systems
 
-## Linux
+## Introduction / Background
 
-## macOS
+- Check out the [Get Started](https://www.alcf.anl.gov/support-center/get-started) page from [ALCF's Support Center](https://www.alcf.anl.gov/support-center) for general guidance on getting started
+  - When questions or issues arise, feel free to discuss amongst yourselves in the Slack channel or bring the issue up to one of the organizers (we're here to help!)
+  - When in doubt, there is a wealth of information available from ALCF on general best practices (+ tips & tricks for troubleshooting) 
+  - Some important pages to keep close might be:
+    - [ALCF's Support Center](https://www.alcf.anl.gov/support-center)
+    - [Get Started](https://www.alcf.anl.gov/support-center/get-started)
+    - [Learn to Use Our Systems](https://www.alcf.anl.gov/support-center/get-started/learn-use-our-systems)
+    - **[ThetaGPU Documentation](https://argonne-lcf.github.io/ThetaGPU-Docs/)**
 
-- Launch `Terminal`
-  - Run the command: `ssh username@login.theta.alcf.gov`
+- For those who may be unfamiliar with using the command line or even just want a review, there is no shortage of available information to help you get started.
+  - [The Linux Command Line for Beginners](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview)
+  - [The Linux Command Line: A Complete Introduction](https://linuxcommand.org/tlcl.php) (+ complete book, freely available as a PDF)
 
-## Windows
+## Logging in
 
-- The easiest way to get up and running on Windows is to install Linux.
+### Linux and macOS
+
+1. Launch the terminal of your choice
+   - **macOS**: `Terminal` (built-in) or [`iTerm`](https://iterm2.com/) (free, modern feature set) are good options
+   - **linux**: Virtually all modern linux distributions come pre-installed with an application (`Terminal`, `KDE Konsole`, `XTerm`, etc) to access the command line
+   - **References**:
+     - [Opening a terminal](https://ubuntu.com/tutorials/command-line-for-beginners#3-opening-a-terminal) from Ubuntu
+     - [Using a command line terminal + ssh](https://towardsdatascience.com/a-quick-guide-to-using-command-line-terminal-96815b97b955)
+
+2. Run the command: `ssh username@login.theta.alcf.gov`
+
+### Windows
+
+- The easiest way to get up and running on Windows is to install Linux
   - [Install WSL | Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/install)
   - [Install Ubuntu on Windows 10](https://ubuntu.com/tutorials/ubuntu-on-windows#1-overview)
   - [Get Ubuntu - Microsoft Store](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab)
+- Once you've successfully installed a Linux distribution of your choice, you can follow the instructions from the [Linux / macOS](#linux-and-macos) section above
+
+
+[^1]: [Argonne Leadership Computing Facility](https://alcf.anl.gov/)
