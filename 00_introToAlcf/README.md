@@ -3,9 +3,10 @@
 
 This first session is focused on introducing the ALCF supercomputing resources, how to access them, and how to use them.
 
-* Systems
-* Logging in
-* Environment
-* Job Submisions
+* [ALCF Systems](00_compututeSystems.md)
+* [Logging in](01_howToLogin.md)
+* [Environment](02_howToSetupEnvironment.md)
+* [Job Submisions](03_jobQueuesSubmission.md)
+* [Jupyter Notebooks](04_jupyterNotebooks.md)
 
 
