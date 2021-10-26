@@ -5,7 +5,7 @@
 ## macOS
 
 - Launch `Terminal`
-  - Run the command: `ssh username@login.theta.alcf.com`
+  - Run the command: `ssh username@login.theta.alcf.gov`
 
 ## Windows
 
