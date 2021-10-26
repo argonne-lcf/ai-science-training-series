@@ -26,5 +26,43 @@ It is important to know that when you login to any supercomputer, you land on a 
 
 When you work on a remote system, editing code requires either an editor that runs in your bash terminal or that operates remotely. We'll focus on editing via the bash terminal here.
 
-There are two primary text editors you'll find on supercomputers, [EMACS](https://www.gnu.org/software/emacs/tour/) and [VI](https://www.guru99.com/the-vi-editor.html). They offer similar capabilities with different keyboard interfaces.
+There are two primary text editors you'll find on supercomputers, [EMACS](https://www.gnu.org/software/emacs/tour/) and [VI](https://www.guru99.com/the-vi-editor.html). They offer similar capabilities with different keyboard interfaces. You can run these editors by typing their command names `emacs` or `vi` plus a filename (new or existing): 
+* `vi filename.py`
+* `emacs filename.py`
 
+There are many keyboard reference "cheatsheets" online for both editors, just run a search for them:
+* [EMACS Cheatsheet](https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf)
+* [VI Cheatsheet](http://www.atmos.albany.edu/daes/atmclasses/atm350/vi_cheat_sheet.pdf).
+
+These two editors are highly configurable and even though they are simply using a text-based interface can process mouse input if configured properly. If you save the following code to `$HOME/.vimrc` it will configure your `vi` editor in reasonable ways. 
+```bash
+syntax on
+set mouse=a
+if has("mouse_sgr")
+   set ttymouse=sgr
+else
+   set ttymouse=xterm2
+end
+set ai
+set tabstop=3
+set whichwrap+=<,>,h,l,[,]
+set expandtab
+set shiftwidth=3
+set hlsearch
+set ignorecase
+set smartcase
+set incsearch
+set ruler
+set cursorline
+set title
+set showmatch
+set showbreak=\ \ \
+xnoremap p pgvy
+set backspace=indent,eol,start
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+```
