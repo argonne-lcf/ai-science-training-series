@@ -3,6 +3,7 @@
 
 J. Taylor Childers (jchilders@anl.gov)
 Misha Salim (msalim@anl.gov)
+Venkat Vishwanath (venkat@anl.gov)
 
 This first session is focused on introducing the ALCF supercomputing resources, how to access them, and how to use them.
 
