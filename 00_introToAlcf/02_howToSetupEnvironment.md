@@ -68,3 +68,5 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 ```
+
+![vi gif](img/vi_usage.gif)
