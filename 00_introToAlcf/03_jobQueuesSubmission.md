@@ -46,8 +46,8 @@ Save this script into a file called `hello.sh` then run:
 # Make the hello.sh script executable:
 $ chmod +x hello.sh
 
-# Submit hello.sh to the GPU Training queue:
-$ qsub-gpu -A training -q single-gpu -n 1 -t 15 hello.sh
+# Submit hello.sh to the single-GPU Training queue:
+$ qsub-gpu -A ALCFAITP -q single-gpu -n 1 -t 15 hello.sh
 ```
 
 After running these commands, we should find that our job is
