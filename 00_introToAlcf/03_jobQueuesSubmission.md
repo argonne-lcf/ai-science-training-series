@@ -36,7 +36,7 @@ line `#!/bin/bash -l` indicating the `bash` shell interpreter will be used to ru
 
 echo "Hello world!"
 
-module load conda/tensorflow
+module load conda/2021-09-22
 python -c 'print(1 + 1)'
 ```
 
@@ -79,7 +79,7 @@ Instead of passing Cobalt parameters on the command line to `qsub-gpu`, we can a
 
 echo "Hello world!"
 
-module load conda/tensorflow
+module load conda/2021-09-22
 python -c 'print(1 + 1)'
 ```
 
