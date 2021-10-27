@@ -1,3 +1,6 @@
+# Argonne Leadership Computing Facility (ALCF) Overview
+![Overview of ALCF](img/ALCF-AITraining2021_dist.pdf)
+
 # Computing System Overview
 
 [Video presentation of our System Introduction](https://www.alcf.anl.gov/support-center/training-assets/getting-started-theta)
