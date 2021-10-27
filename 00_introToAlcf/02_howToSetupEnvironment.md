@@ -70,3 +70,11 @@ endif
 ```
 
 ![vi gif](img/vi_usage.gif)
+
+# Git Repo
+You're going to want to check out the github repo for this tutorial which contains files you can run, etc.
+```bash
+git clone https://github.com/argonne-lcf/ai-science-training-series.git
+```
+This will create a folder `ai-science-training-series` where you will find all the contents of the repo. You will want to run `git pull` at the start of each tutorial session to grab the latest updates from our team.
+
