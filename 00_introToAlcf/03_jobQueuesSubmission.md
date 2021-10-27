@@ -24,7 +24,7 @@ for routing jobs onto 1/8th of a DGX node (`-q single-gpu`).
 number of nodes by the walltime to get the *node-hours* used by a batch job.  This is
 the unit by which teams are charged for their usage of ALCF systems.  For instance, a
 a single-node, 15-minute job would cost 0.25 node hours.  For the training exercises,
-we can use a special training allocation set aside for today (`-A training`).
+we can use a special training allocation set aside (`-A ALCFAITP`).
 
 # Submitting a batch job script
 
@@ -72,7 +72,7 @@ Instead of passing Cobalt parameters on the command line to `qsub-gpu`, we can a
 
 ```bash
 #!/bin/bash -l
-#COBALT -A training
+#COBALT -A ALCFAITP
 #COBALT -q single-gpu
 #COBALT -n 1
 #COBALT -t 15
@@ -103,7 +103,7 @@ When testing new ideas or developing a project, however, it's more useful to be 
 
 
 ```bash
-$ qsub-gpu -n 1 -t 15 -q single-gpu -A training -I
+$ qsub-gpu -n 1 -t 15 -q single-gpu -A ALCFAITP -I
 ```
 
 This command will block until the node is available, and Cobalt will open a new SSH terminal having you logged into the compute node directly.
