@@ -6,6 +6,8 @@ The term _environment_ refers to the software that is easily accessible to you v
 
 # Intro to Modules
 
+![module gif](img/module_usage.gif)
+
 Theta uses [Modules](https://modules.readthedocs.io/en/latest/) to control the loading of software environments. When you load a module, BASH environment variables are altered to add or remove software executables and/or libraries from your terminal's search space. This doesn't "install" software or change where the software is located, it simply tells BASH where to find the software so you can use it.
 
 Let's take Python as an example. If I want to run a python script, I need to type `python script_name.py`. However, BASH needs to know where to find the `python` executable. If you have just logged into Theta and type `which python` you might notice BASH finds it here `/usr/bin/python` and running `python --version` tells you that this is Python v2.7.18. We want to use a more modern python for our example so we will run:
