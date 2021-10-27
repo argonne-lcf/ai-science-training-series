@@ -23,6 +23,8 @@
 
 ### Linux and macOS
 
+![login gif](img/login_mac.gif)
+
 1. Launch the terminal of your choice
    - **macOS**: `Terminal` (built-in) or [`iTerm`](https://iterm2.com/) (free, modern feature set) are good options
    - **linux**: Virtually all modern linux distributions come pre-installed with an application (`Terminal`, `KDE Konsole`, `XTerm`, etc) to access the command line
