@@ -1,5 +1,5 @@
 # Argonne Leadership Computing Facility (ALCF) Overview
-![Overview of ALCF](img/ALCF-AITraining2021_dist.pdf)
+[Overview of ALCF](img/ALCF-AITraining2021_dist.pdf)
 
 # Computing System Overview
 
