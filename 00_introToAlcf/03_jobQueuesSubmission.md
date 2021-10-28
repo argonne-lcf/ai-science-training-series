@@ -96,7 +96,7 @@ You should visit the ALCF website to read more about:
 - [ThetaGPU job queueing](https://www.alcf.anl.gov/support-center/theta-gpu-nodes/job-and-queue-scheduling-thetagpu).
 
 ## example using PyTorch MNIST ML training
-![pytorch gif](img/qsub_pytorch_mist.gif)
+![pytorch gif](img/qsub_pytorch_mnist.gif)
 
 # Interactive jobs
 
