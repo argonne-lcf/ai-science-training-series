@@ -37,27 +37,56 @@ There are many keyboard reference "cheatsheets" online for both editors, just ru
 * [VI Cheatsheet](http://www.atmos.albany.edu/daes/atmclasses/atm350/vi_cheat_sheet.pdf).
 
 These two editors are highly configurable and even though they are simply using a text-based interface can process mouse input if configured properly. If you save the following code to `$HOME/.vimrc` it will configure your `vi` editor in reasonable ways. 
-```bash
+```vim
+" --------------------------------------------------------------------------
+" To get additional information / help about any of the options below,
+" type :help option-name, for example to get help about syntax highlighting
+" type :help syntax and press enter (<CR>)
+" --------------------------------------------------------------------------
+
+" enable syntax highlighting
 syntax on
+
+" enable mouse
 set mouse=a
 if has("mouse_sgr")
    set ttymouse=sgr
 else
    set ttymouse=xterm2
 end
+" set autoindent
 set ai
-set tabstop=3
+" number of spaces that a <Tab> in the file counts for 
+set tabstop=4
+" Allow specified keys that move the cursor left/right to move to
+" the previous/next line when the cursor is on the first/last character
+" in the line
 set whichwrap+=<,>,h,l,[,]
+" In Insert mode: Use the appropriate number of space to insert a <Tab>
 set expandtab
+" How many spaces are equivalent to a single <Tab>
+" this is a matter of personal preference, the general recommendation
+" for `.py` files is 4, as per pep8
+"   - https://www.python.org/dev/peps/pep-0008/#maximum-line-length
 set shiftwidth=3
+" highlight search results
 set hlsearch
+" Ignore case when searching
 set ignorecase
+" Unless capital letters are explicitly included
 set smartcase
+" Incrementally search through buffer
 set incsearch
+" show the line and column number of the cursor position
 set ruler
+" highlight the line currently occupied by the cursor 
 set cursorline
+" set the title of the window to 'titlestring' if not empty,
+" otherwise use filename
 set title
+" when a bracket is inserted, briefly jump to the matching one
 set showmatch
+" string to put at the start of lines that have been wrapped
 set showbreak=\ \ \
 xnoremap p pgvy
 set backspace=indent,eol,start
