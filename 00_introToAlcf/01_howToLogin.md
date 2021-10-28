@@ -5,6 +5,7 @@
 ## Introduction / Background
 
 - Check out the [Get Started](https://www.alcf.anl.gov/support-center/get-started) page from [ALCF's Support Center](https://www.alcf.anl.gov/support-center) for general guidance on getting started
+  - To log into Theta, you will use the command: `ssh [username]@theta.alcf.anl.gov`
   - When questions or issues arise, feel free to discuss amongst yourselves in the Slack channel or bring the issue up to one of the organizers (we're here to help!)
   - When in doubt, there is a wealth of information available from ALCF on general best practices (+ tips & tricks for troubleshooting) 
   - Some important pages to keep close might be:
