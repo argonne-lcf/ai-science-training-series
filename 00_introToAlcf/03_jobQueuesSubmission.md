@@ -95,6 +95,9 @@ You should visit the ALCF website to read more about:
 - [running jobs and submission scripts in general](https://www.alcf.anl.gov/support-center/theta/running-jobs-and-submission-scripts) 
 - [ThetaGPU job queueing](https://www.alcf.anl.gov/support-center/theta-gpu-nodes/job-and-queue-scheduling-thetagpu).
 
+## example using PyTorch MNIST ML training
+![pytorch gif](img/qsub_pytorch_mist.gif)
+
 # Interactive jobs
 
 Once you have figured out exactly what to run, Batch jobs are a great way to submit workloads and allow the system to take over scheduling. You can go do something else and log back onto the system another day to check on the status of your jobs.
