@@ -26,7 +26,7 @@ the unit by which teams are charged for their usage of ALCF systems.  For instan
 a single-node, 15-minute job would cost 0.25 node hours.  For the training exercises,
 we can use a special training allocation set aside (`-A ALCFAITP`).
 
-# Submitting a batch job script
+## Submitting a batch job script
 
 To submit a minimal shell script, we need to make an executable file that starts with the very first
 line `#!/bin/bash -l` indicating the `bash` shell interpreter will be used to run the job in login mode (`-l`):
@@ -95,10 +95,23 @@ You should visit the ALCF website to read more about:
 - [running jobs and submission scripts in general](https://www.alcf.anl.gov/support-center/theta/running-jobs-and-submission-scripts) 
 - [ThetaGPU job queueing](https://www.alcf.anl.gov/support-center/theta-gpu-nodes/job-and-queue-scheduling-thetagpu).
 
-## example using PyTorch MNIST ML training
+## Example using PyTorch MNIST ML training
 ![pytorch gif](img/qsub_pytorch_mnist.gif)
 
-# Interactive jobs
+Some more realistic example job scripts are attached to this repository: try submitting `03_pytorch_mnist.sh` or `03_tensorflow_mnist.sh` to train a neural network on the MNIST classification task, using either PyTorch or Tensorflow, respectively.  You will find that these scripts tend to follow a simple pattern:
+
+```bash
+# Set up the Python environment
+module load conda/2021-09-22
+conda activate
+
+# Run the Python model training script
+python 03_pytorch_mnist.py
+```
+
+In upcoming sessions, you will learn more about these AI frameworks and how to write your own Python programs to build, train, and test deep learning models.
+
+## Interactive jobs
 
 Once you have figured out exactly what to run, Batch jobs are a great way to submit workloads and allow the system to take over scheduling. You can go do something else and log back onto the system another day to check on the status of your jobs.
 
