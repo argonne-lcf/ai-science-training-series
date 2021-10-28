@@ -34,9 +34,9 @@ There are two primary text editors you'll be (almost) guaranteed to find on ever
 
 There are many keyboard reference "cheatsheets" online for both editors, just run a search for them:
 * [Emacs Cheatsheet](https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf)
-* [Vi Cheatsheet](http://www.atmos.albany.edu/daes/atmclasses/atm350/vi_cheat_sheet.pdf).
+* [Vi Cheatsheet](http://www.atmos.albany.edu/daes/atmclasses/atm350/vi_cheat_sheet.pdf)
 
-These two editors are highly configurable and even though they are simply using a text-based interface can process mouse input if configured properly. If you save the following code to `$HOME/.vimrc` it will configure your `vi` editor in reasonable ways. 
+These two editors are highly configurable, and although they use a simple text-based interface by default, they can aso process mouse input if configured properly. If you save the following code to `$HOME/.vimrc` it will configure your `vi` editor in reasonable ways. 
 ```vim
 " --------------------------------------------------------------------------
 " To get additional information / help about any of the options below,
@@ -99,6 +99,48 @@ endif
 ```
 
 ![vi gif](img/vi_usage.gif)
+
+If you save the following to your `$HOME/.emacs.el` configuration file, it will configure your Emacs editor in reasonable ways:
+```
+;; Do not display Welcome buffer on GUI init
+(setq inhibit-startup-screen t)
+
+;; Automatically remove trailing whitespace when file is saved.
+(add-hook 'text-mode-hook
+      (lambda()
+        (add-hook 'local-write-file-hooks
+              '(lambda()
+                 (save-excursion
+                   (delete-trailing-whitespace))))))
+
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+;; Set the number to the number of columns to use.
+(setq-default fill-column 90)
+
+;; Show line number in the mode line.
+(line-number-mode 1)
+
+;; Show column number in the mode line.
+(setq column-number-mode t)
+
+;; Put line numbers on left column
+(global-linum-mode 1)
+
+(load-library "python")
+
+(autoload 'python-mode "python-mode" "Python Mode." t)
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+(add-hook 'python-mode-hook
+      (lambda()
+        (add-hook 'local-write-file-hooks
+              '(lambda()
+                 (save-excursion
+                   (delete-trailing-whitespace))))))
+
+```
+
 
 # Git Repo
 You're going to want to check out the github repo for this tutorial which contains files you can run, etc.
