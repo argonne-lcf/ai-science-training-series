@@ -140,10 +140,12 @@ If you save the following to your `$HOME/.emacs.el` configuration file, it will 
                    (delete-trailing-whitespace))))))
 
 ```
+## Remote Development with Visual Studio Code
 
+VS Code is a popular, free GUI editor that works on Linux, macOS, and Windows. To use VS Code on your local machine to edit files on remote machines like ThetaGPU, install the [Remote Development Extension](https://www.alcf.anl.gov/news/argonne-augments-theta-supercomputer-gpus-accelerate-coronavirus-research) and connect to the remote host via [these instructions](https://code.visualstudio.com/docs/remote/ssh). 
 
 # Git Repo
-You're going to want to check out the github repo for this tutorial which contains files you can run, etc.
+You're going to want to check out the GitHub repo for this tutorial which contains files you can run, etc.
 ```bash
 git clone https://github.com/argonne-lcf/ai-science-training-series.git
 ```
