@@ -2,7 +2,7 @@
 # Introduction to ALCF and ALCF Systems
 
 J. Taylor Childers (jchilders@anl.gov)
-Sam Foreman (sforeman@anl.gov)
+[Sam Foreman](https://github.com/saforem2) (foremans@anl.gov)
 Misha Salim (msalim@anl.gov)
 Venkat Vishwanath (venkat@anl.gov)
 
