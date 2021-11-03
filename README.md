@@ -16,7 +16,7 @@ This repository is organized into one subdirectory per session.  All content is 
       <li> <a href="./00_introToAlcf/03_jobQueuesSubmission.md">Jobs, Queues, Submissions: How To</a></li>
       <li> <a href="./00_introToAlcf/04_jupyterNotebooks.md">Jupyter Notebooks</a></li>
     </ol>
-    <li> Machine Learning </li>
+    <li> <a href="./01_machineLearning"> Machine Learning  </a> </li>
     <ol> 
        <li> <a href="./01_machineLearning/part-1_introduction-to-sklearn"> Introduction to Supervised Machine Learning with Scikit-Learn </a></li>
        <li> <a href="./01_machineLearning/part-2_ml-with-materials-data"> Machine Learning with Scientific Data </a></li>
