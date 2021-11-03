@@ -18,7 +18,8 @@ This repository is organized into one subdirectory per session.  All content is 
     </ol>
     <li> Machine Learning </li>
     <ol> 
-       <li> Coming soon! </li>
+       <li> <a href="./01_machineLearning/part-1_introduction-to-sklearn"> Introduction to Supervised Machine Learning with Scikit-Learn </a></li>
+       <li> <a href="./01_machineLearning/part-2_ml-with-materials-data"> Machine Learning with Scientific Data </a></li>
     </ol>
     <li> Introduction to Deep Learning </li>
     <ol> 
