@@ -15,7 +15,7 @@ There are two ways to run the notebooks.
 
 We first need to let Jupyter know how to run notebooks from the Python environment created in this class.
 
-[Log in to ThetaGPU via SSSH](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/01_howToLogin.md) then execute the following instructions:
+[Log in to ThetaGPU via SSH](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/01_howToLogin.md) then execute the following instructions:
 
 ```bash
 # Load in Anaconda in your terminal
