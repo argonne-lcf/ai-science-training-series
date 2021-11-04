@@ -1,4 +1,4 @@
-name: alcfai
+name: alcfai-ml
 channels:
   - defaults
   - conda-forge
