@@ -11,30 +11,45 @@ Start by cloning the git repository with this folder. In you are using ALCF, see
 
 There are two ways to run the notebooks.
 
-### ALCF Jupyter
+### ALCF Jupyter-Hub
 
-We first need to let Jupyter know how to run notebooks from the Python environment created in this class.
+You can run the notebooks of this session on ALCF's Jupyter-Hub. 
 
-[Log in to ThetaGPU via SSH](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/01_howToLogin.md) then execute the following instructions:
+1. [Log in to a ThetaGPU compute node via Jupyter-Hub](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/04_jupyterNotebooks.md)
 
-```bash
-# Load in Anaconda in your terminal
-module load conda/2021-09-22
+2. **Install the Jupyter kernel `rapids-21.10`**. There are two ways of doing this, from the jupyter notebook or from the terminal via ssh:
 
-# Use Anaconda to activate the environment we've prepared for you
-source activate /lus/grand/projects/ALCFAITP/conda/rapids-21.10;
+    - *from the jupyter notebook*: copy the following code, paste it in a new cell on the notebook and run it
+      ```
+      !source activate /lus/grand/projects/ALCFAITP/conda/rapids-21.10;\
+      python -m ipykernel install --user --name rapids-21.10
+      ```
+    
+    - *from the terminal via ssh*: 
 
-# Install a new Python environment ("kernel") for Jupyter to use
-python -m ipykernel install --user --name rapids-21.10
+      ```bash
+      # Log in to Theta
+      ssh username@theta.alcf.anl.gov
 
-```
+      # Log in to a ThetaGPU service node
+      ssh thetagpusn1
 
-Once you do that, you will need to tell Jupyter to use that Python kernel **each time you open a notebook for the first time.**
-Do so by following the following steps:
+      # Load Anaconda
+      module load conda/2021-09-22
 
-1. select *Kernel* in the menu bar
-1. select *Change kernel...*
-1. select *rapids-21.10* from the drop-down menu
+      # Use Anaconda to activate the environment we've prepared for you
+      conda activate /lus/grand/projects/ALCFAITP/conda/rapids-21.10
+
+      # Install the new Jupyter kernel to use
+      python -m ipykernel install --user --name rapids-21.10
+      ```
+
+3. Change the notebook's kernel to `rapids-21.10` (you will need to change kernel each time you open a notebook for the first time):
+
+    1. select *Kernel* in the menu bar
+    1. select *Change kernel...*
+    1. select *rapids-21.10* from the drop-down menu
+
 
 ### Local Installation
 
