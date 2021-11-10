@@ -1,7 +1,5 @@
 # Introduction to Deep Learning
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/argonne-lcf/ai-science-training-series/tree/main/02_deepLearning/)
-
 
 This tutorial covers the basics of Deep Learning with Convolutional Neural Nets. The tutorial is broken into three notebooks. The topics covered in each notebook are:
 
@@ -26,7 +24,26 @@ This tutorial covers the basics of Deep Learning with Convolutional Neural Nets.
 
 
 
-__References:__
+## Environment Setup
+
+Start by cloning the git repository with this folder. In you are using ALCF, see our [previous tutorial's instructions.](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/02_howToSetupEnvironment.md#git-repo)
+
+
+### ALCF Jupyter-Hub
+
+You can run the notebooks of this session on ALCF's Jupyter-Hub. 
+
+1. [Log in to a ThetaGPU compute node via Jupyter-Hub](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/04_jupyterNotebooks.md)
+
+2. Change the notebook's kernel to `conda/2021-09-22` (you may need to change kernel each time you open a notebook for the first time):
+
+    1. select *Kernel* in the menu bar
+    1. select *Change kernel...*
+    1. select *conda/2021-09-22* from the drop-down menu
+
+
+
+## __References:__
 
 The code examples presented here are mostly taken (verbatim) or inspired from the following sources. I made this curation to give a quick exposure to very basic but essential ideas/practices in deep learning to get you started fairly quickly, but I recommend going to some or all of the actual sources for an in depth survey:
 
