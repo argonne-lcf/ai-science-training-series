@@ -28,15 +28,24 @@ This tutorial covers the basics of Deep Learning with Convolutional Neural Nets.
 
 Start by cloning the git repository with this folder. If you are using ALCF, see our [previous tutorial's instructions.](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/02_howToSetupEnvironment.md#git-repo)
 
-After cloning, move into the repo directory and run the following commands to download the data we will be working with:
-1. ` cd ai-science-training-series/02_deepLearning/ `
-2. ``` 
+From a terminal run the following commands:
+
+```
+ssh username@theta.alcf.anl.gov
+```
+```
+git clone https://github.com/argonne-lcf/ai-science-training-series.git
+```
+
+After cloning, move into the repo directory, load the `conda/2021-09-22` module and run the following commands to download the data we will be working with:
+1. `cd ai-science-training-series/02_deepLearning/ `
+2. `module load conda/2021-09-22`
+3. ``` 
    python << EOF  
-   > from tensorflow.keras.datasets import mnist 
-   > mnist.load_data()
-   > EOF
-3. `wget https://s3.amazonaws.com/fast-ai-imageclas/cifar10.tgz`
-4. `tar -xf cifar10.tgz`
+   from tensorflow.keras.datasets import mnist 
+   mnist.load_data()
+   EOF
+   ```
 
 
 ### ALCF Jupyter-Hub
