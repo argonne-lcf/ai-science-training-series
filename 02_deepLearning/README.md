@@ -56,7 +56,7 @@ You can run the notebooks of this session on ALCF's Jupyter-Hub.
 
 The code examples presented here are mostly taken (verbatim) or inspired from the following sources. I made this curation to give a quick exposure to very basic but essential ideas/practices in deep learning to get you started fairly quickly, but I recommend going to some or all of the actual sources for an in depth survey:
 
-- [tensorflow.org Turorials](https://www.tensorflow.org/tutorials)
+- [tensorflow.org turorials](https://www.tensorflow.org/tutorials)
 - [keras.io tutorials](https://keras.io/examples/)
 - [CS231n: Convolutional Neural Networks for Visual Recognition](http://cs231n.stanford.edu/)
 - [Deep Learnig Specialization, Andrew Ng](https://www.coursera.org/specializations/deep-learning?utm_source=deeplearningai&utm_medium=institutions&utm_campaign=WebsiteCoursesDLSTopButton)
