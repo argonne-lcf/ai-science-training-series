@@ -6,6 +6,8 @@ New AI systems largely depend on CPU-GPU hybrid architectures. This makes effici
 
 This section demonstrates building a data pipeline for both Tensorflow and PyTorch. Tensorflow's data pipeline API is a bit more advanced than PyTorch so we'll focus on that one, though we include an example in PyTorch.
 
+[THIS NOTEBOOK](00_tensorflowDatasetAPI/inspect_pipeline.ipynb) is a good way to first inspect the dataset.
+
 # ImageNet Dataset
 
 This example uses the ImageNet dataset to build training batches.
