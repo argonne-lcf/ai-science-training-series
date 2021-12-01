@@ -8,6 +8,8 @@ This section demonstrates building a data pipeline for both Tensorflow and PyTor
 
 [THIS NOTEBOOK](00_tensorflowDatasetAPI/inspect_pipeline.ipynb) is a good way to first inspect the dataset.
 
+[THIS REPO](https://github.com/jtchilders/tensorflow_skeleton) contains a full example of training ResNet on the ImageNet dataset.
+
 # ImageNet Dataset
 
 This example uses the ImageNet dataset to build training batches.

@@ -15,8 +15,13 @@
 #
 # questions? Taylor Childers, jchilders@anl.gov
 
+# set environment variables to reduce number of print statements from Tensorflow
+import os
+os.environ['TF_CPP_MIN_VLOG_LEVEL'] = '4'  # 4 silences everything, 0 prints everything
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '4'  # 4 silences everything, 0 prints everything
+
 import tensorflow as tf
-import logging,os,glob,time
+import logging,glob,time
 import numpy as np
 import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
@@ -41,6 +46,7 @@ def get_datasets(config):
    train_filelist = config['data']['train_filelist']
    test_filelist = config['data']['test_filelist']
 
+   # make sure the file lists exist
    assert os.path.exists(train_filelist)
    assert os.path.exists(test_filelist)
 
@@ -48,6 +54,7 @@ def get_datasets(config):
    # and builds a map from the string labels like the above "n02537312"
    # to a unique integer value 0-999. This is more suitable for
    # network classifciation than a string.
+   # I include this step for reference but we do not use it in this example
    labels_hash = get_label_tables(train_filelist)
 
    # this function creates the tf.dataset.Dataset objects for each list
@@ -76,13 +83,13 @@ def get_label_tables(train_filelist):
    # list of the string labels
    labels = glob.glob(label_path + os.path.sep + '*')
    logger.info(f'num labels: {len(labels)}')
-   # this removes the leading path from the label directories
+   # this removes the leading path from the label directories: [ "n02537312", "n02537313", ... ]
    labels = [os.path.basename(i) for i in labels]
    # create a list of integers as long as the number of labels
    hash_values = tf.range(len(labels))
    # convert python list of strings to a tensorflow vector
    hash_keys = tf.constant(labels, dtype=tf.string)
-   # build a key-value lookup using Tensorflow tools
+   # build a key-value lookup using Tensorflow tools: { "n02537312": 0, "n02537313": 1, ... }
    labels_hash_init = tf.lookup.KeyValueTensorInitializer(hash_keys, hash_values)
    # build a lookup table based on those key-value pairs (returns -1 for undefined keys)
    labels_hash = tf.lookup.StaticHashTable(labels_hash_init, -1)
@@ -235,6 +242,7 @@ if __name__ == '__main__':
 
    # parse config file
    config = json.load(open(args.config_filename))
+   # if you were using horovod, you could add it to the config here
    config['hvd'] = None
    
    # define some parallel processing sizes
@@ -242,6 +250,9 @@ if __name__ == '__main__':
       tf.config.threading.set_inter_op_parallelism_threads(args.interop)
    if args.intraop is not None:
       tf.config.threading.set_intra_op_parallelism_threads(args.intraop)
+   
+   logger.info('inter_op_parallelism_threads set to %d',tf.config.threading.get_inter_op_parallelism_threads())
+   logger.info('intra_op_parallelism_threads set to %d',tf.config.threading.get_intra_op_parallelism_threads())
    
    # use the tensorflow profiler here
    with tf.profiler.experimental.Profile(args.logdir):
