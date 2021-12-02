@@ -3,6 +3,11 @@
 *.output
 *.error
 
+logdir
+
+*.pb
+*.gz
+
 # mnist dataset
 *ubyte
 *ubyte.gz
