@@ -71,10 +71,10 @@ for inputs,labels in ds:
 
 ## Parallel Processing on ThetaGPU
 
-The example `00_tensorflowDatasetAPI/ilsvrc_dataset_serial.py` can be run via
+The example `00_tensorflowDatasetAPI/ilsvrc_dataset.py` can be run in an effective "serial" mode using
 ```bash
 # module load conda/2021-11-30; conda activate
-python 00_tensorflowDatasetAPI/ilsvrc_dataset_serial.py -c 00_tensorflowDatasetAPI/ilsvrc.json
+python 00_tensorflowDatasetAPI/ilsvrc_dataset.py -c 00_tensorflowDatasetAPI/ilsvrc.json --intraop 1 --interop 1
 ```
 
 You will see very poor performance as this is an example of serial data pipeline that only uses one or two cores. You can see in this screenshot from the [TensorFlow Profiler](https://github.com/argonne-lcf/sdl_ai_workshop/tree/master/04_profilingDeepLearning/TensorflowProfiler) how your processes are being utilized. The profile shows a single process handling all the data pipeline processes. All `ReadFile` calls are being done serially when they could be done in parallel. One long IO operation holds up the entire application.
