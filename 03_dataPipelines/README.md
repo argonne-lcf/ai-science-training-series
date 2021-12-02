@@ -75,9 +75,10 @@ for inputs,labels in ds:
 The example `00_tensorflowDatasetAPI/ilsvrc_dataset.py` can be run in an effective "serial" mode on ThetaGPU (single-gpu queue) worker nodes using
 ```bash
 # module load conda/2021-11-30; conda activate
-python 00_tensorflowDatasetAPI/ilsvrc_dataset.py -c 00_tensorflowDatasetAPI/ilsvrc.json --num-parallel-readers 1 --prefetch-buffer-size 0
-# shows about 40 images per second
+CUDA_VISIBLE_DEVICES=-1 python 00_tensorflowDatasetAPI/ilsvrc_dataset.py -c 00_tensorflowDatasetAPI/ilsvrc.json --num-parallel-readers 1 --prefetch-buffer-size 0
+# shows about 33 images per second
 ```
+Note, we do not need the GPU for this and to avoid memory copies to/from the device, we simply set `CUDA_VISIBLE_DEVICES=-1` to disable the GPU in this example.
 
 You will see very poor performance as this is an example of serial data pipeline that only uses one process for reading JPEGs and does not pre-stage batch data. You can see in this screenshot from the [TensorFlow Profiler](https://github.com/argonne-lcf/sdl_ai_workshop/tree/master/04_profilingDeepLearning/TensorflowProfiler) how your processes are being utilized. The profile shows a single process handling all the data pipeline processes. All `ReadFile` calls are being done serially when they could be done in parallel. One long IO operation holds up the entire application.
 ![serial](images/ilsvrc_serial.png)
@@ -85,7 +86,7 @@ You will see very poor performance as this is an example of serial data pipeline
 Now switch to running the parallel version on a ThetaGPU (single-gpu queue):
 ```bash
 # module load conda/2021-11-30; conda activate
-python 00_tensorflowDatasetAPI/ilsvrc_dataset.py -c 00_tensorflowDatasetAPI/ilsvrc.json --num-parallel-readers 8 --prefetch-buffer-size 3
+CUDA_VISIBLE_DEVICES=-1 python 00_tensorflowDatasetAPI/ilsvrc_dataset.py -c 00_tensorflowDatasetAPI/ilsvrc.json --num-parallel-readers 8 --prefetch-buffer-size 2
 # shows about 120 images per second
 ```
 

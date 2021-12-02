@@ -145,10 +145,10 @@ def build_dataset_from_filelist(config,filelist_filename):
    # setup a pipeline that pre-fetches images before they are needed (keeps CPU busy)
    ds = ds.prefetch(buffer_size=dc['prefectch_buffer_size']) # tf.data.experimental.AUTOTUNE)  
 
-   # to force truely serial operation:
-   # options = tf.data.Options()
-   # options.threading.private_threadpool_size = 1
-   # ds = ds.with_options(options)
+   # control the threadpool size for dataset operations, here we just mirror the parallel readers value
+   options = tf.data.Options()
+   options.threading.private_threadpool_size = dc['num_parallel_readers']
+   ds = ds.with_options(options)
 
    return ds
 
