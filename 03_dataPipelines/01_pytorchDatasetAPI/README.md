@@ -1,18 +1,16 @@
 # PyTorch Example Data Pipeline
-by J. Taylor Childers (jchilders@anl.gov)
+*Led by [J. Taylor Childers](jchilders@anl.gov) from ALCF*
 
-This is very similar to the Tensorflow example covered in the [README](../README.md) one level up.
+This is very similar to the TensorFlow example covered in the [README](../README.md) one level up.
 
-Example submission scripts for ThetaKNL & ThetaGPU are provided.
+Example submission script for ThetaGPU is provided.
 
 Submit to ThetaGPU using:
 ```bash
 qsub -A <project> -q <queue> submit_thetagpu.sh
 ```
-
-Submit to ThetaKNL using:
+During this training program, you should use:
 ```bash
-qsub -A <project> -q <queue> submit_thetknl.sh
+qsub -A ALCFAITP -q single-gpu submit_thetagpu.sh
 ```
-
-All log files go into the `logdir` folder.
+All log files go into the `logdir/` folder.

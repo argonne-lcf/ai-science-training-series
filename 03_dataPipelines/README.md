@@ -1,10 +1,9 @@
 # Building a CPU-side data pipeline
-
-Led by Taylor Childers from ALCF
+*Led by [J. Taylor Childers](jchilders@anl.gov) from ALCF*
 
 New AI systems largely depend on CPU-GPU hybrid architectures. This makes efficient use of CPU-side resources important in order to feed sufficient data to the GPU algorithms. In most cases, the best setup is to have the CPU process the training data and build training batches, while the GPU performs the compute intensive model inference and gradient calculations ("backward pass" or "back-prop").
 
-This section demonstrates building a data pipeline for both Tensorflow and PyTorch. Tensorflow's data pipeline API is a bit more advanced than PyTorch so we'll focus on that one, though we include an example in PyTorch.
+This section demonstrates building a data pipeline for both TensorFlow and PyTorch. TensorFlow's data pipeline API is a bit more advanced than PyTorch so we'll focus on that one, though we include an example in PyTorch.
 
 [THIS NOTEBOOK](00_tensorflowDatasetAPI/inspect_pipeline.ipynb) is a good way to first inspect the dataset.
 
@@ -18,9 +17,9 @@ This example uses the ImageNet dataset to build training batches.
 
 This dataset includes JPEG images and an XML annotation for each file that defines a bounding box for each class. Building a training batch requires pre-processing the images and annotations. In our example, we have created text files that list all the files in the training set and validation set. For each text file, we need to use the input JPEG files and build tensors that include multiple images per training batch.
 
-# Tensorflow Dataset example
+# TensorFlow Dataset example
 
-Tensorflow has some very nice tools to help us build the pipeline. You'll find the [example here](00_tensorflowDatasetAPI/ilsvrc_dataset.py).
+TensorFlow has some very nice tools to help us build the pipeline. You'll find the [example here](00_tensorflowDatasetAPI/ilsvrc_dataset.py).
 
 ## Build from file list
 We'll start in the function `build_dataset_from_filelist`.
@@ -70,20 +69,20 @@ for inputs,labels in ds:
    # ...
 ```
 
-## Parallel Processing on ThetaKNL
+## Parallel Processing on ThetaGPU
 
 The example `00_tensorflowDatasetAPI/ilsvrc_dataset_serial.py` can be run via
 ```bash
-# module load miniconda-3/2020-12
+# module load conda/2021-11-30; conda activate
 python 00_tensorflowDatasetAPI/ilsvrc_dataset_serial.py -c 00_tensorflowDatasetAPI/ilsvrc.json
 ```
 
-You will see very poor performance as this is an example of serial data pipeline that only uses one or two cores. You can see in this screenshot from the [Tensorflow Profiler](../04_profilingDeepLearning/TensorflowProfiler/) how your processes are being utilized. The profile shows a single process handling all the data pipeline processes. All ReadFile calls are being done serially when they could be done in parallel. One long IO operation holds up the entire application.
+You will see very poor performance as this is an example of serial data pipeline that only uses one or two cores. You can see in this screenshot from the [TensorFlow Profiler](https://github.com/argonne-lcf/sdl_ai_workshop/tree/master/04_profilingDeepLearning/TensorflowProfiler) how your processes are being utilized. The profile shows a single process handling all the data pipeline processes. All `ReadFile` calls are being done serially when they could be done in parallel. One long IO operation holds up the entire application.
 ![serial](images/ilsvrc_serial.png)
 
-Now switch to running the parallel version
+Now switch to running the parallel version:
 ```bash
-# module load miniconda-3/2020-12
+# module load conda/2021-11-30; conda activate
 python 00_tensorflowDatasetAPI/ilsvrc_dataset.py -c 00_tensorflowDatasetAPI/ilsvrc.json --interop 64 --intraop 64
 ```
 
