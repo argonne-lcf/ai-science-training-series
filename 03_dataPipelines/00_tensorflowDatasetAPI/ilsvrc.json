@@ -6,8 +6,8 @@
       "test_filelist":                 "/lus/theta-fs0/software/datascience/ImageNet/ILSVRC/ilsvrc_val_filelist.txt",
       "shuffle_buffer":                200000,
       "reshuffle_each_iteration":      true,
-      "num_parallel_readers":          8,
-      "prefectch_buffer_size":         10,
+      "num_parallel_readers":          1,
+      "prefectch_buffer_size":         0,
       "crop_image_size":               [256,256],
       "num_classes":                   1000,
       "num_channels":                  3

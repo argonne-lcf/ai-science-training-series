@@ -134,7 +134,7 @@ def build_dataset_from_filelist(config,filelist_filename):
    # this function opens the JPEG, converts it to a tensorflow vector and gets the truth class label
    logger.debug('starting map')
    ds = filelist.map(load_image_label_bb,
-                     num_parallel_calls=tf.data.experimental.AUTOTUNE)
+                     num_parallel_calls=dc['num_parallel_readers']) # tf.data.experimental.AUTOTUNE)
                      
    # unbatch called because some JPEGs result in more than 1 image returned
    ds = ds.apply(tf.data.Dataset.unbatch)
@@ -143,7 +143,7 @@ def build_dataset_from_filelist(config,filelist_filename):
    ds = ds.batch(dc['batch_size'])
 
    # setup a pipeline that pre-fetches images before they are needed (keeps CPU busy)
-   ds = ds.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)  
+   ds = ds.prefetch(buffer_size=dc['prefectch_buffer_size']) # tf.data.experimental.AUTOTUNE)  
 
    return ds
 
@@ -238,6 +238,9 @@ if __name__ == '__main__':
    parser.add_argument('--interop',type=int,help='set Tensorflow "inter_op_parallelism_threads" session config varaible ',default=None)
    parser.add_argument('--intraop',type=int,help='set Tensorflow "intra_op_parallelism_threads" session config varaible ',default=None)
 
+   parser.add_argument('--num-parallel-readers',dest='num_parallel_readers',type=int,help='set the number of parallel data readers',default=None)
+   parser.add_argument('--prefetch-buffer-size',dest='prefectch_buffer_size',type=int,help='set the number of batches to prepare in advance',default=None)
+
    args = parser.parse_args()
 
    # parse config file
@@ -250,9 +253,17 @@ if __name__ == '__main__':
       tf.config.threading.set_inter_op_parallelism_threads(args.interop)
    if args.intraop is not None:
       tf.config.threading.set_intra_op_parallelism_threads(args.intraop)
+
+   if args.num_parallel_readers is not None:
+      config['data']['num_parallel_readers'] = args.num_parallel_readers
+   if args.prefectch_buffer_size is not None:
+      config['data']['prefectch_buffer_size'] = args.prefectch_buffer_size
+   
    
    logger.info('inter_op_parallelism_threads set to %d',tf.config.threading.get_inter_op_parallelism_threads())
    logger.info('intra_op_parallelism_threads set to %d',tf.config.threading.get_intra_op_parallelism_threads())
+   logger.info('num_parallel_readers set to %d',config['data']['num_parallel_readers'])
+   logger.info('prefectch_buffer_size set to %d',config['data']['prefectch_buffer_size'])
    
    # use the tensorflow profiler here
    with tf.profiler.experimental.Profile(args.logdir):

@@ -71,19 +71,21 @@ for inputs,labels in ds:
 
 ## Parallel Processing on ThetaGPU
 
-The example `00_tensorflowDatasetAPI/ilsvrc_dataset.py` can be run in an effective "serial" mode using
+The example `00_tensorflowDatasetAPI/ilsvrc_dataset.py` can be run in an effective "serial" mode on ThetaGPU (single-gpu queue) worker nodes using
 ```bash
 # module load conda/2021-11-30; conda activate
-python 00_tensorflowDatasetAPI/ilsvrc_dataset.py -c 00_tensorflowDatasetAPI/ilsvrc.json --intraop 1 --interop 1
+python 00_tensorflowDatasetAPI/ilsvrc_dataset.py -c 00_tensorflowDatasetAPI/ilsvrc.json --num-parallel-readers 1 --prefetch-buffer-size 0
+# shows about 40 images per second
 ```
 
-You will see very poor performance as this is an example of serial data pipeline that only uses one or two cores. You can see in this screenshot from the [TensorFlow Profiler](https://github.com/argonne-lcf/sdl_ai_workshop/tree/master/04_profilingDeepLearning/TensorflowProfiler) how your processes are being utilized. The profile shows a single process handling all the data pipeline processes. All `ReadFile` calls are being done serially when they could be done in parallel. One long IO operation holds up the entire application.
+You will see very poor performance as this is an example of serial data pipeline that only uses one process for reading JPEGs and does not pre-stage batch data. You can see in this screenshot from the [TensorFlow Profiler](https://github.com/argonne-lcf/sdl_ai_workshop/tree/master/04_profilingDeepLearning/TensorflowProfiler) how your processes are being utilized. The profile shows a single process handling all the data pipeline processes. All `ReadFile` calls are being done serially when they could be done in parallel. One long IO operation holds up the entire application.
 ![serial](images/ilsvrc_serial.png)
 
-Now switch to running the parallel version:
+Now switch to running the parallel version on a ThetaGPU (single-gpu queue):
 ```bash
 # module load conda/2021-11-30; conda activate
-python 00_tensorflowDatasetAPI/ilsvrc_dataset.py -c 00_tensorflowDatasetAPI/ilsvrc.json --interop 64 --intraop 64
+python 00_tensorflowDatasetAPI/ilsvrc_dataset.py -c 00_tensorflowDatasetAPI/ilsvrc.json --num-parallel-readers 8 --prefetch-buffer-size 3
+# shows about 120 images per second
 ```
 
 You will see much better performance in this case. Batch processing time is down from 10 seconds to 1 second. The profiler shows we are running with our 64 parallel processes, all of which are opening JPEGs, processing them into tensors, extracting truth information, and so on. There are still some spurious IO operations that slow us down, but really this speaks to the fact that we are loading a million small files (100KB), which is bad in practice, but good for this example. In reality, we'd want to do all this data processing in advanced.
