@@ -9,5 +9,8 @@ Submit to ThetaGPU using:
 ```bash
 qsub -A <project> -q <queue> submit_thetagpu.sh
 ```
-
+During this training program, you should use:
+```bash
+qsub -A ALCFAITP -q single-gpu submit_thetagpu.sh
+```
 All log files go into the `logdir/` folder.
