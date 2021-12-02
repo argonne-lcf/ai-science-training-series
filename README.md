@@ -22,9 +22,10 @@ This repository is organized into one subdirectory per session.  All content is 
        <li> <a href="./01_machineLearning/part-2_ml-with-materials-data"> Machine Learning with Scientific Data </a></li>
     </ol>
     <li> <a href="./02_deepLearning"> Introduction to Deep Learning </a></li>
-    <li> Data Pipelines for Deep Learning </li>
+    <li> <a href="./03_dataPipelines"> Data Pipelines for Deep Learning </a></li> 
     <ol>
-      <li> Coming soon! </li>
+      <li> <a href="./03_dataPipelines/00_tensorflowDatasetAPI"> TensorFlow Dataset API </a></li> 
+      <li> <a href="./03_dataPipelines/01_pytorchDatasetAPI"> PyTorch Dataset API </a></li> 
     </ol>
   </ol>
 </details>
