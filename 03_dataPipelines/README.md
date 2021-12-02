@@ -1,6 +1,5 @@
 # Building a CPU-side data pipeline
-
-Led by Taylor Childers from ALCF
+*Led by [J. Taylor Childers](jchilders@anl.gov) from ALCF*
 
 New AI systems largely depend on CPU-GPU hybrid architectures. This makes efficient use of CPU-side resources important in order to feed sufficient data to the GPU algorithms. In most cases, the best setup is to have the CPU process the training data and build training batches, while the GPU performs the compute intensive model inference and gradient calculations ("backward pass" or "back-prop").
 
