@@ -90,7 +90,7 @@ CUDA_VISIBLE_DEVICES=-1 python 00_tensorflowDatasetAPI/ilsvrc_dataset.py -c 00_t
 # shows about 120 images per second
 ```
 
-You will see much better performance in this case. Batch processing time is down from 10 seconds to 1 second. The profiler shows we are running with our 64 parallel processes, all of which are opening JPEGs, processing them into tensors, extracting truth information, and so on. There are still some spurious IO operations that slow us down, but really this speaks to the fact that we are loading a million small files (100KB), which is bad in practice, but good for this example. In reality, we'd want to do all this data processing in advanced.
+You will see much better performance in this case. Batch processing time is down from 3 seconds to 1 second. The profiler shows we are running with our 8 parallel processes, all of which are opening JPEGs, processing them into tensors, extracting truth information, and so on.
 ![parallel](images/ilsvrc_parallel.png)
 
 
