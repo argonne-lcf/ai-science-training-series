@@ -35,8 +35,6 @@ cd ai-science-training-series
 git pull
 ```
 
-
-
 ### ALCF JupyterHub
 
 You can run the notebooks of this session on ALCF's JupyterHub. 
@@ -51,6 +49,8 @@ You can run the notebooks of this session on ALCF's JupyterHub.
     1. select *conda/2021-09-22* from the drop-down menu
 
 3. Open [`CAE_LSTM.ipynb`](./CAE_LSTM.ipynb)
+
+A standard time series classification tutorial is also included here if you want to try it out after the session: [`keras-imdb-rnn.ipynb`](keras-imdb-rnn.ipynb)
 
 ## Vanilla/Simple Recurrent Neural Network (RNN)
 All RNN diagrams from Chirstopher Olah's famous 2015 blog post, [Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)
