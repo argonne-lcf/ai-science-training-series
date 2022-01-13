@@ -1,19 +1,26 @@
 # Time series data
 
-
+**Types of problems**
 - Classification
 - Regression 
-- Prediction
+  - Prediction/Forecasting
 - Compression
 
-
-Applications
+**Example applications**
 - natural language processing
 - speech recognition
 - traffic forecasting (see Diffusion Convolutional Recurrent Neural Network (DCRNN))
+- electrical grid management
+- earthquake prediction
 
+**Historically popular models and deep learning architectures**
+- Autoregressive (AR, MA, ARMA, ARIMA)
+  - https://www.stat.pitt.edu/stoffer/tsa4/
+- MLP
+- Recurrent neural network (this tutorial)
+- Temporal convolutional network (TCN)
 
-Successors:
+**Successors**:
 - Transformers and their variants (GPT, BERT, BART, Reformer, Longformer, ...)
 - Vision transformers
 
@@ -26,13 +33,12 @@ All RNN diagrams from Chirstopher Olah's famous 2015 blog post, [Understanding L
 ![Simple RNN cell](media/colah-simple-RNN.png)
 
 ![Simple RNN equations](media/simple-rnn-eqs.png)
-
+(technically an Elman, not Jordan RNN). Train through backpropagation through time (BPTT)
 
 ## Long short-term memory (LSTM)
-Introduced by [Hochreiter and Schmidhuber (1997)](https://direct.mit.edu/neco/article-abstract/9/8/1735/6109/Long-Short-Term-Memory?redirectedFrom=fulltext)
+Introduced by [Hochreiter and Schmidhuber (1997)](https://direct.mit.edu/neco/article-abstract/9/8/1735/6109/Long-Short-Term-Memory?redirectedFrom=fulltext), greatly ameliorates the vanishing/exploding gradient problem that simple RNNs suffer from.
 
 ![LSTM cell](media/colah-lstm.png)
-
 
 ![LSTM equations](media/lstm-eqs.png)
 
