@@ -12,21 +12,23 @@
 - traffic forecasting (see Diffusion Convolutional Recurrent Neural Network (DCRNN))
 - electrical grid management
 - earthquake prediction
+- medicine (EEG, outcomes)
 
 **Historically popular models and deep learning architectures**
-- Autoregressive (AR, MA, ARMA, ARIMA)
-  - https://www.stat.pitt.edu/stoffer/tsa4/
+- Autoregressive (AR, MA, ARMA, ARIMA, ARCH, GARCH)
+  - Shumway, Robert H., David S. Stoffer. [Time series analysis and its applications](https://www.stat.pitt.edu/stoffer/tsa4/). Vol. 4. New York: Springer, 2017. 
 - MLP
-- Recurrent neural network (this tutorial)
+- Recurrent neural network (**this tutorial**)
 - Temporal convolutional network (TCN)
 
 **Successors**:
 - Transformers and their variants (GPT, BERT, BART, Reformer, Longformer, ...)
 - Vision transformers
 
-All RNN diagrams from Chirstopher Olah's famous 2015 blog post, [Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+
 
 ## Vanilla/Simple Recurrent Neural Network (RNN)
+All RNN diagrams from Chirstopher Olah's famous 2015 blog post, [Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)
 
 ![Unrolled simple RNN](media/colah-RNN-unrolled.png)
 
@@ -34,6 +36,8 @@ All RNN diagrams from Chirstopher Olah's famous 2015 blog post, [Understanding L
 
 ![Simple RNN equations](media/simple-rnn-eqs.png)
 (technically an Elman, not Jordan RNN). Train through backpropagation through time (BPTT)
+
+- Techniques for handling long or uneven sequences: https://machinelearningmastery.com/handle-long-sequences-long-short-term-memory-recurrent-neural-networks/
 
 ## Long short-term memory (LSTM)
 Introduced by [Hochreiter and Schmidhuber (1997)](https://direct.mit.edu/neco/article-abstract/9/8/1735/6109/Long-Short-Term-Memory?redirectedFrom=fulltext), greatly ameliorates the vanishing/exploding gradient problem that simple RNNs suffer from.
