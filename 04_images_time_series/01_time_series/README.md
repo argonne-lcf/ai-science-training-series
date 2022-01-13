@@ -19,6 +19,7 @@
   - Shumway, Robert H., David S. Stoffer. [Time series analysis and its applications](https://www.stat.pitt.edu/stoffer/tsa4/). Vol. 4. New York: Springer, 2017. 
 - MLP
 - Recurrent neural network (**this tutorial**)
+  - with an Attention layer
 - Temporal convolutional network (TCN)
 
 **Successors**:
@@ -35,9 +36,9 @@ All RNN diagrams from Chirstopher Olah's famous 2015 blog post, [Understanding L
 ![Simple RNN cell](media/colah-simple-RNN.png)
 
 ![Simple RNN equations](media/simple-rnn-eqs.png)
-(technically an Elman, not Jordan RNN). Train through backpropagation through time (BPTT)
-
+(this is technically an Elman RNN Jordan RNN). Train through backpropagation through time (BPTT). Both forward and backward passes can be slow since we cannot compute the time-dependencies in parallel (big advantage of transformers)
 - Techniques for handling long or uneven sequences: https://machinelearningmastery.com/handle-long-sequences-long-short-term-memory-recurrent-neural-networks/
+- `SimpleRNN` in TF/Keras uses a different formulation. See the source code for [`SimpleRNNCell`](https://github.com/keras-team/keras/blob/v2.7.0/keras/layers/recurrent.py#L1255-L1456)
 
 ## Long short-term memory (LSTM)
 Introduced by [Hochreiter and Schmidhuber (1997)](https://direct.mit.edu/neco/article-abstract/9/8/1735/6109/Long-Short-Term-Memory?redirectedFrom=fulltext), greatly ameliorates the vanishing/exploding gradient problem that simple RNNs suffer from.
@@ -49,7 +50,7 @@ Introduced by [Hochreiter and Schmidhuber (1997)](https://direct.mit.edu/neco/ar
 ## Gated recurrent unit (GRU)
 Introduce by [Cho (2014)](https://arxiv.org/abs/1406.1078), the fully gated version is just an LSTM minus the output gate and has fewer parameters. 
 
-![GRU cell](media/colah-GRU.png)
+![GRU cell](media/colah-gru.png)
 
 ![GRU equations](media/gru-eqs.png)
 
