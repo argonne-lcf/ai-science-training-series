@@ -27,7 +27,7 @@ This repository is organized into one subdirectory per session.  All content is 
       <li> <a href="./03_dataPipelines/00_tensorflowDatasetAPI"> TensorFlow Dataset API </a></li> 
       <li> <a href="./03_dataPipelines/01_pytorchDatasetAPI"> PyTorch Dataset API </a></li> 
     </ol>
-    <li> <a href="./04_images_time_series/"> Advanced AI Applications: Image and Time-Series Datasets </a></li> 
+    <li> <a href="./04_images_time_series/"> Advanced AI Applications: Image and Time Series Datasets </a></li> 
     <ol>
       <li> <a href="./04_images_time_series/00_images"> Images </a></li> 
       <li> <a href="./04_images_time_series/01_time_series"> Time Series </a></li> 
