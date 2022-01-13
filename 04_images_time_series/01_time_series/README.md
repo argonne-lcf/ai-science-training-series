@@ -25,23 +25,23 @@ All RNN diagrams from Chirstopher Olah's famous 2015 blog post, [Understanding L
 
 ![Simple RNN cell](media/colah-simple-RNN.png)
 
+![Simple RNN equations](media/simple-rnn-eqs.png)
+
 
 ## Long short-term memory (LSTM)
 Introduced by [Hochreiter and Schmidhuber (1997)](https://direct.mit.edu/neco/article-abstract/9/8/1735/6109/Long-Short-Term-Memory?redirectedFrom=fulltext)
 
-$$
-\begin{align}
-f_t &= \sigma_g(W_{f} x_t + U_{f} c_{t-1} + b_f) \\
-i_t &= \sigma_g(W_{i} x_t + U_{i} c_{t-1} + b_i) \\
-o_t &= \sigma_g(W_{o} x_t + U_{o} c_{t-1} + b_o) \\
-c_t &= f_t \circ c_{t-1} + i_t \circ \sigma_c(W_{c} x_t + b_c) \\
-h_t &= o_t \circ \sigma_h(c_t)
-\end{align}
-$$
+![LSTM cell](media/colah-lstm.png)
 
+
+![LSTM equations](media/lstm-eqs.png)
 
 ## Gated recurrent unit (GRU)
+Introduce by [Cho (2014)](https://arxiv.org/abs/1406.1078), the fully gated version is just an LSTM minus the output gate and has fewer parameters. 
 
+![GRU cell](media/colah-GRU.png)
+
+![GRU equations](media/gru-eqs.png)
 
 ## Example application: predicting anomalies in fusion reactors (tokamaks)
 See [Kates-Harbeck (2019)](https://www.nature.com/articles/s41586-019-1116-4) for more details.
