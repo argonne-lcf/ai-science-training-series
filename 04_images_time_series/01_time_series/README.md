@@ -36,7 +36,8 @@ All RNN diagrams from Chirstopher Olah's famous 2015 blog post, [Understanding L
 ![Simple RNN cell](media/colah-simple-RNN.png)
 
 ![Simple RNN equations](media/simple-rnn-eqs.png)
-(this is technically an Elman RNN Jordan RNN). Train through backpropagation through time (BPTT). Both forward and backward passes can be slow since we cannot compute the time-dependencies in parallel (big advantage of transformers)
+
+(this is technically an Elman RNN, not a Jordan RNN). Train through backpropagation through time (BPTT). Both forward and backward passes can be slow since we cannot compute the time-dependencies in parallel (big advantage of transformers)
 - Techniques for handling long or uneven sequences: https://machinelearningmastery.com/handle-long-sequences-long-short-term-memory-recurrent-neural-networks/
 - `SimpleRNN` in TF/Keras uses a different formulation. See the source code for [`SimpleRNNCell`](https://github.com/keras-team/keras/blob/v2.7.0/keras/layers/recurrent.py#L1255-L1456)
 
