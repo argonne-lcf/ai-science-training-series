@@ -27,6 +27,30 @@
 - Vision transformers
 
 
+## Environment Setup
+As a reminder, if you are doing this tutorial on ALCF ThetaGPU, be sure to pull the latest updates to this repo. See our [previous tutorial's instructions](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/02_howToSetupEnvironment.md#git-repo) for cloning it, if you havent done so already. From a terminal run the following commands (assuming this repo is cloned with the defualt name in your `$HOME` directory):
+```
+ssh username@theta.alcf.anl.gov
+cd ai-science-training-series
+git pull
+```
+
+
+
+### ALCF JupyterHub
+
+You can run the notebooks of this session on ALCF's JupyterHub. 
+
+1. [Log in to a ThetaGPU compute node via JupyterHub](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/04_jupyterNotebooks.md)
+(be sure your browser navigates to https://jupyter.alcf.anl.gov/ and does not autocomplete to https://jupyter.alcf.anl.gov/theta/hub/login or another subdomain).
+
+2. Change the notebook's kernel to `conda/2021-09-22` (you may need to change kernel each time you open a notebook for the first time):
+
+    1. select *Kernel* in the menu bar
+    1. select *Change kernel...*
+    1. select *conda/2021-09-22* from the drop-down menu
+
+3. Open [`CAE_LSTM.ipynb`](./CAE_LSTM.ipynb)
 
 ## Vanilla/Simple Recurrent Neural Network (RNN)
 All RNN diagrams from Chirstopher Olah's famous 2015 blog post, [Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)
