@@ -34,3 +34,11 @@ This repository is organized into one subdirectory per session.  All content is 
     </ol>    
   </ol>
 </details>
+
+
+*Note for contributors*: please run `git config --local include.path ../.gitconfig` once
+upon cloning the repository to add the	[`gitattribute`
+filter](https://git-scm.com/docs/gitattributes#_filter) defintions to your local git
+configuration options[^1].
+
+[^1] https://zhauniarovich.com/post/2020/2020-10-clearing-jupyter-output-p3/
