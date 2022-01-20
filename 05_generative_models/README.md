@@ -11,7 +11,7 @@ We'll learn in this session some introductory techniques for generative models, 
 Generative models are a huge area of active research.  Over the past few years, a lot of impactful papers have come out.  For some further reading, please see:
 
 - [Generative Adversarial Networks](https://arxiv.org/abs/1406.2661) - The first GAN paper.
-- [Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks] (https://arxiv.org/abs/1511.06434) - This is the basis of the GAN we train in this tutorial, though ours is much simpler.
+- [Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks](https://arxiv.org/abs/1511.06434) - This is the basis of the GAN we train in this tutorial, though ours is much simpler.
 - [Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](https://arxiv.org/abs/1703.10593) - The work that turns pictures of horses into Zebras! ([See also ](https://junyanz.github.io/CycleGAN/))
 - [An Introduction to Variational Autoencoders](https://arxiv.org/abs/1906.02691) - an in depth article about variation autoencoders.
 - [Glow: Generative Flow with Invertible 1×1 Convolutions](https://proceedings.neurips.cc/paper/2018/file/d139db6a236200b21cc7f752979132d0-Paper.pdf) - generative _flow_ models, a newer development that is outperforming GANs in scientific generation applications.
