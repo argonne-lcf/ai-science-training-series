@@ -47,3 +47,5 @@ configuration options[^1]. Be sure that the `jupyter` command is in your `$PATH`
 otherwise the filter and git staging will fail. 
 
 [^1]: https://zhauniarovich.com/post/2020/2020-10-clearing-jupyter-output-p3/
+[^2]: https://stackoverflow.com/questions/28908319/how-to-clear-jupyter-notebooks-output-in-all-cells-from-the-linux-terminal
+[^3]: https://bignerdranch.com/blog/git-smudge-and-clean-filters-making-changes-so-you-dont-have-to/
