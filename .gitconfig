@@ -1,4 +1,3 @@
 [filter "jupyternotebook"]
-	clean = jupyter nbconvert --to=notebook --ClearOutputPreprocessor.enabled=True --stdout %f
+	clean = jupyter nbconvert --to=notebook --ClearOutputPreprocessor.enabled=True --stdout %f --log-level=INFO
 	smudge = cat
-	required
