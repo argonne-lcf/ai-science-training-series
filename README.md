@@ -32,6 +32,10 @@ This repository is organized into one subdirectory per session.  All content is 
       <li> <a href="./04_images_time_series/00_images"> Images </a></li> 
       <li> <a href="./04_images_time_series/01_time_series"> Time Series </a></li> 
     </ol>    
+    <li> <a href="./05_generative_models/README.md">Generative Models: GANs + Auto Encoders</a></li>
+    <ol>
+      <li> <a href="./05_generative_models/GANs.ipynb">GANs Notebook</a></li>
+      <li> <a href="./05_generative_models/Auto\ Encoders.ipynb">Auto Encoders Notebook</a></li>
   </ol>
 </details>
 
