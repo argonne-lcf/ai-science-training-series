@@ -36,7 +36,8 @@ This repository is organized into one subdirectory per session.  All content is 
     <ol>
       <li> <a href="./05_generative_models/GANs.ipynb">GANs Notebook</a></li>
       <li> <a href="./05_generative_models/Auto%20Encoders.ipynb">Auto Encoders Notebook</a></li>
-  </ol>
+    </ol>
+    <li> <a href="./06_distributedTraining/README.md">Distributed Training with Horovod </a></li>
 </details>
 
 
