@@ -8,8 +8,8 @@ ssh -CY user@theta.alcf.anl.gov
 sh prepare_dataset.sh
 # Login to ThetaGPU login node
 ssh -CY thetagpusn1 
-# Requesting 1 node 
-qsub -n 1 -q full-node -A ALCFAITP -I -t 15
+# Requesting 1 node  
+qsub -n 1 -q full-node -A ALCFAITP -I -t 15 --attrs=pubnet
 ```
 
 2. Setup the Python environment to include TensorFlow, Keras, PyTorch, and Horovod:
