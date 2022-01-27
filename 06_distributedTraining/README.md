@@ -7,6 +7,7 @@ Led by Huihuo Zheng from ALCF (<huihuo.zheng@anl.gov>)
 * Know how to run distributed training on ThetaGPU
 
 ## Introduction to distributed Deep Learning
+![acc](./images/need.png)
 The goal for train the model at large scale is to reduce the time-to-solution to reasonable amount. By using training the model in parallel, it reduces the total training time from weeks to minutes.
 ![acc](./images/resnet50.png)
 
@@ -17,6 +18,7 @@ The goal for train the model at large scale is to reduce the time-to-solution to
 2. **Data parallelism**: in this scheme, all the workers own a replica of the model. The global batch of data is split into multiple minibatches, and processed by different workers. Each worker computes the corresponding loss and gradients with respect to the data it posseses. Before the updating of the parameters at each epoch, the loss and gradients are averaged among all the workers through a collective operation. This scheme is relatively simple to implement. MPI_Allreduce is the only commu
 
 ![acc](./images/distributed.png)
+![acc](./images/pipeline.png)
 
 Our recent presentation about the data parallel training can be found here: https://youtu.be/930yrXjNkgM
 

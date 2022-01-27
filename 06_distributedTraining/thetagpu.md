@@ -45,11 +45,41 @@ You can also login in
   
    We have prepared some (non-interactive) submission scripts in `./submissions/qsub_*`
    
-Total training time
+   Time for 16 epochs 
    
-| GPUs | Cifar10 (s) | MNIST (s) |
-| ---- | ---------------------- | -------------------- |
-|    1 |            522.3       |         499.8        |
-|    2 |            318.8       |         283.9        |
-|    4 |            121.4       |         100.4        |
-|    8 |             73.5       |         58.8         |
+   | GPUs |     Total time (s)     |  
+   | ---- | ---------------------- |
+   |    1 |            27.59       |
+   |    2 |            23.31       |
+   |    4 |            12.80       |
+   |    8 |            14.41       |
+
+Time per epoch
+
+   | GPUs |     Total time (s)     |  
+   | ---- | ---------------------- |
+   |    1 |            1.31        |
+   |    2 |            1.01        |
+   |    4 |            0.37        |
+   |    8 |            0.21        |
+
+
+4. Profiling
+
+   * MPI profiling
+   ```bash
+   LD_PRELOAD=/soft/perftools/hpctw/lib/libmpitrace.so
+   ```
+
+   * Horovod timeline trace
+   ```bash
+   HOROVOD_TIMELINE=timeline.json 
+   ```
+  
+   ```bash
+   LD_PRELOAD=/soft/perftools/hpctw/lib/libmpitrace.so HOROVOD_TIMELINE=timeline.json mpirun -np 8 python pytorch_mnist.py 
+   ```
+
+   One can then open timeline.json with Chrome 
+   ![acc](./images/timeline.png)
+

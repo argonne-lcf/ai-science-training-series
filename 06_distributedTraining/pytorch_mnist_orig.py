@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets, transforms
-import torch.utils.data.distributed
+import torch.utils.data.sampler
 
 
 
@@ -37,7 +37,6 @@ args = parser.parse_args()
 args.cuda = args.device.find("gpu")!=-1
 torch.manual_seed(args.seed)
 if args.device.find("gpu")!=-1:
-    # Horovod: pin GPU to local rank.
     torch.cuda.manual_seed(args.seed)
 if (args.num_threads!=0):
     torch.set_num_threads(args.num_threads)
@@ -54,22 +53,19 @@ train_dataset = \
                        transforms.ToTensor(),
                        transforms.Normalize((0.1307,), (0.3081,))
                    ]))
-# Horovod: use DistributedSampler to partition the training data.
-train_sampler = torch.utils.data.distributed.DistributedSampler(
-    train_dataset, num_replicas=1, rank=0)
+train_sampler = torch.utils.data.sampler.SequentialSampler(train_dataset)
 train_loader = torch.utils.data.DataLoader(
-    train_dataset, batch_size=args.batch_size, sampler=train_sampler, **kwargs)
+    train_dataset, batch_size=args.batch_size, sampler=train_sampler, shuffle=True, **kwargs)
 
 test_dataset = \
     datasets.MNIST('datasets', train=False, transform=transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize((0.1307,), (0.3081,))
     ]))
-# Horovod: use DistributedSampler to partition the test data.
-test_sampler = torch.utils.data.distributed.DistributedSampler(
-    test_dataset, num_replicas=1, rank=0)
+
+test_sampler = torch.utils.data.SequentialSampler(test_dataset)
 test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=args.test_batch_size,
-                                          sampler=test_sampler, **kwargs)
+                                          sampler=test_sampler, shuffle=False, **kwargs)
 
 
 class Net(nn.Module):
@@ -124,8 +120,6 @@ def train(epoch):
         running_loss += loss.item()
 
         if batch_idx % args.log_interval == 0:
-            # Horovod: use train_sampler to determine the number of examples in
-            # this worker's partition.
             print('[{}] Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(0, 
                 epoch, batch_idx * len(data), len(train_sampler), 100. * batch_idx / len(train_loader), loss.item()/args.batch_size))
     running_loss = running_loss / len(train_sampler)
@@ -150,23 +144,15 @@ def test():
             data, target = data.cuda(), target.cuda()
         output = model(data)
         # sum up batch loss
-        #test_loss += F.nll_loss(output, target, size_average=False).item()
         test_loss += F.nll_loss(output, target).item()
         # get the index of the max log-probability
         pred = output.data.max(1, keepdim=True)[1]
         test_accuracy += pred.eq(target.data.view_as(pred)).cpu().float().sum()
         n=n+1
 
-    # Horovod: use test_sampler to determine the number of examples in
-    # this worker's partition.
     test_loss /= len(test_sampler)
     test_accuracy /= len(test_sampler)
 
-    # Horovod: average metric values across workers.
-    test_loss = metric_average(test_loss, 'avg_loss')
-    test_accuracy = metric_average(test_accuracy, 'avg_accuracy')
-
-    # Horovod: print output only on first rank.
     print('Test set: Average loss: {:.4f}, Accuracy: {:.2f}%\n'.format(
         test_loss, 100. * test_accuracy))
 
