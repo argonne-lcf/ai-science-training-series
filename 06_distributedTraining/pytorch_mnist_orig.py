@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets, transforms
-import torch.utils.data.distributed
+import torch.utils.data.sampler
 
 
 
