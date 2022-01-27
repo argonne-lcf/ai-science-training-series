@@ -15,7 +15,7 @@ conda activate
 
 for n in 1 2 4 8
 do
-    mpirun -np $n python tensorflow2_keras_mnist.py --device gpu --epochs 32 >& results/tensorflow2_keras_mnist.out.$n 
+    mpirun -np $n python keras_mnist.py --device gpu --epochs 32 >& results/keras_mnist.out.$n 
 done
 
 
