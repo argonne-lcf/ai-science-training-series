@@ -30,7 +30,7 @@ parser.add_argument('--log-interval', type=int, default=10, metavar='N',
                     help='how many batches to wait before logging training status')
 parser.add_argument('--fp16-allreduce', action='store_true', default=False,
                     help='use fp16 compression during allreduce')
-parser.add_argument('--device', default='cpu',
+parser.add_argument('--device', default='gpu',
                     help='Wheter this is running on cpu or gpu')
 parser.add_argument('--num_threads', default=0, help='set number of threads per worker', type=int)
 args = parser.parse_args()

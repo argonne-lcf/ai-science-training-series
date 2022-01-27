@@ -6,8 +6,6 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 import torch.utils.data.sampler
 
-
-
 import time
 
 
@@ -29,7 +27,7 @@ parser.add_argument('--log-interval', type=int, default=10, metavar='N',
                     help='how many batches to wait before logging training status')
 parser.add_argument('--fp16-allreduce', action='store_true', default=False,
                     help='use fp16 compression during allreduce')
-parser.add_argument('--device', default='cpu',
+parser.add_argument('--device', default='gpu',
                     help='Wheter this is running on cpu or gpu')
 parser.add_argument('--num_threads', default=0, help='set number of threads per worker', type=int)
 args = parser.parse_args()
@@ -55,7 +53,7 @@ train_dataset = \
                    ]))
 train_sampler = torch.utils.data.sampler.SequentialSampler(train_dataset)
 train_loader = torch.utils.data.DataLoader(
-    train_dataset, batch_size=args.batch_size, sampler=train_sampler, shuffle=True, **kwargs)
+    train_dataset, batch_size=args.batch_size, sampler=train_sampler,  **kwargs)
 
 test_dataset = \
     datasets.MNIST('datasets', train=False, transform=transforms.Compose([
@@ -65,7 +63,7 @@ test_dataset = \
 
 test_sampler = torch.utils.data.SequentialSampler(test_dataset)
 test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=args.test_batch_size,
-                                          sampler=test_sampler, shuffle=False, **kwargs)
+                                          sampler=test_sampler,  **kwargs)
 
 
 class Net(nn.Module):
@@ -93,20 +91,14 @@ if args.device.find("gpu")!=-1:
     # Move model to GPU.
     model.cuda()
 
-# Horovod: scale learning rate by the number of GPUs.
 optimizer = optim.SGD(model.parameters(), lr=args.lr,
                       momentum=args.momentum)
-
-
-
 
 
 def train(epoch):
     model.train()
     running_loss = 0.0
     training_acc = 0.0
-    # Horovod: set epoch to sampler for shuffling.
-    train_sampler.set_epoch(epoch)
     for batch_idx, (data, target) in enumerate(train_loader):
         if args.cuda:
             data, target = data.cuda(), target.cuda()
@@ -124,15 +116,6 @@ def train(epoch):
                 epoch, batch_idx * len(data), len(train_sampler), 100. * batch_idx / len(train_loader), loss.item()/args.batch_size))
     running_loss = running_loss / len(train_sampler)
     training_acc = training_acc / len(train_sampler)
-    loss_avg = metric_average(running_loss, 'running_loss')
-    training_acc = metric_average(training_acc, 'training_acc')
-
-
-
-def metric_average(val, name):
-    tensor = torch.tensor(val)
-    return avg_tensor.item()
-
 
 def test():
     model.eval()
