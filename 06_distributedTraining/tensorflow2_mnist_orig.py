@@ -25,7 +25,7 @@ parser.add_argument('--epochs', type=int, default=16, metavar='N',
                     help='number of epochs to train (default: 4)')
 parser.add_argument('--lr', type=float, default=0.001, metavar='LR',
                     help='learning rate (default: 0.01)')
-parser.add_argument('--device', default='cpu',
+parser.add_argument('--device', default='gpu',
                     help='Wheter this is running on cpu or gpu')
 parser.add_argument('--num_inter', default=2, help='set number inter', type=int)
 parser.add_argument('--num_intra', default=0, help='set number intra', type=int)
@@ -53,8 +53,8 @@ dataset = tf.data.Dataset.from_tensor_slices(
              tf.cast(mnist_labels, tf.int64))
 )
 test_dset = tf.data.Dataset.from_tensor_slices(
-    (tf.cast(mnist_images[..., tf.newaxis] / 255.0, tf.float32),
-             tf.cast(mnist_labels, tf.int64))
+    (tf.cast(x_test[..., tf.newaxis] / 255.0, tf.float32),
+             tf.cast(y_test, tf.int64))
 )
 
 nsamples = len(list(dataset))
@@ -112,6 +112,11 @@ from tqdm import tqdm
 t0 = time.time()
 nstep = nsamples//args.batch_size
 ntest_step = ntests//args.batch_size
+metrics={}
+metrics['train_acc'] = []
+metrics['valid_acc'] = []
+metrics['train_loss'] = []
+metrics['valid_loss'] = []
 for ep in range(args.epochs):
     training_loss = 0.0
     training_acc = 0.0
@@ -131,8 +136,11 @@ for ep in range(args.epochs):
         test_acc += acc/ntest_step
         test_loss += loss_value/ntest_step
     tt1 = time.time()
-    print('Epoch - %d, \ttrain Loss: %.6f, \t training Acc: %.6f, \tval loss: %.6f, \t val Acc: %.6f\t Time: %.6f seconds' % (ep, training_loss, training_acc, test_loss, test_acc, tt1 - tt0))
-
+    print('E[%d], train Loss: %.6f, training Acc: %.3f, val loss: %.3f, val Acc: %.3f\t Time: %.3f seconds' % (ep, training_loss, training_acc, test_loss, test_acc, tt1 - tt0))
+    metrics['train_acc'].append(training_acc)
+    metrics['train_loss'].append(training_loss)
+    metrics['valid_acc'].append(test_acc)
+    metrics['valid_loss'].append(test_loss)
 checkpoint.save(checkpoint_dir)
 t1 = time.time()
 print("Total training time: %s seconds" %(t1 - t0))
