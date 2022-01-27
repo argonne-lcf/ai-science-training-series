@@ -26,35 +26,23 @@ You can also login in
    conda activate
    ```
    Notice that the first line is needed if you are setting up the environment in a submission script. It is not needed if you are running in interactive mode. 
+   
 3. Run examples on a single node
-   - PyTorch MNIST - 8 GPUs
-     ```bash
-     mpirun -np 8 python pytorch_mnist.py --device gpu
-     ```
-
-   - PyTorch CIFAR10 - 8 GPUs
-     ```bash
-     mpirun -np 8 python pytorch_cifar10.py --device gpu
-     ```
-
    -  TensorFlow MNIST - 8 GPUs
       ```bash
+      mpirun -np 1 python tensorflow2_mnist.py --device gpu
+      mpirun -np 2 python tensorflow2_mnist.py --device gpu
+      mpirun -np 4 python tensorflow2_mnist.py --device gpu
       mpirun -np 8 python tensorflow2_mnist.py --device gpu
       ```
-
-   - TensorFlow Keras MNIST - 8 GPUs
-     ```bash
-     mpirun -np 8 python  tensorflow2_keras_mnist.py --device gpu
-     ```
      
-4. Test scaling and investigate the issue of large batch size training
-The following script performes a simple scaling test with the MNIST dataset and a PyTorch model:
-   ```bash
-   for n in 1 2 4 8
-   do
-     	mpirun -np $n python pytorch_mnist.py --device gpu >& pytorch_mnist.out.$n
-   done
-   ```
+   - PyTorch MNIST - 8 GPUs
+     ```bash
+     mpirun -np 1 python pytorch_mnist.py --device gpu
+     mpirun -np 2 python pytorch_mnist.py --device gpu
+     mpirun -np 4 python pytorch_mnist.py --device gpu
+     mpirun -np 8 python pytorch_mnist.py --device gpu
+     ```
   
    We have prepared some (non-interactive) submission scripts in `./submissions/qsub_*`
    
