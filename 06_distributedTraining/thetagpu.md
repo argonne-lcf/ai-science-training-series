@@ -3,6 +3,7 @@
 0. Modify tensorflow2_mnist_orig.py and instrument the code with Horoovd. [This can be done on the login node!]
 
   * You can go to https://jupyter.alcf.anl.gov/, login in, and select local host process; 
+  * Open a terminal
   * git clone https://github.com/argonne-lcf/ai-science-training-series.git
   * cd ai-science-training-series/
 
