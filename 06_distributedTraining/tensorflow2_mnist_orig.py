@@ -16,15 +16,16 @@
 import tensorflow as tf
 import argparse
 
+
 import time
 t0 = time.time()
 parser = argparse.ArgumentParser(description='TensorFlow MNIST Example')
 parser.add_argument('--batch_size', type=int, default=256, metavar='N',
                     help='input batch size for training (default: 256)')
 parser.add_argument('--epochs', type=int, default=16, metavar='N',
-                    help='number of epochs to train (default: 4)')
+                    help='number of epochs to train (default: 16)')
 parser.add_argument('--lr', type=float, default=0.001, metavar='LR',
-                    help='learning rate (default: 0.01)')
+                    help='learning rate (default: 0.001)')
 parser.add_argument('--device', default='gpu',
                     help='Wheter this is running on cpu or gpu')
 parser.add_argument('--num_inter', default=2, help='set number inter', type=int)
@@ -40,6 +41,7 @@ else:
     gpus = tf.config.experimental.list_physical_devices('GPU')
     for gpu in gpus:
         tf.config.experimental.set_memory_growth(gpu, True)
+
 
 
 #---------------------------------------------------
@@ -79,7 +81,7 @@ mnist_model = tf.keras.Sequential([
 ])
 loss = tf.losses.SparseCategoricalCrossentropy()
 
-opt = tf.optimizers.Adam(args.lr)
+opt = tf.optimizers.Adam(args.lr*hvd.size())
 
 checkpoint_dir = './checkpoints/tf2_mnist'
 checkpoint = tf.train.Checkpoint(model=mnist_model, optimizer=opt)
@@ -95,6 +97,7 @@ def training_step(images, labels):
         pred = tf.math.argmax(probs, axis=1)
         equality = tf.math.equal(pred, labels)
         accuracy = tf.math.reduce_mean(tf.cast(equality, tf.float32))
+    tape = hvd.DistributedGradientTape(tape)        
     grads = tape.gradient(loss_value, mnist_model.trainable_variables)
     opt.apply_gradients(zip(grads, mnist_model.trainable_variables))
     return loss_value, accuracy

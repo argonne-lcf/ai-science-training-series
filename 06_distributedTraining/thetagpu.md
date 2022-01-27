@@ -45,10 +45,7 @@ You can also login in
   
    We have prepared some (non-interactive) submission scripts in `./submissions/qsub_*`
    
-   
-   **PyTorch**
-   
-   Time for 32 epochs 
+Total training time
    
 | GPUs | Cifar10 (s) | MNIST (s) |
 | ---- | ---------------------- | -------------------- |
