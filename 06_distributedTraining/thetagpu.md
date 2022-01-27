@@ -1,5 +1,11 @@
 # Hands on for Data Parallel Deep Learning on ThetaGPU
 
+0. Modify tensorflow2_mnist_orig.py and instrument the code with Horoovd. [This can be done on the login node!]
+
+  * You can go to https://jupyter.alcf.anl.gov/, login in, and select local host process; 
+  * git clone https://github.com/argonne-lcf/ai-science-training-series.git
+  * cd ai-science-training-series/
+
 1. Request an interactive session on ThetaGPU:
 ```bash
 # Login to theta
@@ -9,6 +15,8 @@ ssh -CY thetagpusn1
 # Requesting 1 node  
 qsub -n 1 -q full-node -A ALCFAITP -I -t 15 --attrs=pubnet
 ```
+
+You can also login in 
 
 2. Setup the Python environment to include TensorFlow, Keras, PyTorch, and Horovod:
    ```bash
