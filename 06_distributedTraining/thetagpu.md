@@ -4,8 +4,6 @@
 ```bash
 # Login to theta
 ssh -CY user@theta.alcf.anl.gov
-# prepare dataset
-sh prepare_dataset.sh
 # Login to ThetaGPU login node
 ssh -CY thetagpusn1 
 # Requesting 1 node  
