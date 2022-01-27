@@ -13,7 +13,7 @@ ssh -CY user@theta.alcf.anl.gov
 # Login to ThetaGPU login node
 ssh -CY thetagpusn1 
 # Requesting 1 node  
-qsub -n 1 -q full-node -A ALCFAITP -I -t 15 --attrs=pubnet
+qsub -n 1 -q training -A ALCFAITP -I -t 15 --attrs=pubnet
 ```
 
 You can also login in 

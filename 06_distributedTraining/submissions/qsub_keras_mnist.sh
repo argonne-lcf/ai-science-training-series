@@ -1,6 +1,6 @@
 #!/bin/bash
 #COBALT -n 1
-#COBALT -t 15 -q full-node
+#COBALT -t 15 -q training
 #COBALT -A ALCFAITP -O results/$jobid.keras_mnist
 
 #submisstion script for running tensorflow_mnist with horovod
