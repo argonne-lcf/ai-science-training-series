@@ -28,11 +28,11 @@ Some examples of existing approaches to incorporating physics in AI are:
 1. Embedding symmetries or invariances in a network, as we will see in the [Rotated-Mnist](Rotated-Mnist.ipynb) notebook.
 2. Relatedly: applying physical constraints, such as conservation laws.
 3. Creating custom loss functions.
-4. Carefully choosing input representations so that all relevant physical information is provided.
-5. Constraining the network to learn a solution to the known differential equation, as we will see in the Physics-Informed Neural Networks (PINNs) section.
-6. Or, to generalize PDE solutions across changes like different initial conditions, etc. learning an operator network, as we will see in the Physics-Informed DeepONets section.
-7. Learning governing differential equations from data, with the assumption that certain types of terms are allowed and/or there should only be a few terms.
-8. Learning a hybrid model, such as having a neural network learn only the behavior not covered by given differential equations. (Related terms: gray-box modeling, closure modeling, and discrepancy modeling.)
-9. Training an ML model as a surrogate for only part of a simulation, then feeding the prediction back into the simulation. 
+4. Carefully choosing [input representations](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-020-00460-5) so that all relevant physical information is provided.
+5. Constraining the network to learn a solution to the known differential equation, as we will see in the [Physics-Informed Neural Networks (PINNs)](https://www.sciencedirect.com/science/article/pii/S0021999118307125) section.
+6. Or, to generalize PDE solutions across changes like different initial conditions, etc. learning an operator network, as we will see in the [Physics-Informed DeepONets](https://www.science.org/doi/10.1126/sciadv.abi8605) section.
+7. Learning governing differential equations from data, with the assumption that certain types of terms are allowed and/or there should [only be a few terms](https://www.pnas.org/content/113/15/3932).
+8. Learning a [hybrid model](https://hal.archives-ouvertes.fr/hal-03137025/document), such as having a neural network learn only the behavior not covered by given differential equations. (Related terms: gray-box modeling, closure modeling, and discrepancy modeling.)
+9. Training an ML model as a surrogate for only part of a simulation, then feeding the prediction back into the simulation. (See this previous ALCF [tutorial](https://github.com/argonne-lcf/sdl_ai_workshop/tree/master/05_Simulation_ML) on coupling simulations and ML at our SDL workshop.)
 
-For more, check out the "ML for Physics and Physics for ML" [tutorial](https://neurips.cc/Conferences/2021/ScheduleMultitrack?event=21896) from NeurIPS 2021 by Shirley Ho and Miles Cranmer. 
+For more, check out the "ML for Physics and Physics for ML" [tutorial](https://neurips.cc/Conferences/2021/ScheduleMultitrack?event=21896) from NeurIPS 2021 by Shirley Ho and Miles Cranmer. They cover many ways to use "physics-informed inductive biases" across three categories: energy, geometry, and differential equations.
