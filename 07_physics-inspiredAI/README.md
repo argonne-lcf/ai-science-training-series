@@ -43,7 +43,7 @@ For these notebooks, we use a custom conda environment.
     - *from the jupyter notebook*: copy the following code, paste it in a new cell on the notebook and run it
       ```
       !source activate /lus/grand/projects/ALCFAITP/physics-inspiredAI/env;\
-      python -m ipykernel install --user --name env
+      python -m ipykernel install --user --name physics-inspiredAI
       ```
     
     - *from the terminal via ssh*: 
@@ -62,10 +62,10 @@ For these notebooks, we use a custom conda environment.
       conda activate /lus/grand/projects/ALCFAITP/physics-inspiredAI/env
 
       # Install the new Jupyter kernel to use
-      python -m ipykernel install --user --name env
+      python -m ipykernel install --user --name physics-inspiredAI
       ```
 2. Change the notebook's kernel to `env` (you will need to change kernel each time you open a notebook for the first time):
 
     1. select *Kernel* in the menu bar
     1. select *Change kernel...*
-    1. select *env* from the drop-down menu
+    1. select *physics-inspiredAI* from the drop-down menu
