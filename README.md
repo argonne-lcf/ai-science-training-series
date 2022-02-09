@@ -43,7 +43,7 @@ This repository is organized into one subdirectory per session.  All content is 
           <li> <a href="./06_distributedTraining/DDP/README.md">DDP</a></li>
      </ol>
     <li> <a href="./07_physics-inspiredAI/README.md">Physics-Inspired AI</a></li>
-    <li> <a href="./08_hyperparameter_search/README.md">Physics-Inspired AI</a></li>
+    <li> <a href="./08_hyperparameter_search/README.md">Hyperparameter Search</a></li>
 </details>
 
 
