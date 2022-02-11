@@ -105,9 +105,3 @@ Argonne National Laboratory
 <li>R. Egele, P. Balaprakash, I. Guyon, V. Vishwanath, F. Xia, R. Stevens, Z. Liu.  AgEBO-Tabular: Joint neural architecture and hyperparameter search with autotuned data-parallel training for tabular data. In SC21:  International Conference for High Performance Computing, Networking, Storage and Analysis, (in press), 2021.</li>
 <li>R. Egele, R. Maulik, K. Raghavan, P. Balaprakash, B. Lusch. AutoDEUQ: Automated Deep Ensemble with Uncertainty Quantification, (in review), 2021.</li>
 </ol>
-
-<style> 
-:root {
-    --r-heading-text-transform: None;
-}
-</style>
