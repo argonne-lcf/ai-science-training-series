@@ -85,9 +85,6 @@ Argonne National Laboratory
 - R. Maulik, R. Egele, B. Lusch, and P. Balaprakash. Recurrent Neural Network Architecture Search for Geophysical Emulation. In SC ’20: IEEE/ACM International Conference on High Performance Computing, Networking, Storage and Analysis, 2020.
 - R. Egele, P. Balaprakash, I. Guyon, V. Vishwanath, F. Xia, R. Stevens, Z. Liu.  AgEBO-Tabular: Joint neural architecture and hyperparameter search with autotuned data-parallel training for tabular data. In SC21:  International Conference for High Performance Computing, Networking, Storage and Analysis, (in press), 2021.
 - R. Egele, R. Maulik, K. Raghavan, P. Balaprakash, B. Lusch. AutoDEUQ: Automated Deep Ensemble with Uncertainty Quantification, (in review), 2021.
-
-<style> 
-:root {
-    --r-heading-text-transform: None;
-}
-</style>
+---
+# Acknowledgements
+![](assets/Pasted%20image%2020220211114101.png)
