@@ -44,6 +44,11 @@ This repository is organized into one subdirectory per session.  All content is 
      </ol>
     <li> <a href="./07_physics-inspiredAI/README.md">Physics-Inspired AI</a></li>
     <li> <a href="./08_hyperparameter_search/README.md">Hyperparameter Search</a></li>
+    <ol>
+      <li> <a href="./08_hyperparameter_search/slides">Slides</a></li>
+      <li> <a href="./08_hyperparameter_search/Hyperparameter-Search-With-DeepHyper.ipynb">Hyperparameter Search with DeepHyper Notebook</a></li>
+      <li> <a href="./08_hyperparameter_search/Neural-Architecture-Search-With-DeepHyper.ipynb">Neural Architecture Search with DeepHyper Notebook</a></li>
+    </ol>
 </details>
 
 
