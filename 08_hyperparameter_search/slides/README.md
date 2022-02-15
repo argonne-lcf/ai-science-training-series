@@ -110,6 +110,7 @@ Argonne National Laboratory
 - R. Egele, R. Maulik, K. Raghavan, P. Balaprakash, B. Lusch. AutoDEUQ: Automated Deep Ensemble with Uncertainty Quantification, (in review), 21.
 
 </small>
+
 ---
 # Acknowledgements
-![](./include/15_acknowledgements.png)
+![acknowledgements](./include/15_acknowledgements.png)
