@@ -32,23 +32,24 @@ This repository is organized into one subdirectory per session.  All content is 
       <li> <a href="./04_images_time_series/00_images"> Images </a></li> 
       <li> <a href="./04_images_time_series/01_time_series"> Time Series </a></li> 
     </ol>    
-    <li> <a href="./05_generative_models/README.md">Generative Models: GANs + Auto Encoders</a></li>
+    <li> <a href="./05_generative_models/">Generative Models: GANs + Auto Encoders</a></li>
     <ol>
       <li> <a href="./05_generative_models/GANs.ipynb">GANs Notebook</a></li>
       <li> <a href="./05_generative_models/Auto%20Encoders.ipynb">Auto Encoders Notebook</a></li>
     </ol>
-    <li> <a href="./06_distributedTraining/README.md">Distributed Training</a></li>
+    <li> <a href="./06_distributedTraining/">Distributed Training</a></li>
     <ol>
-          <li> <a href="./06_distributedTraining/README.md">Horovod</a></li>
-          <li> <a href="./06_distributedTraining/DDP/README.md">DDP</a></li>
+          <li> <a href="./06_distributedTraining/">Horovod</a></li>
+          <li> <a href="./06_distributedTraining/DDP/">DDP</a></li>
      </ol>
-    <li> <a href="./07_physics-inspiredAI/README.md">Physics-Inspired AI</a></li>
-    <li> <a href="./08_hyperparameter_search/README.md">Hyperparameter Search</a></li>
+    <li> <a href="./07_physics-inspiredAI/">Physics-Inspired AI</a></li>
+    <li> <a href="./08_hyperparameter_search/">Hyperparameter Search</a></li>
     <ol>
       <li> <a href="./08_hyperparameter_search/slides">Slides</a></li>
       <li> <a href="./08_hyperparameter_search/Hyperparameter-Search-With-DeepHyper.ipynb">Hyperparameter Search with DeepHyper Notebook</a></li>
       <li> <a href="./08_hyperparameter_search/Neural-Architecture-Search-With-DeepHyper.ipynb">Neural Architecture Search with DeepHyper Notebook</a></li>
     </ol>
+    <li>(09 canceled)</li
     <li> <a href="./10_FAIR_AI">FAIR (Findable, Accessible, Interoperable and Reusable) AI models</a></li>
 </details>
 
