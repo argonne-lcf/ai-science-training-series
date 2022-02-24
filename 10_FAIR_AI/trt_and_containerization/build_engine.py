@@ -4,8 +4,8 @@ from onnx import ModelProto
 import tensorrt as trt 
  
 name = 'cifar_net_10_epochs' 
-engine_name = '{}_4.plan'.format(name)
-onnx_path = '/home/nravi/ai-science-training-series/{}.onnx'.format(name)
+engine_name = '{}_4_trial.plan'.format(name)
+onnx_path = '/home/nravi/ai-science-training-series/10_FAIR_AI/trt_and_containerization/saved_models/{}.onnx'.format(name)
 batch_size = 4
 
 model = ModelProto()

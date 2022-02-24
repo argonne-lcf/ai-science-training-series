@@ -28,7 +28,7 @@ class Net(nn.Module):
         return x
 
 
-PATH = './cifar_net_10_epochs.pth'
+PATH = './saved_models/cifar_net_10_epochs.pth'
 net = Net()
 net.load_state_dict(torch.load(PATH))
 
@@ -37,13 +37,13 @@ transform = transforms.Compose(
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
 batch_size = 250
-
-trainset = torchvision.datasets.CIFAR10(root='./', train=True,
+data_dir = '../../../ai-science-training-series-old/'
+trainset = torchvision.datasets.CIFAR10(root=data_dir, train=True,
                                         download=False, transform=transform)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size,
                                           shuffle=True, num_workers=2)
 
-testset = torchvision.datasets.CIFAR10(root='./', train=False,
+testset = torchvision.datasets.CIFAR10(root=data_dir, train=False,
                                        download=False, transform=transform)
 testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size,
                                          shuffle=False, num_workers=2)
