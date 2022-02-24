@@ -51,6 +51,10 @@ This repository is organized into one subdirectory per session.  All content is 
     </ol>
     <li>(session canceled)</li>
     <li> <a href="./10_FAIR_AI">FAIR (Findable, Accessible, Interoperable and Reusable) AI models</a></li>
+    <ol>
+      <li> <a href="https://docs.google.com/document/d/1AMYewiSaLeIY1233kqPn1ajguWuzCqEtd1ejR2Lt8zE/edit?pli=1#">Session Resources GoogleDoc</a></li>
+      <li> <a href="https://drive.google.com/drive/folders/1tDUnDvWA-Q_0bdJQSJVqtT0C1W2o09W2?usp=sharing">Foundry Colab Notebooks</a></li>
+      <li> <a href="https://github.com/MLMI2-CSSI/foundry/tree/main/examples">All Foundry Notebooks</a></li>
 </details>
 
 
