@@ -49,7 +49,7 @@ This repository is organized into one subdirectory per session.  All content is 
       <li> <a href="./08_hyperparameter_search/Hyperparameter-Search-With-DeepHyper.ipynb">Hyperparameter Search with DeepHyper Notebook</a></li>
       <li> <a href="./08_hyperparameter_search/Neural-Architecture-Search-With-DeepHyper.ipynb">Neural Architecture Search with DeepHyper Notebook</a></li>
     </ol>
-    <li>(09 canceled)</li
+    <li>(session canceled)</li>
     <li> <a href="./10_FAIR_AI">FAIR (Findable, Accessible, Interoperable and Reusable) AI models</a></li>
 </details>
 
