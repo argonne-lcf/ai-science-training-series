@@ -7,5 +7,5 @@
 module load conda/2021-09-22
 conda activate
 
-python 03_pytorch_mnist.py
+python 12_pytorch_mnist.py
 

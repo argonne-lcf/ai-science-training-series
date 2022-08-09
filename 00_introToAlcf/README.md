@@ -9,10 +9,13 @@ Venkat Vishwanath (venkat@anl.gov)
 
 This first session is focused on introducing the ALCF supercomputing resources, how to access them, and how to use them.
 
-0. [ALCF Systems](00_computeSystems.md)
-1. [Logging in](01_howToLogin.md)
-2. [Environment](02_howToSetupEnvironment.md)
-3. [Job Submisions](03_jobQueuesSubmission.md)
-4. [Jupyter Notebooks](04_jupyterNotebooks.md)
+0. [Supercomputers and ALCF Systems](00_computeSystems.md)
+1. [Sharing Resources](01_sharedResources.md)
+2. [Introduction to Jupyter Notebooks](02_jupyterNotebooks.md)
+
+The follow are advance introductory material for logging into ALCF machines using a terminal (optional):
+1. [Logging in](10_howToLogin.md)
+2. [Environment](11_howToSetupEnvironment.md)
+3. [Job Submisions](12_jobQueuesSubmission.md)
 
 

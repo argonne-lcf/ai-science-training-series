@@ -7,5 +7,5 @@
 module load conda/2021-09-22
 conda activate
 
-python 03_tensorflow_mnist.py
+python 12_tensorflow_mnist.py
 

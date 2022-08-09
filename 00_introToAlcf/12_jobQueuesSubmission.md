@@ -98,7 +98,7 @@ You should visit the ALCF website to read more about:
 ## Example using PyTorch MNIST ML training
 ![pytorch gif](img/qsub_pytorch_mnist.gif)
 
-Some more realistic example job scripts are attached to this repository: try submitting `03_pytorch_mnist.sh` or `03_tensorflow_mnist.sh` to train a neural network on the MNIST classification task, using either PyTorch or Tensorflow, respectively.  You will find that these scripts tend to follow a simple pattern:
+Some more realistic example job scripts are attached to this repository: try submitting `12_pytorch_mnist.sh` or `12_tensorflow_mnist.sh` to train a neural network on the MNIST classification task, using either PyTorch or Tensorflow, respectively.  You will find that these scripts tend to follow a simple pattern:
 
 ```bash
 # Set up the Python environment
@@ -106,7 +106,7 @@ module load conda/2021-09-22
 conda activate
 
 # Run the Python model training script
-python 03_pytorch_mnist.py
+python 12_pytorch_mnist.py
 ```
 
 In upcoming sessions, you will learn more about these AI frameworks and how to write your own Python programs to build, train, and test deep learning models.
