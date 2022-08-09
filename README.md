@@ -1,9 +1,9 @@
-# AI for Science: Student Training Series
+# Introduction to AI-driven Science on Supercomputers: A Student Training Series
+## 2022 Fall Series
 
-Visit the [schedule of the ALCF AI for Science Training Series](https://www.alcf.anl.gov/alcf-ai-science-training-series) with 11
-sessions listed for 2021-2022!
+[Public Page for Series Schedule](https://www.alcf.anl.gov/alcf-ai-science-training-series)
 
-This repository is organized into one subdirectory per session.  All content is prefixed by a two-digit index in the order of presentation in the tutorials.
+This repository is organized into one subdirectory per topic.  All content is prefixed by a two-digit index in the order of presentation in the tutorials.
 
 <details open>
   <summary>  <b>Table of Contents</b> </summary>
