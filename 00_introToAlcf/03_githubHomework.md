@@ -1,6 +1,6 @@
 # GitHub Introduction: Homework Submissions
 
-You will submit weekly homeworks via this Google Form: __put-here__
+You will submit weekly homeworks via this [Google Form](https://forms.gle/HD2QKAhj6h5jswYY6)
 The form expects you to submit a URL to a file on [github.com](github.com). You will need an account on [GitHub](github.com) to do this.
 
 You will also need to setup SSH Keys on github and in your ALCF account. 
@@ -12,7 +12,7 @@ git config --global user.user "<github-username>"
 git config --global user.email "<github-email-address>"
 ```
 
-Navigate to the main page of this repository and follow the steps below. 
+Navigate to the main page of this repository and follow the steps below. If you need help with logging into ALCF, please have a look [HERE](10_howToLogin.md).
 
 ## Fork the repo on GitHub
 
@@ -26,6 +26,8 @@ This repository is controled by the ALCF account space, but you can make a copy 
 After you have forked the repo, login to Theta, and _clone_ the repository in to your home directory. 
 
 ![clone repo](img/git_clone.gif)
+
+The command looks like `git clone git@github.com:<your-github-account>/ai-science-training-series.git` and it will _clone_ the repo into a directory named `ai-science-training-series`.
 
 ## Do your homework
 
@@ -43,3 +45,25 @@ Now you need to:
 - _push_ your commit to the web server at github
 
 ![commit homework](img/git_commit_push.gif)
+
+## Synching Your Fork
+
+We will periodically update the content in the "upstream" repository at: https://github.com/argonne-lcf/ai-science-training-series
+
+You'll want to execute these commmands each week, just prior to the start of class, to update your personal "fork" with our latest updates.
+
+To do this run these commands inside the directory `ai-science-training-series` where you cloned your personal fork:
+
+You only need to do this once after you first clone your personal fork:
+```bash
+git remote add upstream git@github.com:argonne-lcf/ai-science-training-series.git
+```
+
+Then, every week, prior to class run this:
+```bash
+git fetch upstream main
+git merge upstream/main
+git push
+```
+
+This will keep your fork up to date with the ACLF repository.
