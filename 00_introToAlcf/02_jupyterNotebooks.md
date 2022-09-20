@@ -28,3 +28,7 @@ ALCF's guiding policy is:
 If you simply close your browser window, or logout without shutting down the jupyter server, your job will continue to occupy the worker node. Be considerate and shutdown your job when you finish.
 
 ![Shutdown GIF](img/jupyter_shutdown_01.gif)
+
+
+
+[NEXT ->](./03_githubHomework.md)

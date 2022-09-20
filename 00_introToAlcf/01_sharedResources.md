@@ -10,3 +10,6 @@ A _job_ is defined by a user and requires these parameters to be definded:
 We have a page that shows all the current activity on Theta (includes ThetaGPU). The top of the page shows a graphical representation of all nodes. Colors indicate a _job_ running on that _node_. Below the graphic there is a table that lists _running_ and _queued_ jobs. _running_ refers to jobs running right now on comptuer nodes. If you hover on a colored node in the graphic, it will highlight all the nodes used by the same job AND the job in the _running_ table below. _queued_ jobs are waiting for an opening in which to run.
 
 ![theta-activity](img/theta_activity1.png)
+
+
+[NEXT ->](./02_jupyterNotebooks.md)

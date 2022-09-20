@@ -81,3 +81,5 @@ Polaris Machine Specs
   * 4 NVIDIA (A100) GPUs
   * 1 AMD EPYC (Milan) CPUs
 * ~560 Total Nodes
+
+[NEXT ->](./01_sharedResources.md)
