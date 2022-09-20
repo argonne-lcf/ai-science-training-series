@@ -1,7 +1,10 @@
-# Introduction to Deep Learning
+# Neural Networks in Python
 
+Author: Bethany Lusch, combining and adapting materials evolved over time by Asad Khan, Prasanna Balaprakash, Taylor Childers, Corey Adams, Kyle Felker, and Tanwi Mallick 
 
-This tutorial covers the basics of Deep Learning with Convolutional Neural Nets. The tutorial is broken into three notebooks. The topics covered in each notebook are:
+This tutorial covers the basics of neural networks. We will learn about the mathematics of neural networks by building them "by hand." In next week's tutorial, we will learn about how to use the higher-level functions in the Python module TensorFlow. 
+
+The tutorial is broken into two notebooks. The topics covered in each notebook are:
 
 1. **Intro.ipynb**: 
 
@@ -16,35 +19,20 @@ This tutorial covers the basics of Deep Learning with Convolutional Neural Nets.
     - Training and Inference
     - Visualizing/Interpreting trained Neural Nets
 
-3. **CIFAR-10.ipynb**: 
-
-    - Data Generators
-    - Overfitting
-    - Data Augmentation
 
 
 
 ## Environment Setup
-
-Start by cloning the git repository with this folder. If you are using ALCF, see our [previous tutorial's instructions.](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/02_howToSetupEnvironment.md#git-repo)
-
-From a terminal run the following commands:
-
+1. If you are using ALCF, first log in. From a terminal run the following command:
 ```
 ssh username@theta.alcf.anl.gov
 ```
-```
-git clone https://github.com/argonne-lcf/ai-science-training-series.git
-```
 
+2. Although last week we cloned the repo, you'll want the updated version. To be reminded of last week's instructions for syncing your fork, click [here](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/03_githubHomework.md). 
 
-### ALCF Jupyter-Hub
+3. Now that we have the updated notebooks, we can open them. If you are using ALCF JupyterHub, you can be reminded of the steps [here](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/02_jupyterNotebooks.md). 
 
-You can run the notebooks of this session on ALCF's Jupyter-Hub. 
-
-1. [Log in to a ThetaGPU compute node via Jupyter-Hub](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/04_jupyterNotebooks.md)
-
-2. Change the notebook's kernel to `conda/2021-09-22` (you may need to change kernel each time you open a notebook for the first time):
+4. Change the notebook's kernel to `conda/2021-09-22` (you may need to change kernel each time you open a notebook for the first time):
 
     1. select *Kernel* in the menu bar
     1. select *Change kernel...*
@@ -54,7 +42,7 @@ You can run the notebooks of this session on ALCF's Jupyter-Hub.
 
 ## __References:__
 
-The code examples presented here are mostly taken (verbatim) or inspired from the following sources. I made this curation to give a quick exposure to very basic but essential ideas/practices in deep learning to get you started fairly quickly, but I recommend going to some or all of the actual sources for an in depth survey:
+Some of the code examples presented here are inspired from the following sources. In this tutorial series, we are exposing you to very basic but essential ideas/practices in deep learning, but here are some suggestions for further reading:
 
 - [tensorflow.org turorials](https://www.tensorflow.org/tutorials)
 - [keras.io tutorials](https://keras.io/examples/)
