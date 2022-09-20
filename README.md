@@ -1,48 +1,34 @@
-# AI for Science: Student Training Series
+# Introduction to AI-driven Science on Supercomputers: A Student Training Series
+## 2022 Fall Series
 
-Visit the [schedule of the ALCF AI for Science Training Series](https://www.alcf.anl.gov/alcf-ai-science-training-series) with 11
-sessions listed for 2021-2022!
+[Public Page for Series Schedule](https://www.alcf.anl.gov/alcf-ai-science-training-series)
 
-This repository is organized into one subdirectory per session.  All content is prefixed by a two-digit index in the order of presentation in the tutorials.
+[Agenda with content links](https://events.cels.anl.gov/event/337/timetable/)
+
+This repository is organized into one subdirectory per topic.  All content is prefixed by a two-digit index in the order of presentation in the tutorials.
 
 <details open>
   <summary>  <b>Table of Contents</b> </summary>
   <ol start="0.">
     <li> <a href="./00_introToAlcf/">Introduction to ALCF Systems </a> </li>
     <ol>
-      <li> <a href="./00_introToAlcf/00_computeSystems.md">Compute Systems Overview</a></li>
-      <li> <a href="./00_introToAlcf/01_howToLogin.md">How To Login to ALCF Systems</a></li>
-      <li> <a href="./00_introToAlcf/02_howToSetupEnvironment.md">Environment Setup</a></li>
-      <li> <a href="./00_introToAlcf/03_jobQueuesSubmission.md">Jobs, Queues, Submissions: How To</a></li>
-      <li> <a href="./00_introToAlcf/04_jupyterNotebooks.md">Jupyter Notebooks</a></li>
+      <li> <a href="./00_introToAlcf/00_computeSystems.md">ALCF Compute Systems Overview</a></li>
+      <li> <a href="./00_introToAlcf/01_sharedResources">Shared Resources</a></li>
+      <li> <a href="./00_introToAlcf/02_jupyterNotebooks.md">Introduction to Jupyter Notebooks</a></li>
+      <li> <a href="./00_introToAlcf/03_githubHomework.md">How to Submit the Homeworks</a></li>
+      <li> <a href="./00_introToAlcf/10_howToLogin.md">How to Login on the Command Line</a></li>
+      <li> <a href="./00_introToAlcf/11_howToSetupEnvironment.md">How to Setup a Shell Enviroment</a></li>
+      <li> <a href="./00_introToAlcf/12_jobQueuesSubmission.md">Submitting Jobs to a Queue</a></li>
     </ol>
-    <li> <a href="./01_machineLearning"> Machine Learning  </a> </li>
+    <li> <a href="./01_machineLearning">Introduction to Machine Learning  </a> </li>
     <ol> 
-       <li> <a href="./01_machineLearning/part-1_introduction-to-sklearn"> Introduction to Supervised Machine Learning with Scikit-Learn </a></li>
-       <li> <a href="./01_machineLearning/part-2_ml-with-materials-data"> Machine Learning with Scientific Data </a></li>
+       <li> <a href="./01_machineLearning/01_linear_regression_sgd.ipynb"> Introduction to Machine Learning with Linear Regression </a></li>
+       <li> <a href="./01_machineLearning/02_clustering.ipynb">Introduction to Machine Learning with k-means Clustering</a></li>
     </ol>
     <li> <a href="./02_deepLearning"> Introduction to Deep Learning </a></li>
-    <li> <a href="./03_dataPipelines"> Data Pipelines for Deep Learning </a></li> 
-    <ol>
-      <li> <a href="./03_dataPipelines/00_tensorflowDatasetAPI"> TensorFlow Dataset API </a></li> 
-      <li> <a href="./03_dataPipelines/01_pytorchDatasetAPI"> PyTorch Dataset API </a></li> 
-    </ol>
-    <li> <a href="./04_images_time_series/"> Advanced AI Applications: Image and Time Series Datasets </a></li> 
-    <ol>
-      <li> <a href="./04_images_time_series/00_images"> Images </a></li> 
-      <li> <a href="./04_images_time_series/01_time_series"> Time Series </a></li> 
-    </ol>    
-    <li> <a href="./05_generative_models/README.md">Generative Models: GANs + Auto Encoders</a></li>
-    <ol>
-      <li> <a href="./05_generative_models/GANs.ipynb">GANs Notebook</a></li>
-      <li> <a href="./05_generative_models/Auto%20Encoders.ipynb">Auto Encoders Notebook</a></li>
-    </ol>
-    <li> <a href="./06_distributedTraining/README.md">Distributed Training</a></li>
-    <ol>
-          <li> <a href="./06_distributedTraining/README.md">Horovod</a></li>
-          <li> <a href="./06_distributedTraining/DDP/README.md">DDP</a></li>
-     </ol>
-    <li> <a href="./07_physics-inspiredAI/README.md">Physics-Inspired AI</a></li>
+    <li> <a href="./02_deepLearning"> Deep Learning: Using Frameworks </a></li> 
+    <li> <a href="./03_dataPipelines/">Building a Data Pipeline </a></li> 
+  </ol>
 </details>
 
 
