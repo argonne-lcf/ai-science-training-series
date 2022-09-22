@@ -2,14 +2,14 @@
 
 Author: Bethany Lusch, combining and adapting materials evolved over time by Asad Khan, Prasanna Balaprakash, Taylor Childers, Corey Adams, Kyle Felker, and Tanwi Mallick 
 
-This tutorial covers the basics of neural networks. We will learn about the mathematics of neural networks by building them "by hand." In next week's tutorial, we will learn about how to use the higher-level functions in the Python module TensorFlow. 
+This tutorial covers the basics of neural networks (aka "deep learning"), which is a technique within machine learning. We will learn about the mathematics of neural networks by building them "by hand." In next week's tutorial, we will learn about how to use the higher-level functions in the Python module TensorFlow. 
 
 The tutorial is broken into two notebooks. The topics covered in each notebook are:
 
 1. **Intro.ipynb**: 
 
       - *Linear Regression* as _single layer, single neuron model_ to motivate the introduction of Neural Networks as Universal Approximators that are modeled as collections of neurons connected in an acyclic graph
-      - _Convolutions_ and examples of simple _image filters_ to motivate the construction of _Convolutionlal Neural Networks._
+      - _Convolutions_ and examples of simple _image filters_ to motivate the construction of _Convolutional Neural Networks._
       - Loss/Error functions, Gradient Decent, Backpropagation, etc
 
 2. **Mnist.ipynb**: 
@@ -44,10 +44,12 @@ ssh username@theta.alcf.anl.gov
 
 Some of the code examples presented here are inspired from the following sources. In this tutorial series, we are exposing you to very basic but essential ideas/practices in deep learning, but here are some suggestions for further reading:
 
-- [tensorflow.org turorials](https://www.tensorflow.org/tutorials)
+- [tensorflow.org tutorials](https://www.tensorflow.org/tutorials)
 - [keras.io tutorials](https://keras.io/examples/)
 - [CS231n: Convolutional Neural Networks for Visual Recognition](http://cs231n.stanford.edu/)
-- [Deep Learnig Specialization, Andrew Ng](https://www.coursera.org/specializations/deep-learning?utm_source=deeplearningai&utm_medium=institutions&utm_campaign=WebsiteCoursesDLSTopButton)
+- [Deep Learning Specialization, Andrew Ng](https://www.coursera.org/specializations/deep-learning?utm_source=deeplearningai&utm_medium=institutions&utm_campaign=WebsiteCoursesDLSTopButton)
 - [PyTorch Challenge, Udacity](https://www.udacity.com/facebook-pytorch-scholarship)
 - [Deep Learning with Python](https://www.amazon.com/Deep-Learning-Python-Francois-Chollet/dp/1617294438)
 - [Keras Blog](https://blog.keras.io/)
+
+And Bethany's personal favorite: a thorough hands-on textbook: [book](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) with [notebooks](https://github.com/ageron/handson-ml2).
