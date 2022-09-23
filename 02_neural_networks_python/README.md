@@ -4,20 +4,8 @@ Author: Bethany Lusch, combining and adapting materials evolved over time by Asa
 
 This tutorial covers the basics of neural networks (aka "deep learning"), which is a technique within machine learning. We will learn about the mathematics of neural networks by building them "by hand." In next week's tutorial, we will learn about how to use the higher-level functions in the Python module TensorFlow. 
 
-The tutorial is broken into two notebooks. The topics covered in each notebook are:
-
-1. **Intro.ipynb**: 
-
-      - *Linear Regression* as _single layer, single neuron model_ to motivate the introduction of Neural Networks as Universal Approximators that are modeled as collections of neurons connected in an acyclic graph
-      - _Convolutions_ and examples of simple _image filters_ to motivate the construction of _Convolutional Neural Networks._
-      - Loss/Error functions, Gradient Decent, Backpropagation, etc
-
-2. **Mnist.ipynb**: 
-
-    - Visualizing Data
-    - Constructing simple Convolutional Neural Networks
-    - Training and Inference
-    - Visualizing/Interpreting trained Neural Nets
+We'll start with an image classification problem in this notebook: 
+[Fitting MNIST with a multi-layer perceptron (MLP)](01_introduction_mlp.ipynb)
 
 
 
