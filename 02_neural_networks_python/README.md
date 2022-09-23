@@ -20,7 +20,7 @@ ssh username@theta.alcf.anl.gov
 
 3. Now that we have the updated notebooks, we can open them. If you are using ALCF JupyterHub, you can be reminded of the steps [here](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/02_jupyterNotebooks.md). 
 
-4. Change the notebook's kernel to `conda/2021-09-22` (you may need to change kernel each time you open a notebook for the first time):
+4. Change the notebook's kernel to `conda/2022-07-01` (you may need to change kernel each time you open a notebook for the first time):
 
     1. select *Kernel* in the menu bar
     1. select *Change kernel...*
