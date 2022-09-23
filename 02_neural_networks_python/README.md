@@ -30,7 +30,7 @@ ssh username@theta.alcf.anl.gov
 
 ## __References:__
 
-Some of the code examples presented here are inspired from the following sources. In this tutorial series, we are exposing you to very basic but essential ideas/practices in deep learning, but here are some suggestions for further reading:
+Here are Asad Khan's recommendations for further reading:
 
 - [tensorflow.org tutorials](https://www.tensorflow.org/tutorials)
 - [keras.io tutorials](https://keras.io/examples/)
@@ -39,5 +39,6 @@ Some of the code examples presented here are inspired from the following sources
 - [PyTorch Challenge, Udacity](https://www.udacity.com/facebook-pytorch-scholarship)
 - [Deep Learning with Python](https://www.amazon.com/Deep-Learning-Python-Francois-Chollet/dp/1617294438)
 - [Keras Blog](https://blog.keras.io/)
+
 
 And Bethany's personal favorite: a thorough hands-on textbook: [book](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) with [notebooks](https://github.com/ageron/handson-ml2).
