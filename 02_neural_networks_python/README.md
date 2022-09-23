@@ -24,7 +24,7 @@ ssh username@theta.alcf.anl.gov
 
     1. select *Kernel* in the menu bar
     1. select *Change kernel...*
-    1. select *conda/2021-09-22* from the drop-down menu
+    1. select *conda/2022-07-01* from the drop-down menu
 
 
 
