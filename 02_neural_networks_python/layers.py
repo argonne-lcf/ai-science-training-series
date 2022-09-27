@@ -8,13 +8,12 @@ def affine_forward(x, w, b):
     """
     Computes the forward pass for an affine (fully-connected) layer.
 
-    The input x has shape (N, d_1, ..., d_k) and contains a minibatch of N
-    examples, where each example x[i] has shape (d_1, ..., d_k). We will
-    reshape each input into a vector of dimension D = d_1 * ... * d_k, and
-    then transform it to an output vector of dimension M.
+    The input x has shape (N, D) and contains a minibatch of N
+    examples, where each example x[i] has length D. We will
+    transform each example to an output vector of dimension M.
 
     Inputs:
-    - x: A numpy array containing input data, of shape (N, d_1, ..., d_k)
+    - x: A numpy array containing input data, of shape (N, D)
     - w: A numpy array of weights, of shape (D, M)
     - b: A numpy array of biases, of shape (M,)
 
@@ -34,12 +33,12 @@ def affine_backward(dout, cache):
     Inputs:
     - dout: Upstream derivative, of shape (N, M)
     - cache: Tuple of:
-      - x: Input data, of shape (N, d_1, ... d_k)
+      - x: Input data, of shape (N, D)
       - w: Weights, of shape (D, M)
       - b: Biases, of shape (M,)
 
     Returns a tuple of:
-    - dx: Gradient with respect to x, of shape (N, d1, ..., d_k)
+    - dx: Gradient with respect to x, of shape (N, D)
     - dw: Gradient with respect to w, of shape (D, M)
     - db: Gradient with respect to b, of shape (M,)
     """
@@ -89,6 +88,7 @@ def relu_backward(dout, cache):
 def softmax_loss(x, y):
     """
     Computes the loss and gradient for softmax classification.
+    More commonly known as categorical cross-entropy loss
 
     Inputs:
     - x: Input data, of shape (N, C) where x[i, j] is the score for the jth
@@ -101,23 +101,28 @@ def softmax_loss(x, y):
     - dx: Gradient of the loss with respect to x
     """
     loss, dx = None, None
-    # cross-entropy loss
 
     def softmax(x):
+      # non-standard definition in order to have better numerical stability
+      # logsumexp function avoids some issues with overflow during sum of exponentials
       #normalization = np.sum(np.exp(x),axis=1) # (N, 1)
-      #normalization = np.exp(logsumexp(x, axis=1)) # for numerical stability
+      #normalization = np.exp(logsumexp(x, axis=1)) 
       temp = logsumexp(x, axis=1)
       #q = np.exp(x) / normalization[:,None] # (N, C) 
       q = np.exp(x - temp[:,None])
       return q
     
     q = softmax(x)
+
+    # some clipping to avoid log of 0 or negative number
     epsilon = 1e-07
     q = np.clip(q, a_min = epsilon, a_max=1-epsilon)
+
     N = x.shape[0]
     loss = -np.sum(y * np.log(q), axis=1) # sum over classes
     loss = np.mean(loss) # average over examples
 
+    # calculating gradients
     dx = (1./N) * softmax(x) # (N, C)
     # for each example, column for correct class needs another term: -(1/N)
     extra_term = (-1./N) * y  # element-wise multiply, p acts as mask
