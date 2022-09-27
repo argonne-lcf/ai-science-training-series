@@ -14,6 +14,7 @@ This first session is focused on introducing the ALCF supercomputing resources, 
 3. [How to Submit Homework](03_githubHomework.md)
 
 The follow are advance introductory material for logging into ALCF machines using a terminal (optional):
+
 0. [Logging in](10_howToLogin.md)
 1. [Environment](11_howToSetupEnvironment.md)
 2. [Job Submisions](12_jobQueuesSubmission.md)
