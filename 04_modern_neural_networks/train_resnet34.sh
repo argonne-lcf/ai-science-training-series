@@ -4,7 +4,7 @@
 #PBS -l walltime=1:00:00
 #PBS -q debug
 #PBS -A datascience
-#PBS --attrs filesystems=home:eagle
+#PBS -l filesystems=home:eagle
 
 
 # Set up software deps:
