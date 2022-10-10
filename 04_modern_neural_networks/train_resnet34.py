@@ -6,43 +6,6 @@ os.environ["TF_FORCE_GPU_ALLOW_GROWTH"] = "true"
 os.environ["TF_XLA_FLAGS"] = "--tf_xla_auto_jit=2"
 
 import tensorflow as tf
-#########################################################################
-# Here's some configuration:
-#########################################################################
-BATCH_SIZE = 256
-N_EPOCHS = 10
-
-steps_per_epoch = int(1281167 / BATCH_SIZE)
-steps_validation = int(50000 / BATCH_SIZE)
-print("Parameters set, preparing dataloading")
-#########################################################################
-# Here's the part where we load datasets:
-import json
-
-
-# What's in this function?  Tune in next week ...
-from ilsvrc_dataset import get_datasets
-
-
-class FakeHvd:
-
-    def size(self): return 1
-
-    def rank(self): return 0
-
-
-with open("ilsvrc.json", 'r') as f:
-    config = json.load(f)
-
-print(json.dumps(config, indent=4))
-
-
-config['hvd'] = FakeHvd()
-config['data']['batch_size'] = BATCH_SIZE
-
-train_ds, val_ds = get_datasets(config)
-print("Datasets ready, creating network.")
-#########################################################################
 
 
 
@@ -52,7 +15,8 @@ print("Datasets ready, creating network.")
 class ResidualLayer(tf.keras.Model):
 
     def __init__(self, n_filters):
-        tf.keras.Model.__init__(self)
+        # tf.keras.Model.__init__(self)
+        super(ResidualLayer, self).__init__()
 
         self.conv1 = tf.keras.layers.Conv2D(
             filters     = n_filters,
@@ -88,7 +52,8 @@ class ResidualLayer(tf.keras.Model):
 class ResidualDownsample(tf.keras.Model):
 
     def __init__(self, n_filters):
-        tf.keras.Model.__init__(self)
+        # tf.keras.Model.__init__(self)
+        super(ResidualDownsample, self).__init__()
 
         self.conv1 = tf.keras.layers.Conv2D(
             filters     = n_filters,
@@ -133,7 +98,7 @@ class ResidualDownsample(tf.keras.Model):
 class ResNet34(tf.keras.Model):
 
     def __init__(self):
-        tf.keras.Model.__init__(self)
+        super(ResNet34, self).__init__()
 
         self.conv_init = tf.keras.Sequential([
             tf.keras.layers.Conv2D(
@@ -225,27 +190,6 @@ class ResNet34(tf.keras.Model):
 
 
 
-example_images, example_labels = next(iter(train_ds.take(1)))
-
-
-print("Initial Image size: ", example_images.shape)
-network = ResNet34()
-
-output = network(example_images)
-print("output shape:", output.shape)
-
-print(network.summary())
-
-# try to load a saved model:
-try:
-    network = tf.keras.models.load_model("resnet34")
-except:
-    pass
-
-    
-# We need an optimizer.  Let's use Adam:
-optimizer = tf.keras.optimizers.Adam(learning_rate=0.0001)
-
 @tf.function
 def calculate_accuracy(logits, labels):
     # We calculate top1 accuracy only here:
@@ -262,7 +206,7 @@ def calculate_loss(logits, labels):
     return tf.reduce_mean(loss)
 
 @tf.function
-def training_step(images, labels):
+def training_step(network, optimizer, images, labels):
     with tf.GradientTape() as tape:
         logits = network(images)
         loss = calculate_loss(logits, labels)
@@ -275,33 +219,130 @@ def training_step(images, labels):
 
     return loss, accuracy
 
-if __name__ == "__main__":
+def train_epoch(i_epoch, step_in_epoch, train_ds, val_ds, network, optimizer, BATCH_SIZE, checkpoint):
     # Here is our training loop!
 
-    for i_epoch in range(N_EPOCHS):
-        i = 0
-        for train_images, train_labels in train_ds.take(steps_per_epoch):
-            # Peform the training step for this batch
-            start = time.time()
-            loss, acc = training_step(train_images, train_labels)
-            end = time.time()
-            images_per_second = BATCH_SIZE / (end - start)
-            print(f"Finished step {i} of {steps_per_epoch} in epoch {i_epoch},loss={loss:.2f}, acc={acc:.2f} ({images_per_second:.3f} img/s).")
-            i += 1
+    steps_per_epoch = int(1281167 / BATCH_SIZE)
+    steps_validation = int(50000 / BATCH_SIZE)
+
+    start = time.time()
+    for train_images, train_labels in train_ds.take(steps_per_epoch):
+        if step_in_epoch > steps_per_epoch: break
+        else: step_in_epoch.assign_add(1)
+
+        # Peform the training step for this batch
+        loss, acc = training_step(network, optimizer, train_images, train_labels)
+        end = time.time()
+        images_per_second = BATCH_SIZE / (end - start)
+        print(f"Finished step {step_in_epoch.numpy()} of {steps_per_epoch} in epoch {i_epoch.numpy()},loss={loss:.3f}, acc={acc:.3f} ({images_per_second:.3f} img/s).")
+        start = time.time()
+
+    # Save the network after every epoch:
+    checkpoint.save("resnet34/model")
+
+    # Compute the validation accuracy:
+    mean_accuracy = None
+    for val_images, val_labels in val_ds.take(steps_validation):
+        logits = network(val_images)
+        accuracy = calculate_accuracy(logits, val_labels)
+        if mean_accuracy is None:
+            mean_accuracy = accuracy
+        else:
+            mean_accuracy += accuracy
+
+    mean_accuracy /= steps_validation
+
+    print(f"Validation accuracy after epoch {i_epoch}: {mean_accuracy:.4f}.")
 
 
-        network.save("resnet34")
 
-        
-        mean_accuracy = None
-        for val_images, val_labels in val_ds.take(steps_validation):
-            logits = network(val_images)
-            accuracy = calculate_accuracy(logits, val_labels)
-            if mean_accuracy is None:
-                mean_accuracy = accuracy
-            else:
-                mean_accuracy += accuracy
+def prepare_data_loader(BATCH_SIZE):
 
-        mean_accuracy /= steps_validation
 
-        print(f"Validation accuracy after epoch {i_epoch}: {mean_accuracy}.")
+    tf.config.threading.set_inter_op_parallelism_threads(8)
+    tf.config.threading.set_intra_op_parallelism_threads(8)
+
+    print("Parameters set, preparing dataloading")
+    #########################################################################
+    # Here's the part where we load datasets:
+    import json
+
+
+    # What's in this function?  Tune in next week ...
+    from ilsvrc_dataset import get_datasets
+
+
+    class FakeHvd:
+
+        def size(self): return 1
+
+        def rank(self): return 0
+
+
+    with open("ilsvrc.json", 'r') as f:
+        config = json.load(f)
+
+    print(json.dumps(config, indent=4))
+
+
+    config['hvd'] = FakeHvd()
+    config['data']['batch_size'] = BATCH_SIZE
+
+    train_ds, val_ds = get_datasets(config)
+    print("Datasets ready, creating network.")
+    #########################################################################
+
+    return train_ds, val_ds
+
+
+def main():
+    #########################################################################
+    # Here's some configuration:
+    #########################################################################
+    BATCH_SIZE = 256
+    N_EPOCHS = 10
+
+    train_ds, val_ds = prepare_data_loader(BATCH_SIZE)
+
+
+    example_images, example_labels = next(iter(train_ds.take(1)))
+
+
+    print("Initial Image size: ", example_images.shape)
+    network = ResNet34()
+
+    output = network(example_images)
+    print("output shape:", output.shape)
+
+    print(network.summary())
+
+
+
+
+    epoch = tf.Variable(initial_value=tf.constant(0, dtype=tf.dtypes.int64), name='epoch')
+    step_in_epoch = tf.Variable(
+        initial_value=tf.constant(0, dtype=tf.dtypes.int64),
+        name='step_in_epoch')
+
+
+    # We need an optimizer.  Let's use Adam:
+    optimizer = tf.keras.optimizers.Adam(learning_rate=0.0001)
+
+    checkpoint = tf.train.Checkpoint(
+        network       = network,
+        optimizer     = optimizer,
+        epoch         = epoch,
+        step_in_epoch = step_in_epoch)
+
+    # Restore the model, if possible:
+    latest_checkpoint = tf.train.latest_checkpoint("resnet34/")
+    if latest_checkpoint:
+        checkpoint.restore(latest_checkpoint)
+
+    while epoch < N_EPOCHS:
+        train_epoch(epoch, step_in_epoch, train_ds, val_ds, network, optimizer, BATCH_SIZE, checkpoint)
+        epoch.assign_add(1)
+        step_in_epoch.assign(0)
+
+if __name__ == "__main__":
+    main()
