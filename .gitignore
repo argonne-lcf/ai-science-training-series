@@ -3,6 +3,10 @@
 *.output
 *.error
 
+# Polaris output scripts:
+*.sh.o[0-9]*
+*.sh.e[0-9]*
+
 logdir
 
 *.pb
