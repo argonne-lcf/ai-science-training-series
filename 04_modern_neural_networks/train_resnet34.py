@@ -252,7 +252,7 @@ def train_epoch(i_epoch, step_in_epoch, train_ds, val_ds, network, optimizer, BA
 
     mean_accuracy /= steps_validation
 
-    print(f"Validation accuracy after epoch {i_epoch}: {mean_accuracy:.4f}.")
+    print(f"Validation accuracy after epoch {i_epoch.numpy()}: {mean_accuracy:.4f}.")
 
 
 
