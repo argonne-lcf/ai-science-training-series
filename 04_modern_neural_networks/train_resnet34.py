@@ -4,10 +4,10 @@ import time
 # This limits the amount of memory used:
 os.environ["TF_FORCE_GPU_ALLOW_GROWTH"] = "true"
 os.environ["TF_XLA_FLAGS"] = "--tf_xla_auto_jit=2"
+os.environ['OMP_NUM_THREADS'] = '128'
+prefetch_buffer_size = 10
 
 import tensorflow as tf
-
-
 
 #########################################################################
 # Here's the Residual layer from the first half again:
@@ -225,21 +225,28 @@ def train_epoch(i_epoch, step_in_epoch, train_ds, val_ds, network, optimizer, BA
     steps_per_epoch = int(1281167 / BATCH_SIZE)
     steps_validation = int(50000 / BATCH_SIZE)
 
+    #tf.profiler.experimental.start('logdir')
+
     start = time.time()
+    i = 0
     for train_images, train_labels in train_ds.take(steps_per_epoch):
         if step_in_epoch > steps_per_epoch: break
         else: step_in_epoch.assign_add(1)
 
         # Peform the training step for this batch
+        #with tf.profiler.experimental.Trace('train_', step_num=i, _r=1):
         loss, acc = training_step(network, optimizer, train_images, train_labels)
         end = time.time()
         images_per_second = BATCH_SIZE / (end - start)
         print(f"Finished step {step_in_epoch.numpy()} of {steps_per_epoch} in epoch {i_epoch.numpy()},loss={loss:.3f}, acc={acc:.3f} ({images_per_second:.3f} img/s).")
         start = time.time()
-
+        i += 1
+        #if i > 20: break
+    tf.profiler.experimental.stop()
     # Save the network after every epoch:
     checkpoint.save("resnet34/model")
-
+    #import sys
+    #sys.exit(0)
     # Compute the validation accuracy:
     mean_accuracy = None
     for val_images, val_labels in val_ds.take(steps_validation):
@@ -258,9 +265,10 @@ def train_epoch(i_epoch, step_in_epoch, train_ds, val_ds, network, optimizer, BA
 
 def prepare_data_loader(BATCH_SIZE):
 
+    tf.config.threading.set_inter_op_parallelism_threads(int(os.environ['OMP_NUM_THREADS']))
+    tf.config.threading.set_intra_op_parallelism_threads(int(os.environ['OMP_NUM_THREADS']))
+    print('threading set: ',tf.config.threading.get_inter_op_parallelism_threads(),tf.config.threading.get_intra_op_parallelism_threads())
 
-    tf.config.threading.set_inter_op_parallelism_threads(8)
-    tf.config.threading.set_intra_op_parallelism_threads(8)
 
     print("Parameters set, preparing dataloading")
     #########################################################################
@@ -282,11 +290,13 @@ def prepare_data_loader(BATCH_SIZE):
     with open("ilsvrc.json", 'r') as f:
         config = json.load(f)
 
+    config['data']['batch_size'] = BATCH_SIZE
+    config['data']['num_parallel_readers'] = int(os.environ['OMP_NUM_THREADS'])
+    config['data']['prefetch_buffer_size'] = prefetch_buffer_size
+
     print(json.dumps(config, indent=4))
 
-
     config['hvd'] = FakeHvd()
-    config['data']['batch_size'] = BATCH_SIZE
 
     train_ds, val_ds = get_datasets(config)
     print("Datasets ready, creating network.")

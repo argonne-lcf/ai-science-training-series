@@ -130,7 +130,7 @@ def build_dataset_from_filelist(config,filelist_filename):
    # run 'load_image_label_bb' on each input image file, process multiple files in parallel
    # this function opens the JPEG, converts it to a tensorflow vector and gets the truth class label
    ds = filelist.map(load_image_label_bb,
-                     num_parallel_calls=tf.data.experimental.AUTOTUNE)
+                     num_parallel_calls=config['data']['num_parallel_readers'])
                      
    # unbatch called because some JPEGs result in more than 1 image returned
    ds = ds.apply(tf.data.Dataset.unbatch)
@@ -139,7 +139,7 @@ def build_dataset_from_filelist(config,filelist_filename):
    ds = ds.batch(dc['batch_size'])
 
    # setup a pipeline that pre-fetches images before they are needed (keeps CPU busy)
-   ds = ds.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)  
+   ds = ds.prefetch(buffer_size=config['data']['prefetch_buffer_size'])  
 
    return ds
 
