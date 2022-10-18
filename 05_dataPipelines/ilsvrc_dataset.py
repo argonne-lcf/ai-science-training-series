@@ -19,16 +19,18 @@ import os,glob
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 os.environ['TF_CPP_MIN_VLOG_LEVEL'] = '3'
 import tensorflow as tf
+from tensorflow.python.profiler import trace
 import numpy as np
 import xml.etree.ElementTree as ET
-import horovod.tensorflow as hvd
-hvd.init()
+# import horovod.tensorflow as hvd
+# hvd.init()
 
 # these are initialized in the get_datasets function and used later
 labels_hash = None
 crop_size = None
 
 
+@trace.trace_wrapper('get_datasets')
 def get_datasets(config):
    # these global variables will be initizlized
    global labels_hash,crop_size
@@ -61,6 +63,7 @@ def get_datasets(config):
 
 
 ## Create a hash table for labels from string to int 
+@trace.trace_wrapper('get_label_tables')
 def get_label_tables(config, train_filelist):
 
    # get the first filename
@@ -95,6 +98,7 @@ def get_label_tables(config, train_filelist):
 
 # take a config dictionary and a path to a filelist
 # return a tf.dataset.Dataset object that will iterate over the JPEGs in filelist
+@trace.trace_wrapper('build_dataset_from_filelist')
 def build_dataset_from_filelist(config,filelist_filename):
    if config['hvd'].rank() == 0:
       print(f'build dataset {filelist_filename}')
@@ -147,8 +151,9 @@ def build_dataset_from_filelist(config,filelist_filename):
 # this function parses the image path, uses the label hash to convert the string
 # label in the path to a numerical label, decodes the input JPEG, and returns
 # the input image and label
+@trace.trace_wrapper('load_image_label_bb')
 def load_image_label_bb(image_path):
-   
+
    # for each JPEG, there is an Annotation file that contains a list of
    # classes contained in the image and a bounding box for each object.
    # However, some images contain a single class, in which case the
@@ -186,11 +191,13 @@ def load_image_label_bb(image_path):
 # this function opens the annotation XML file and parses the contents
 # the contents include a list of objects in the JPEG, a label and
 # bounding box for each object
+@trace.trace_wrapper('get_bounding_boxes')
 def get_bounding_boxes(filename):
    filename = bytes.decode(filename.numpy())
    try:
-      tree = ET.parse(filename)
-      root = tree.getroot()
+      with tf.profiler.experimental.Trace('read_xml'):
+         tree = ET.parse(filename)
+         root = tree.getroot()
 
       img_size = root.find('size')
       img_width = int(img_size.find('width').text)

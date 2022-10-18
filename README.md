@@ -25,9 +25,13 @@ This repository is organized into one subdirectory per topic.  All content is pr
        <li> <a href="./01_machineLearning/01_linear_regression_sgd.ipynb"> Introduction to Machine Learning with Linear Regression </a></li>
        <li> <a href="./01_machineLearning/02_clustering.ipynb">Introduction to Machine Learning with k-means Clustering</a></li>
     </ol>
-    <li> <a href="./02_deepLearning"> Introduction to Deep Learning </a></li>
-    <li> <a href="./02_deepLearning"> Deep Learning: Using Frameworks </a></li> 
-    <li> <a href="./03_dataPipelines/">Building a Data Pipeline </a></li> 
+    <li> <a href="./02_neural_networks_python"> Neural Networks in Python </a></li>
+    <li> <a href="./03_neural_networks_tensorflow"> Neural Networks in TensorFlow </a></li> 
+    <li> <a href="./04_modern_neural_networks"> Modern Classification Networks </a></li> 	
+    <li> <a href="./05_dataPipelines/">Handling Data During AI Training </a></li> 
+    <li> <a href="./06_distributedTraining/">Supercomputers and Parallel AI Training</a></li> 	
+    <li> <a href="./07_TBD/">Running Large Scale Training on a Supercomputer</a></li> 
+    <li> <a href="./08_TBD/">Other AI Learning Methods</a></li> 	
   </ol>
 </details>
 
