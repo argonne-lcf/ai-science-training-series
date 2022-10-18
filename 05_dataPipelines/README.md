@@ -139,3 +139,6 @@ In the case of 64-threads per MPI process, batch processing time is down to 0.08
 ![parallel](imgs/ilsvrc_64threads_zoom.png)
 
 
+# Homework
+
+Vary the `parallel_threads` and `prefetch_buffer_size` parameters at the top of [train_resnet34.py](train_resnet34.py) and make a table of how the mean image rate changes.

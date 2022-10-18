@@ -1,5 +1,5 @@
 import sys, os
-import time
+import time,math
 
 # This limits the amount of memory used:
 os.environ["TF_FORCE_GPU_ALLOW_GROWTH"] = "true"
@@ -13,7 +13,7 @@ num_parallel_readers = parallel_threads
 
 # how many training steps to take during profiling
 num_steps = 10
-use_profiler = False
+use_profiler = True
 
 import tensorflow as tf
 from tensorflow.python.profiler import trace
@@ -242,6 +242,8 @@ def train_epoch(i_epoch, step_in_epoch, train_ds, val_ds, network, optimizer, BA
     
     start = time.time()
     i = 0
+    sum = 0.
+    sum2 = 0.
     for train_images, train_labels in train_ds.take(steps_per_epoch):
         if step_in_epoch > steps_per_epoch: break
         else: step_in_epoch.assign_add(1)
@@ -250,6 +252,9 @@ def train_epoch(i_epoch, step_in_epoch, train_ds, val_ds, network, optimizer, BA
         loss, acc = training_step(network, optimizer, train_images, train_labels)
         end = time.time()
         images_per_second = BATCH_SIZE / (end - start)
+        if i > 0: # skip the first measurement because it includes compile time
+            sum += images_per_second
+            sum2 += images_per_second * images_per_second
         print(f"Finished step {step_in_epoch.numpy()} of {steps_per_epoch} in epoch {i_epoch.numpy()},loss={loss:.3f}, acc={acc:.3f} ({images_per_second:.3f} img/s).")
         start = time.time()
         # added for profiling to stop after some steps
@@ -259,6 +264,10 @@ def train_epoch(i_epoch, step_in_epoch, train_ds, val_ds, network, optimizer, BA
     # added for profiling to stop after some steps
     if use_profiler:
         print('stop profiler')
+        i = i - 1
+        mean_rate = sum / i
+        stddev_rate = math.sqrt( sum2/i - mean_rate * mean_rate )
+        print(f'mean image/s = {mean_rate:8.2f}   standard deviation: {stddev_rate:8.2f}')
         tf.profiler.experimental.stop()
         sys.exit(0)
 
