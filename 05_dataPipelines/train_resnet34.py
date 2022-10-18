@@ -4,8 +4,16 @@ import time
 # This limits the amount of memory used:
 os.environ["TF_FORCE_GPU_ALLOW_GROWTH"] = "true"
 os.environ["TF_XLA_FLAGS"] = "--tf_xla_auto_jit=2"
-# os.environ['OMP_NUM_THREADS'] = '32'
-# prefetch_buffer_size = 0
+# This control parallelism in Tensorflow
+parallel_threads = 128
+# This controls how many batches to prefetch
+prefetch_buffer_size = 8 # tf.data.AUTOTUNE
+os.environ['OMP_NUM_THREADS'] = str(parallel_threads)
+num_parallel_readers = parallel_threads
+
+# how many training steps to take during profiling
+num_steps = 10
+use_profiler = False
 
 import tensorflow as tf
 from tensorflow.python.profiler import trace
@@ -227,8 +235,10 @@ def train_epoch(i_epoch, step_in_epoch, train_ds, val_ds, network, optimizer, BA
     steps_per_epoch = int(1281167 / BATCH_SIZE)
     steps_validation = int(50000 / BATCH_SIZE)
 
-    print('start profiler')
-    tf.profiler.experimental.start('logdir')
+    # added for profiling
+    if use_profiler:
+        print('start profiler')
+        tf.profiler.experimental.start('logdir/m%03d_w%02d_p%02d' % (parallel_threads,num_parallel_readers,prefetch_buffer_size))
     
     start = time.time()
     i = 0
@@ -237,18 +247,21 @@ def train_epoch(i_epoch, step_in_epoch, train_ds, val_ds, network, optimizer, BA
         else: step_in_epoch.assign_add(1)
 
         # Peform the training step for this batch
-        # with tf.profiler.experimental.Trace('train_step', step_num=i):
         loss, acc = training_step(network, optimizer, train_images, train_labels)
         end = time.time()
         images_per_second = BATCH_SIZE / (end - start)
         print(f"Finished step {step_in_epoch.numpy()} of {steps_per_epoch} in epoch {i_epoch.numpy()},loss={loss:.3f}, acc={acc:.3f} ({images_per_second:.3f} img/s).")
         start = time.time()
+        # added for profiling to stop after some steps
         i += 1
-        if i > 5: break
+        if i > num_steps and use_profiler: break
     
-    print('stop profiler')
-    tf.profiler.experimental.stop()
-    sys.exit(0)
+    # added for profiling to stop after some steps
+    if use_profiler:
+        print('stop profiler')
+        tf.profiler.experimental.stop()
+        sys.exit(0)
+
     # Save the network after every epoch:
     checkpoint.save("resnet34/model")
     
@@ -270,12 +283,9 @@ def train_epoch(i_epoch, step_in_epoch, train_ds, val_ds, network, optimizer, BA
 # @trace.trace_wrapper('prepare_data_loader')
 def prepare_data_loader(BATCH_SIZE):
 
-    # tf.config.threading.set_inter_op_parallelism_threads(int(os.environ['OMP_NUM_THREADS']))
-    # tf.config.threading.set_intra_op_parallelism_threads(int(os.environ['OMP_NUM_THREADS']))
-    # print('threading set: ',tf.config.threading.get_inter_op_parallelism_threads(),tf.config.threading.get_intra_op_parallelism_threads())
-
-    tf.config.threading.set_inter_op_parallelism_threads(32)
-    tf.config.threading.set_intra_op_parallelism_threads(32)
+    tf.config.threading.set_inter_op_parallelism_threads(parallel_threads)
+    tf.config.threading.set_intra_op_parallelism_threads(parallel_threads)
+    print('threading set: ',tf.config.threading.get_inter_op_parallelism_threads(),tf.config.threading.get_intra_op_parallelism_threads())
 
     print("Parameters set, preparing dataloading")
     #########################################################################
@@ -298,14 +308,20 @@ def prepare_data_loader(BATCH_SIZE):
         config = json.load(f)
 
     config['data']['batch_size'] = BATCH_SIZE
-    config['data']['num_parallel_readers'] = tf.data.AUTOTUNE #int(os.environ['OMP_NUM_THREADS'])
-    config['data']['prefetch_buffer_size'] = tf.data.AUTOTUNE 
+    config['data']['num_parallel_readers'] = num_parallel_readers
+    config['data']['prefetch_buffer_size'] = prefetch_buffer_size 
 
     print(json.dumps(config, indent=4))
 
     config['hvd'] = FakeHvd()
 
     train_ds, val_ds = get_datasets(config)
+
+    options = tf.data.Options()
+    options.threading.private_threadpool_size = parallel_threads
+    train_ds = train_ds.with_options(options)
+    val_ds = val_ds.with_options(options)
+
     print("Datasets ready, creating network.")
     #########################################################################
 

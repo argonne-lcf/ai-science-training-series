@@ -195,8 +195,9 @@ def load_image_label_bb(image_path):
 def get_bounding_boxes(filename):
    filename = bytes.decode(filename.numpy())
    try:
-      tree = ET.parse(filename)
-      root = tree.getroot()
+      with tf.profiler.experimental.Trace('read_xml'):
+         tree = ET.parse(filename)
+         root = tree.getroot()
 
       img_size = root.find('size')
       img_width = int(img_size.find('width').text)

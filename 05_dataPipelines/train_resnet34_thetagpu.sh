@@ -1,7 +1,6 @@
 #!/bin/bash -l
 #COBALT -t 60
 #COBALT -q single-gpu
-#COBALT -A datascience
 #COBALT -n 1
 
 #  #########3#COBALT --attrs filesystems=home:eagle
