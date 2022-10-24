@@ -1,7 +1,4 @@
-# Distributed trainng
-
-
-# Distributed training with Horovod
+# Distributed trainng on Supercomputer
 Led by Huihuo Zheng from ALCF (<huihuo.zheng@anl.gov>)
 
 **Goal of this tutorial**
@@ -45,7 +42,7 @@ Reference: https://horovod.readthedocs.io/en/stable/
   7. Checking pointing on rank 0
   8. Average metric across all the workers
 
-## TensorFlow with Horovod
+## Example: TensorFlow with Horovod
 1) **Initialize Horovod**
 	```python
 	import horovod.tensorflow as hvd 

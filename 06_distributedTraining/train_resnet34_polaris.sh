@@ -14,4 +14,4 @@ conda activate
 cd $PBS_O_WORKDIR
 
 export TF_XLA_FLAGS="--tf_xla_auto_jit=2"
-aprun -n 16 -N 4 python train_resnet34_hvd.py 
+aprun -n 32 -N 4 python train_resnet34_hvd.py --num_steps 100000
