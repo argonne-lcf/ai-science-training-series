@@ -119,4 +119,8 @@ Examples for other frameworks (PyTorch, Keras, MxNet) can be found [here](https:
 
 
 ## Homework
-* Modify the 
+Modify [homework/train_mnist.py](./homework/train_mnist.py) into a Horovod data parallel code and run the scaling test on ThetaGPU or Polaris. 
+
+Provide the link to your ./homework folder on  your personal GitHub repo. 
+
+See [./homework/README.md](./homework/README.md) for details. 
