@@ -103,14 +103,20 @@ def softmax_loss(x, y):
     loss, dx = None, None
 
     def softmax(x):
-      # non-standard definition in order to have better numerical stability
-      # logsumexp function avoids some issues with overflow during sum of exponentials
-      #normalization = np.sum(np.exp(x),axis=1) # (N, 1)
-      #normalization = np.exp(logsumexp(x, axis=1)) 
-      temp = logsumexp(x, axis=1)
-      #q = np.exp(x) / normalization[:,None] # (N, C) 
-      q = np.exp(x - temp[:,None])
-      return q
+        # non-standard definition in order to have better numerical stability
+        # logsumexp function avoids some issues with overflow during sum of exponentials
+        #normalization = np.sum(np.exp(x),axis=1) # (N, 1)
+        #normalization = np.exp(logsumexp(x, axis=1)) 
+        temp = logsumexp(x, axis=1)
+        #q = np.exp(x) / normalization[:,None] # (N, C) 
+        q = np.exp(x - temp[:,None])
+        # logsumexp function avoids some issues with overflow during sum of exponentials
+        #normalization = np.sum(np.exp(x),axis=1) # (N, 1)
+        #normalization = np.exp(logsumexp(x, axis=1)) 
+        temp = logsumexp(x, axis=1)
+        #q = np.exp(x) / normalization[:,None] # (N, C) 
+        q = np.exp(x - temp[:,None])
+        return q
     
     q = softmax(x)
 
