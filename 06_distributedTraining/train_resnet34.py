@@ -18,12 +18,11 @@ parser.add_argument('--device', default='gpu',
                     help='Whether this is running on cpu or gpu')
 parser.add_argument('--epochs', default=10, type=int, help='Number of epochs to run')
 parser.add_argument('--num_steps', default=10, type=int, help="Number of steps")
-parser.add_argument('--use_profiler', action='store_true')
 args = parser.parse_args()
 
 # how many training steps to take during profiling
 num_steps = args.num_steps
-use_profiler = args.use_profiler
+use_profiler = True
 
 import tensorflow as tf
 from tensorflow.python.profiler import trace
