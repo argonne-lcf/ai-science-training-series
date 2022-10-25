@@ -2,8 +2,7 @@
 #COBALT -t 60
 #COBALT -q single-gpu
 #COBALT -n 1
-
-#  #########3#COBALT --attrs filesystems=home:eagle
+#COBALT --attrs filesystems=home,grand
 
 # Set up software deps:
 module load conda/2022-07-01
