@@ -8,9 +8,7 @@ comm = MPI.COMM_WORLD
 
 N = 5000000
 Nin = 0
-Nin_tot=[0,]
 t0 = time.time()
-
 for i in range(comm.rank, N, comm.size):
     x = random.uniform(-0.5, 0.5)
     y = random.uniform(-0.5, 0.5)

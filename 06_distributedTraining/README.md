@@ -8,6 +8,46 @@ Led by Huihuo Zheng from ALCF (<huihuo.zheng@anl.gov>)
 * Know how to modify your code with Horovod
 * Know how to run distributed training on Polaris / ThetaGPU and measuring the scaling efficiency
 
+## Concept of Parallel Computing  - pi examples
+
+```python
+from mpi4py import MPI
+import numpy as np
+import random
+import time
+comm = MPI.COMM_WORLD
+
+N = 5000000
+Nin = 0
+t0 = time.time()
+for i in range(comm.rank, N, comm.size):
+    x = random.uniform(-0.5, 0.5)
+    y = random.uniform(-0.5, 0.5)
+    if (np.sqrt(x*x + y*y) < 0.5):
+        Nin += 1
+res = np.array(Nin, dtype='d')
+res_tot = np.array(Nin, dtype='d')
+comm.Allreduce(res, res_tot, op=MPI.SUM)
+t1 = time.time()
+if comm.rank==0:
+    print(res_tot/float(N/4.0))
+    print("Time: %s" %(t1 - t0))
+```
+
+
+```bash
+ssh <username>@theta.alcf.anl.gov
+ssh thetagpusn1 
+qsub -A ALCFAITP -n 1 -q training-gpu -t 20 -I 
+module load conda/2022-07-01
+conda activate
+cd YOUR_GITHUP_REPO
+mpirun -np 1 python pi.py   # 3.141988,   8.029037714004517  s
+mpirun -np 2 python pi.py   # 3.1415096   4.212774038314819  s
+mpirun -np 4 python pi.py   # 3.1425632   2.093632459640503  s
+mpirun -np 8 python pi.py   # 3.1411632   1.0610620975494385 s
+```
+
 ## Introduction to distributed Deep Learning
 ![acc](./images/need.png)
 The goal for train the model at large scale is to reduce the time-to-solution to reasonable amount. By using training the model in parallel, it reduces the total training time from weeks to minutes.
@@ -112,7 +152,7 @@ Example in:
 
 Examples for other frameworks (PyTorch, Keras, MxNet) can be found [here](https://github.com/horovod/horovod/tree/master/examples). 
 
-## Handson during the break
+## Handson 
 * Changing the code into Horovod (during break time)
 ```bash
 ssh <username>@theta.alcf.anl.gov
@@ -123,7 +163,15 @@ cp train_resnet34.py train_resnet34_parallel.py
 Implement```train_resnet34_parallel.py``` with Horovod
 
 * Throughput scaling
+```
+ssh <username>@theta.alcf.anl.gov
+ssh thetagpusn1 
+qsub -A ALCFAITP -n 1 -q training-gpu -t 20 -I 
+```
+
 ```bash
+	module load conda/2022-07-01
+	conda activate
     mpirun -n 1 python train_resnet34_hvd.py --num_steps 10 
     mpirun -n 2 python train_resnet34_hvd.py --num_steps 10 
     mpirun -n 4 python train_resnet34_hvd.py --num_steps 10 
