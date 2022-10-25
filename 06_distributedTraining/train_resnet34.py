@@ -11,9 +11,19 @@ prefetch_buffer_size = 8 # tf.data.AUTOTUNE
 os.environ['OMP_NUM_THREADS'] = str(parallel_threads)
 num_parallel_readers = parallel_threads
 
+import argparse
+parser = argparse.ArgumentParser(description='Horovod',
+                                 formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser.add_argument('--device', default='gpu',
+                    help='Whether this is running on cpu or gpu')
+parser.add_argument('--epochs', default=10, type=int, help='Number of epochs to run')
+parser.add_argument('--num_steps', default=10, type=int, help="Number of steps")
+parser.add_argument('--use_profiler', action='store_true')
+args = parser.parse_args()
+
 # how many training steps to take during profiling
-num_steps = 10
-use_profiler = True
+num_steps = args.num_steps
+use_profiler = args.use_profiler
 
 import tensorflow as tf
 from tensorflow.python.profiler import trace
