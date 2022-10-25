@@ -115,7 +115,8 @@ Examples for other frameworks (PyTorch, Keras, MxNet) can be found [here](https:
 ## Handson during the break
 * Changing the code into Horovod (during break time)
 ```bash
-ssh <username>@polaris.alcf.anl.gov
+ssh <username>@theta.alcf.anl.gov
+ssh thetagpusn1 
 cd /lus/grand/projects/ALCFAITP/hzheng/ai-science-training-series/06_distributedTraining
 cp train_resnet34.py train_resnet34_parallel.py 
 ```
@@ -123,26 +124,22 @@ Implement```train_resnet34_parallel.py``` with Horovod
 
 * Throughput scaling
 ```bash
-    aprun -n 1 -N 1 python train_resnet34_hvd.py --num_steps 10 
-    aprun -n 1 -N 2 python train_resnet34_hvd.py --num_steps 10 
-    aprun -n 4 -N 4 python train_resnet34_hvd.py --num_steps 10 
-    aprun -n 8 -N 4 python train_resnet34_hvd.py --num_steps 10 
-    aprun -n 16 -N 4 python train_resnet34_hvd.py --num_steps 10 
+    mpirun -n 1 python train_resnet34_hvd.py --num_steps 10 
+    mpirun -n 2 python train_resnet34_hvd.py --num_steps 10 
+    mpirun -n 4 python train_resnet34_hvd.py --num_steps 10 
+    mpirun -n 8 python train_resnet34_hvd.py --num_steps 10 
 ```
 
 1 GPU: mean image/s =   281.22   standard deviation:    75.79
 2 GPU: mean image/s =   382.01   standard deviation:     8.42
 4 GPU: mean image/s =   689.22   standard deviation:    77.78
 8 GPU: mean image/s =  1341.25   standard deviation:    52.51 
-16 GPU: mean image/s =  3626.64   standard deviation:   312.69
 ...
-
-You can keep increasing the number of GPU and see the scaling of the throughput
 
 
 * Visualizing communication 
 ```
-HOROVOD_TIMELINE=timeline.json aprun -n 16 -N 4 python train_resnet34_hvd.py --num_steps 10
+HOROVOD_TIMELINE=timeline.json mpirun -n 8 python train_resnet34_hvd.py --num_steps 10
 ```
 Horovod timeline
 ![./images/horovod_timeline.png](./images/horovod_timeline.png)
@@ -155,15 +152,14 @@ The goal of this homework is to modify a sequential mnist code into a data paral
 
 * 25%: Run scaling test upto 16 nodes, and check the overall timing
 ```bash
-    aprun -n 1 -N 1 python tensorflow2_mnist_hvd.py
-    aprun -n 1 -N 2 python tensorflow2_mnist_hvd.py
-    aprun -n 4 -N 4 python tensorflow2_mnist_hvd.py
-    aprun -n 8 -N 4 python tensorflow2_mnist_hvd.py
-    aprun -n 16 -N 4 python tensorflow2_mnist_hvd.py
+    mpirun -n 1 python tensorflow2_mnist_hvd.py
+    mpirun -n 2 python tensorflow2_mnist_hvd.py
+    mpirun -n 4 python tensorflow2_mnist_hvd.py
+    mpirun -n 8 python tensorflow2_mnist_hvd.py
 ```
 
 * 25%: Plot the training accuracy and validation accuracy curve for different scales. (x-asix: epoch; y-axis: accuracy)
-Save your plots as pdf files in the [./homework](./homework) folder "accuracy_1.pdf, accuracy_2.pdf, accuracy_4.pdf, accuracy_8.pdf, accuracy_16.pdf"
+Save your plots as pdf files in the [./homework](./homework) folder "accuracy_1.pdf, accuracy_2.pdf, accuracy_4.pdf, accuracy_8.pdf"
 
 Provide the link to your ./homework folder on your personal GitHub repo. 
 
