@@ -115,14 +115,13 @@ Examples for other frameworks (PyTorch, Keras, MxNet) can be found [here](https:
 ## Handson during the break
 * Changing the code into Horovod (during break time)
 ```bash
-    ssh <username>@polaris.alcf.anl.gov
-	cd /lus/grand/projects/ALCFAITP/hzheng/ai-science-training-series/06_distributedTraining
-	cp train_resnet34.py train_resnet34_parallel.py 
+ssh <username>@polaris.alcf.anl.gov
+cd /lus/grand/projects/ALCFAITP/hzheng/ai-science-training-series/06_distributedTraining
+cp train_resnet34.py train_resnet34_parallel.py 
 ```
 Implement```train_resnet34_parallel.py``` with Horovod
 
-## Scaling throughput
-On Polaris
+* Throughput scaling
 ```bash
     aprun -n 1 -N 1 python train_resnet34_hvd.py --num_steps 10 
     aprun -n 1 -N 2 python train_resnet34_hvd.py --num_steps 10 
@@ -138,10 +137,10 @@ On Polaris
 16 GPU: mean image/s =  3626.64   standard deviation:   312.69
 ...
 
-Please keep increasing 
+You can keep increasing the number of GPU and see the scaling of the throughput
 
 
-Seeing communication
+* Visualizing communication 
 ```
 HOROVOD_TIMELINE=timeline.json aprun -n 16 -N 4 python train_resnet34_hvd.py --num_steps 10
 ```
@@ -164,7 +163,6 @@ The goal of this homework is to modify a sequential mnist code into a data paral
 ```
 
 * 25%: Plot the training accuracy and validation accuracy curve for different scales. (x-asix: epoch; y-axis: accuracy)
-
 Save your plots as pdf files in the [./homework](./homework) folder "accuracy_1.pdf, accuracy_2.pdf, accuracy_4.pdf, accuracy_8.pdf, accuracy_16.pdf"
 
 Provide the link to your ./homework folder on your personal GitHub repo. 
