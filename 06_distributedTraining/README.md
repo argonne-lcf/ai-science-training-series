@@ -10,6 +10,8 @@ Led by Huihuo Zheng from ALCF (<huihuo.zheng@anl.gov>)
 
 ## Concept of Parallel Computing  - pi examples
 
+![PI](https://www.101computing.net/wp/wp-content/uploads/estimating-pi-monte-carlo-method.png)
+
 ```python
 from mpi4py import MPI
 import numpy as np
