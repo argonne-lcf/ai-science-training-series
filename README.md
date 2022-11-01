@@ -30,7 +30,7 @@ This repository is organized into one subdirectory per topic.  All content is pr
     <li> <a href="./04_modern_neural_networks"> Modern Classification Networks </a></li> 	
     <li> <a href="./05_dataPipelines/">Handling Data During AI Training </a></li> 
     <li> <a href="./06_distributedTraining/">Supercomputers and Parallel AI Training</a></li> 	
-    <li> <a href="./07_TBD/">Running Large Scale Training on a Supercomputer</a></li> 
+    <li> <a href="./07_largeScaleTraining/">Running Large Scale Training on a Supercomputer</a></li> 
     <li> <a href="./08_TBD/">Other AI Learning Methods</a></li> 	
   </ol>
 </details>
