@@ -2,9 +2,12 @@
 
 AI-Driven Science on Supercomputers @ ALCF 2022
 
-**Accompanying slides**: [📊 Large Scale Training](https://saforem2.github.io/ai4sci-large-scale-training/#/) ([PDF](https://github.com/saforem2/ai4sci-large-scale-training/blob/main/slides.pdf))
-
 **Contact:** [Sam Foreman](samforeman.me) ([foremans@anl.gov](mailto:///foremans@anl.gov))
+
+- **Accompanying slides**: 
+    - [📊 Large Scale Training](https://saforem2.github.io/ai4sci-large-scale-training/#/) 
+    - [PDF](https://github.com/saforem2/ai4sci-large-scale-training/blob/main/slides.pdf)
+    - [github repo](https://github.com/saforem2/ai4sci-large-scale-training)
 
 This section of the workshop will introduce you to some of the tools that we use to run large-scale distributed training on supercomputers.
 
