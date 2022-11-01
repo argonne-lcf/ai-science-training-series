@@ -34,7 +34,7 @@
 # ┃ NOTE: Recommended for running this file    ┃
 # ┃--------------------------------------------┃ 
 # ┃$ ./main.sh $@ > main.log 2>&1 &            ┃
-# ┃$ tail -1 main.log $(tail -1 logs/latest)   ┃
+# ┃$ tail -f main.log $(tail -1 logs/latest)   ┃
 # ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
 TSTAMP=$(date "+%Y-%m-%d-%H%M%S")
