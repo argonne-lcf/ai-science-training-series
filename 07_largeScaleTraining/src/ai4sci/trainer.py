@@ -27,7 +27,7 @@ from pathlib import Path
 from ai4sci.network import ResNet34, ConvNet
 
 HERE = Path(os.path.abspath(__file__)).parent
-# CHECKPOINT_DIR = HERE.joinpath('checkpoints')
+CHECKPOINT_DIR = HERE.joinpath('checkpoints')
 
 
 log = logging.getLogger(__name__)
@@ -83,44 +83,29 @@ class Trainer:
         self.ntrain_samples = int(1281167)
         self.ntest_samples = int(50000)
         self.optimizer = tf.optimizers.Adam(cfg.lr_init * SIZE)
-        # self.loss_fn = tf.losses.SparseCategoricalCrossentropy()
         self.loss_fn = calc_loss
         from ai4sci.network import prepare_data_loader
         train_dset, test_dset = prepare_data_loader(self.cfg.batch_size)
-        # dsets = get_data(self.cfg.data_dir)
-        # self.ntrain_samples = len(list(dsets['train']))
-        # self.ntest_samples = len(list(dsets['test']))
-        # self.ntest = len(list(dsets['test'])) // SIZE // self.cfg.batch_size
-        # self.ntrain = len(list(dsets['train'])) // SIZE // self.cfg.batch_size
-        # train_dset = dsets['train'].repeat().shuffle(self.cfg.buffer_size)
-        # test_dset = dsets['test'].shard(num_shards=SIZE, index=RANK).repeat()
-        # train_dset = train_dset.batch(self.cfg.batch_size)
-        # test_dset = test_dset.batch(self.cfg.batch_size)
-        # options = tf.data.Options()
-        # options.threading.private_threadpool_size = PARALLEL_THREADS
-        # train_dset  = train_dset.with_options(options)
-        # test_dset = test_dset.with_options(options)
         self.datasets = {'train': train_dset, 'test': test_dset}
-
         # Setup checkpoint manager only from one process
         self.ckpt_dir = None
         self.checkpoint = None
         self.manager = None
-        # if self._is_chief:
-        #     # self.ckpt_dir = Path(CHECKPOINT_DIR).as_posix()
-        #     self.checkpoint = tf.train.Checkpoint(
-        #         model=self.model,
-        #         optimizer=self.optimizer
-        #     )
-        #     self.manager = tf.train.CheckpointManager(
-        #         self.checkpoint,
-        #         max_to_keep=5,
-        #         directory=self.ckpt_dir
-        #     )
+        if self._is_chief:
+            self.ckpt_dir = Path(CHECKPOINT_DIR).as_posix()
+            self.checkpoint = tf.train.Checkpoint(
+                model=self.model,
+                optimizer=self.optimizer
+            )
+            self.manager = tf.train.CheckpointManager(
+                self.checkpoint,
+                max_to_keep=5,
+                directory=self.ckpt_dir
+            )
 
     def build_model(self) -> Model:
-        return ResNet34()
         # return ConvNet()
+        return ResNet34()
 
     def save_checkpoint(self) -> None:
         if self._is_chief and self.manager is not None:

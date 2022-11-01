@@ -1,10 +1,10 @@
 # @package _global_
 
 seed: 42
-epochs: 10
+epochs: 1
 logfreq: 10
 lr_init: 0.001
-batch_size: 64
+batch_size: 256
 buffer_size: 10000
 # momentum: 0.5
 # test_batch_size: 64

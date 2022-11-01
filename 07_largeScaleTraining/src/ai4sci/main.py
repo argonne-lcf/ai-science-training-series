@@ -8,7 +8,6 @@ from __future__ import absolute_import, annotations, division, print_function
 import logging
 
 import time
-from typing import Optional
 
 import tensorflow as tf
 import horovod.tensorflow as hvd
@@ -16,7 +15,6 @@ import numpy as np
 import hydra
 
 from omegaconf import DictConfig
-from pathlib import Path
 
 log = logging.getLogger(__name__)
 tf.autograph.set_verbosity(0)
@@ -71,8 +69,9 @@ def main(cfg: DictConfig) -> None:
             trainer.save_checkpoint()
 
     log.info(f'Total training time: {time.time() - start} seconds')
+    nepochs = min(len(epoch_times), 5)
     log.info(
-        f'Average time per epoch in the last 5: {np.mean(epoch_times[-5])}'
+        f'Average time per epoch in the last 5: {np.mean(epoch_times[-nepochs])}'
     )
 
 
