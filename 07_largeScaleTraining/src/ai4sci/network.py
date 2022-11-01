@@ -2,7 +2,6 @@
 ai4sci/horovod/tensorflow
 """
 from __future__ import absolute_import, annotations, division, print_function
-import sys
 import os
 import time
 from pathlib import Path
@@ -166,84 +165,6 @@ class ResNet34(tf.keras.Model):
         assert logits is not None
         return logits
 
-@tf.function
-def calculate_accuracy(logits, labels):
-    selected_class = tf.argmax(logits, axis=1)
-    correct = tf.cast(selected_class, tf.float32) == tf.cast(labels, tf.float32)
-    return tf.reduce_mean(tf.cast(correct, tf.float32))
-
-
-@tf.function
-def calculate_loss(logits, labels):
-    loss = tf.nn.sparse_softmax_cross_entropy_with_logits(labels, logits)
-    return tf.reduce_mean(loss)
-
-
-@tf.function
-def training_step(network, optimizer, images, labels):
-    with tf.GradientTape() as tape:
-        logits = network(images)
-        loss = calculate_loss(logits, labels)
-
-    gradients = tape.gradient(loss, network.trainable_variables)
-    optimizer.apply_gradients(zip(gradients, network.trainable_variables))
-
-    acc = calculate_accuracy(logits, labels)
-
-    return loss, acc
-
-
-def train_epoch(
-        i_epoch,
-        step_in_epoch,
-        train_ds,
-        val_ds,
-        network,
-        optimizer,
-        BATCH_SIZE,
-        checkpoint,
-) -> None:
-    steps_per_epoch = int(1281167 / BATCH_SIZE)
-    steps_validation = int(50000 / BATCH_SIZE)
-    start = time.time()
-    for train_images, train_labels in train_ds.take(steps_per_epoch):
-        if step_in_epoch > steps_per_epoch:
-            break
-        else:
-            step_in_epoch.assign_add(1)
-
-        loss, acc = training_step(  # type:ignore
-            network,
-            optimizer,
-            train_images,
-            train_labels
-        )
-        end = time.time()
-        images_per_second = BATCH_SIZE / (end - start)
-        prefix = (
-            f'Finished step {step_in_epoch.numpy()} of {steps_per_epoch}'
-            f' in epoch {i_epoch.numpy()}'
-        )
-        stats = f'loss={loss:.3f}, acc={acc:.3f}, ({images_per_second:.3f} img/s)'
-        print(', '.join([prefix, stats]))
-        start = time.time()
-
-    # Save the network after every epoch
-    checkpoint.save('resnet34/model')
-
-    # Compute the validation accuracy
-    mean_acc = 0.0
-    for idx, (val_images, val_labels) in enumerate(val_ds.take(steps_validation)):
-        logits = network(val_images)
-        acc = calc_acc(logits, val_labels)  # type:ignore
-        if idx == 0:
-            mean_acc = acc
-        else:
-            mean_acc += acc
-
-    mean_acc /= steps_validation
-    print(f'Validation acc after epoch {i_epoch.numpy()}: {mean_acc:.4f}')
-
 
 def prepare_data_loader(BATCH_SIZE):
     # tf.config.threading.set_inter_op_parallelism_threads(8)
@@ -269,4 +190,3 @@ def prepare_data_loader(BATCH_SIZE):
     train_ds = train_ds.with_options(options)
     val_ds = val_ds.with_options(options)
     return train_ds, val_ds
-

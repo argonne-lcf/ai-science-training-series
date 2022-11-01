@@ -121,14 +121,9 @@ fi
 
 # -----------------------------------------------------------
 # 1. Check if a virtual environment exists in project root: 
-#    `l2hmc-qcd/`
-#
 # 2. If so, activate environment and make sure we have an 
 #    editable install
 # -----------------------------------------------------------
-# VENV_DIR="${ROOT}/venv/"
-# if [ -d ${VENV_DIR} ]; then
-#
 if [[ -f "${VENV_DIR}/bin/activate" ]]; then
   echo "Found venv at: ${VENV_DIR}"
   source "${VENV_DIR}/bin/activate"
@@ -156,7 +151,6 @@ export COLUMNS=$COLUMNS
 echo "WIDTH: ${COLUMNS}"
 export NCCL_DEBUG=INFO
 export KMP_SETTINGS=TRUE
-# export TF_XLA_FLAGS="--tf_xla_auto_jit=2 --tf_xla_enable_xla_devices"
 LOGDIR="${DIR}/logs"
 LOGFILE="${LOGDIR}/${TSTAMP}-${HOST}_ngpu${NGPUS}_ncpu${NCPUS}.log"
 if [ ! -d "${LOGDIR}" ]; then
@@ -202,7 +196,6 @@ echo -e '\n'
 
 
 # Run executable command
-# WIDTH=$COLUMNS COLUMNS=$COLUMNS ${EXEC} $@ 2>&1 | tee ${LOGFILE}  # > ${LOGFILE}; ret_code=$?
 WIDTH=$COLUMNS COLUMNS=$COLUMNS ${EXEC} $@ 2>&1 > ${LOGFILE}; ret_code=$?
 
 if [[ $ret_code != 0 ]]; then exit $ret_code; fi
