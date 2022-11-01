@@ -98,6 +98,24 @@ elif [[ $(hostname) == x* ]]; then
   conda activate base
   VENV_DIR="${ROOT}/venvs/polaris/2022-09-08"
 
+# ---- Check if running on MacOS --------------------------------
+else
+  VENV_DIR="${ROOT}/venv/"
+  if [[ $(uname) == Darwin* ]]; then
+    # ---- Check if environment has an mpirun executable ----------
+    if [[ -x $(which mpirun) ]]; then
+      MPI_COMMAND=$(which mpirun)
+      MPI_FLAGS="-np ${NCPUS}"
+    fi
+  # ---- Otherwise, run without MPI -------------------------------
+  else
+      MPI_COMMAND=""
+      MPI_FLAGS=""
+      echo "HOSTNAME: $(hostname)"
+  fi
+fi
+
+
 # -----------------------------------------------------------
 # 1. Check if a virtual environment exists in project root: 
 # 2. If so, activate environment and make sure we have an 
