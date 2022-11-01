@@ -1,5 +1,5 @@
 """
-horovod/tensorflow/main.py
+main.py
 
 Simple example demonstrating how to use Horovod with Tensorflow for data
 parallel distributed training.
