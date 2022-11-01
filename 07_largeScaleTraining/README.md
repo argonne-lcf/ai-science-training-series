@@ -28,9 +28,9 @@ This section of the workshop will introduce you to some of the tools that we use
 2. Navigate into `07_largeScaleTraining/src/ai4sci`
 3. Run (with `batch_size=512`, for example):
    ```bash
-    export BS=512; ./main.sh "batch_size=${BS}" > "main-bs-${BS}.log" 2>&1 &
-    ```
+   export BS=512; ./main.sh "batch_size=${BS}" > "main-bs-${BS}.log" 2>&1 &
+   ```
 4. View output:
     ```bash
-    tail "main-bs-${BS}.log" $(tail -1 logs/latest)
+    tail -f "main-bs-${BS}.log" $(tail -1 logs/latest)
     ```
