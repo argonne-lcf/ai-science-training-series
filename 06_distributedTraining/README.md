@@ -1,10 +1,54 @@
-# Distributed training with Horovod
+# Distributed trainng on Supercomputer
 Led by Huihuo Zheng from ALCF (<huihuo.zheng@anl.gov>)
 
 **Goal of this tutorial**
-* Understand model parallelism and data parallelism
+* Understand parallelization 
+	- Model parallelism
+	- Data parallelism
 * Know how to modify your code with Horovod
-* Know how to run distributed training on ThetaGPU
+* Know how to run distributed training on Polaris / ThetaGPU and measuring the scaling efficiency
+
+## Concept of Parallel Computing  - pi examples
+
+![PI](https://www.101computing.net/wp/wp-content/uploads/estimating-pi-monte-carlo-method.png)
+
+```python
+from mpi4py import MPI
+import numpy as np
+import random
+import time
+comm = MPI.COMM_WORLD
+
+N = 5000000
+Nin = 0
+t0 = time.time()
+for i in range(comm.rank, N, comm.size):
+    x = random.uniform(-0.5, 0.5)
+    y = random.uniform(-0.5, 0.5)
+    if (np.sqrt(x*x + y*y) < 0.5):
+        Nin += 1
+res = np.array(Nin, dtype='d')
+res_tot = np.array(Nin, dtype='d')
+comm.Allreduce(res, res_tot, op=MPI.SUM)
+t1 = time.time()
+if comm.rank==0:
+    print(res_tot/float(N/4.0))
+    print("Time: %s" %(t1 - t0))
+```
+
+
+```bash
+ssh <username>@theta.alcf.anl.gov
+ssh thetagpusn1 
+qsub -A ALCFAITP -n 1 -q training-gpu -t 20 -I 
+module load conda/2022-07-01
+conda activate
+cd YOUR_GITHUP_REPO
+mpirun -np 1 python pi.py   # 3.141988,   8.029037714004517  s
+mpirun -np 2 python pi.py   # 3.1415096   4.212774038314819  s
+mpirun -np 4 python pi.py   # 3.1425632   2.093632459640503  s
+mpirun -np 8 python pi.py   # 3.1411632   1.0610620975494385 s
+```
 
 ## Introduction to distributed Deep Learning
 ![acc](./images/need.png)
@@ -30,232 +74,144 @@ Reference: https://horovod.readthedocs.io/en/stable/
 
 3. Sergeev, A., Del Balso, M. (2018) Horovod: fast and easy distributed deep learning in TensorFlow. Retrieved from arXiv:1802.05799
 
-**Steps to modify your code with Horovod**:
+**8 Steps to modify your code with Horovod**:
   1. Initialize Horovod
   2. Pin GPU to each process
-  3. Scale the learning rate
-  4. Set distributed optimizer / gradient tape
-  5. Broadcast the model & optimizer parameters to other rank
-  6. Checking pointing on rank 0
-  7. Adjusting dataset loading: number of steps (or batches) per epoch, dataset sharding, etc.
+  3. Sharding / partioning the dataset
+  4. Scale the learning rate
+  5. Set distributed optimizer / gradient tape
+  6. Broadcast the model & optimizer parameters to other rank
+  7. Checking pointing on rank 0
   8. Average metric across all the workers
 
-## TensorFlow with Horovod
+## Example: TensorFlow with Horovod
 1) **Initialize Horovod**
-```python
-import horovod.tensorflow as hvd 
-hvd.init()
-```
-After this initialization, the rank ID and the number of processes can be refered as ```hvd.rank()``` and ```hvd.size()```. Besides, one can also call ```hvd.local_rank()``` to get the local rank ID within a node. This is useful when we are trying to assign GPUs to each rank. 
+	```python
+	import horovod.tensorflow as hvd 
+	hvd.init()
+	```
+	After this initialization, the rank ID and the number of processes can be refered as ```hvd.rank()``` and ```hvd.size()```. Besides, one can also call ```hvd.local_rank()``` to get the local rank ID within a node. This is useful when we are trying to assign GPUs to each rank. 
 
 2) **Assign GPUs to each rank**
-```python
-# Get the list of GPU
-gpus = tf.config.experimental.list_physical_devices('GPU')
-# Ping GPU to the rank
-tf.config.experimental.set_visible_devices(gpus[hvd.local_rank()], 'GPU')
-```
-In this case, we set one GPU per process: ID=```hvd.local_rank()```
+	```python
+	# Get the list of GPU
+	gpus = tf.config.experimental.list_physical_devices('GPU')
+	# Ping GPU to the rank
+	tf.config.experimental.set_visible_devices(gpus[hvd.local_rank()], 'GPU')
+	```
+	In this case, we set one GPU per process: ID=```hvd.local_rank()```
 
-3) **Scale the learning rate with number of workers**
+3) **Loading data according to rank ID and ajusting the number of time steps**
 
-Typically, since we use multiple workers, if we keep the local batch size on each rank the same, the global batch size increases by $n$ times ($n$ is the number of workers). The learning rate should increase proportionally (assuming that the learning rate initially is 0.01).
-```python
-opt = tf.train.AdagradOptimizer(0.01*hvd.size())
-```
+	In data parallelism, we distributed the dataset to different workers. It is important to make sure different workers work on different part of the dataset, and they together can cover the entire dataset at each epoch. 
 
-4) **Wrap tf.GradientTape with Horovod Distributed Gradient Tape**
+	For TensorFlow, if you are using ```tf.data.Dataset```, you can use the sharding functionality 
+	```python
+	dataset = dataset.shard(num_shards=hvd.size(), index=hvd.rank())
+	```
+	where dataset is a ```tf.data.Dataset``` object. 
 
-```python
-tape = hvd.DistributedGradientTape(tape)
-```
-So that this can also ```tape``` operator will average the weights and gradients among the workers in the back propagating stage. 
+4) **Scale the learning rate with number of workers**
 
-5) **Broadcast the model from rank 0**
+	Typically, since we use multiple workers, if we keep the local batch size on each rank the same, the global batch size increases by $n$ times ($n$ is the number of workers). The learning rate should increase proportionally (assuming that the learning rate initially is 0.01).
+	```python
+	opt = tf.train.AdagradOptimizer(0.01*hvd.size())
+	```
 
-This is to make sure that all the workers will have the same starting point.
-```python
-hvd.broadcast_variables(model.variables, root_rank=0)
-hvd.broadcast_variables(opt.variables(), root_rank=0)
-```
-**Note: broadcast should be done after the first gradient step to ensure optimizer initialization.**
+5) **Wrap tf.GradientTape with Horovod Distributed Gradient Tape**
 
-6) **Checkpointing on root rank**
+	```python
+	tape = hvd.DistributedGradientTape(tape)
+	```
+	So that this can also ```tape``` operator will average the weights and gradients among the workers in the back propagating stage. 
 
-It is important to let only one process to do the checkpointing I/O. 
-```python
-if hvd.rank() == 0: 
-     checkpoint.save(checkpoint_dir)
-```
+6) **Broadcast the model from rank 0**
 
-7) **Loading data according to rank ID and ajusting the number of time steps**
-
-In data parallelism, we distributed the dataset to different workers. It is important to make sure different workers work on different part of the dataset, and they together can cover the entire dataset at each epoch. 
-
-In general, one has two ways to deal with the data loading. 
-1. Each worker randomly selects one batch of data from the dataset at each step. In such case, each worker can see the entire dataset. It is important to make sure that the different worker have different random seeds so that they will get different data at each step.
-2. Each worker accesses a subset of dataset. One manually partition the entire dataset into different partions, and each rank access one of the partions. 
-
-8) **Average the metrics across all the workers**
-```python
-total_loss = hvd.allreduce(running_loss, average=True)
-total_acc = hvd.allreduce(running_acc, average=True)
-```
-
-
-
-Example in: [Horovod](Horovod/) 
-* [tensorflow2_mnist.py](tensorflow2_mnist.py)
-
-
-## Keras with Horovod
-1) **Initialize Horovod**
-```python
-import horovod.tensorflow.keras as hvd 
-hvd.init()
-```
-After this initialization, the rank ID and the number of processes can be refered as ```hvd.rank()``` and ```hvd.size()```. Besides, one can also call ```hvd.local_rank()``` to get the local rank ID within a node. This is useful when we are trying to assign GPUs to each rank. 
-
-2) **Assign GPUs to each rank**
-```python
-# Get the list of GPU
-gpus = tf.config.experimental.list_physical_devices('GPU')
-# Ping GPU to the rank
-tf.config.experimental.set_visible_devices(gpus[hvd.local_rank()], 'GPU')
-```
-In this case, we set one GPU per process: ID=```hvd.local_rank()```
-
-3) **Scale the learning rate with number of workers**
-
-Typically, since we use multiple workers, if we keep the local batch size on each rank the same, the global batch size increases by $n$ times ($n$ is the number of workers). The learning rate should increase proportionally (assuming that the learning rate initially is 0.01).
-```python
-opt = tf.optimizers.Adam(args.lr * hvd.size())
-```
-
-4) **Wrap tf.optimizer with Horovod DistributedOptimizer**
-
-```python
-opt = hvd.DistributedOptimizer(opt)
-```
-So that this optimizer can average the weights and gradients among the workers in the back propagating stage. 
-
-5) **Broadcast the model from rank 0**
-
-This is to make sure that all the workers will have the same starting point.
-```python
-callbacks = [
-        hvd.callbacks.BroadcastGlobalVariablesCallback(0), ...
-]
-
-```
-
-6) **Checkpointing on root rank**
-
-It is important to let only one process to do the checkpointing I/O. 
-```python
-if hvd.rank() == 0:
-    callbacks.append(tf.keras.callbacks.ModelCheckpoint('./checkpoints/keras_mnist-{epoch}.h5'))
-```
-
-7) **Loading data according to rank ID and adjusting the number of steps**
-
-In data parallelism, we distributed the dataset to different workers. It is important to make sure different workers work on different part of the dataset, and they together can cover the entire dataset at each epoch. 
-
-In general, one has two ways to deal with the data loading. 
-1. Each worker randomly selects one batch of data from the dataset at each step. In such case, each worker can see the entire dataset. It is important to make sure that the different worker have different random seeds so that they will get different data at each step.
-2. Each worker accesses a subset of dataset. One manually partition the entire dataset into different partions, and each rank access one of the partions. 
-
-8) **Average the metrics across all the workers**
-```python
-total_loss = hvd.allreduce(running_loss, average=True)
-total_acc = hvd.allreduce(running_acc, average=True)
-```
-
-We provided some examples in: [Horovod](Horovod/) 
-* [tensorflow2_keras_mnist.py](tensorflow2_keras_mnist.py)
-* [tensorflow2_keras_cifar10.py](tensorflow2_keras_cifar10.py)
-
-
-## PyTorch with Horovod
-It is very similar for PyTorch with Horovod
-1) **Initialize Horovod**
-```python
-import horovod.torch as hvd 
-hvd.init()
-```
-After this initialization, the rank ID and the number of processes can be refered as ```hvd.rank()``` and ```hvd.size()```. Besides, one can also call ```hvd.local_rank()``` to get the local rank ID within a node. This is useful when we are trying to assign GPUs to each rank. 
-
-2) **Assign GPUs to each rank**
-```python
-torch.cuda.set_device(hvd.local_rank())
-```
-In this case, we set one GPU per process: ID=```hvd.local_rank()```
-
-3) **Scale the learning rate.**
-
-Typically, since we use multiple workers, the global batch is usually increases n times (n is the number of workers). The learning rate should increase proportionally as follows (assuming that the learning rate initially is 0.01).
-```python
-optimizer = optim.SGD(model.parameters(), lr=args.lr * hvd.size(), momentum=args.momentum)
-```
-
-4) **Wrap the optimizer with Distributed Optimizer**
-```python
-optimizer = hvd.DistributedOptimizer(optimizer, named_parameters=model.named_parameters(), compression=compression)
-```
-
-5) **Broadcast the model from rank 0**
-
-This is to make sure that all the workers will have the same starting point.
-```python
-hvd.broadcast_parameters(model.state_dict(), root_rank=0)
-hvd.broadcast_optimizer_state(optimizer, root_rank=0)
-```
-
-6) **Loading data according to rank ID**
-
-In general, one has two ways to deal with the data loading. 
-1. Each worker randomly select one batch of data from the dataset at each step. In such case, each worker can see the entire dataset. It is important to make sure that the different worker have different random seeds so that they will get different data at each step.  
-2. Each worker accesses a subset of dataset. One manually partition the entire dataset into different partions, and each rank access one of the partions. 
-
-PyTorch has some functions for parallel distribution of data. 
-```python
-train_dataset = \
-    datasets.MNIST('datasets/', train=True, download=True,
-                   transform=transforms.Compose([
-                       transforms.ToTensor(),
-                       transforms.Normalize((0.1307,), (0.3081,))
-                   ]))
-train_sampler = torch.utils.data.distributed.DistributedSampler(
-    train_dataset, num_replicas=hvd.size(), rank=hvd.rank())
-train_loader = torch.utils.data.DataLoader(
-    train_dataset, batch_size=args.batch_size, sampler=train_sampler, **kwargs)
-```
-
-In both cases, the total number of steps per epoch is ```nsamples / hvd.size()```.
+	This is to make sure that all the workers will have the same starting point.
+	```python
+	hvd.broadcast_variables(model.variables, root_rank=0)
+	hvd.broadcast_variables(opt.variables(), root_rank=0)
+	```
+	**Note: broadcast should be done AFTER the first gradient step to ensure optimizer initialization.**
 
 7) **Checkpointing on root rank**
-It is important to let only one process to do the checkpointing I/O lest perhaps the file been corrupted. 
-```python
-if hvd.rank() == 0: 
-     checkpoint.save(checkpoint_dir)
+
+	It is important to let only one process to do the checkpointing I/O. 
+	```python
+	if hvd.rank() == 0: 
+		checkpoint.save(checkpoint_dir)
+	```
+
+8) **Average the metrics across all the workers**
+	```python
+	loss = hvd.allreduce(loss, average=True)
+	acc = hvd.allreduce(acc, average=True)
+	```
+
+Example in: 
+* [train_resnet34_hvd.py](train_resnet34_hvd.py)
+
+
+Examples for other frameworks (PyTorch, Keras, MxNet) can be found [here](https://github.com/horovod/horovod/tree/master/examples). 
+
+## Handson 
+* Changing the code into Horovod (during break time)
+```bash
+ssh <username>@theta.alcf.anl.gov
+ssh thetagpusn1 
+cd /lus/grand/projects/ALCFAITP/hzheng/ai-science-training-series/06_distributedTraining
+cp train_resnet34.py train_resnet34_parallel.py 
+```
+Implement```train_resnet34_parallel.py``` with Horovod
+
+* Throughput scaling
+```
+ssh <username>@theta.alcf.anl.gov
+ssh thetagpusn1 
+qsub -A ALCFAITP -n 1 -q training-gpu -t 20 -I 
 ```
 
-8) **Average metric across all the workers**
-Notice that in the distributed training, any tensor are local to each worker. In order to get the global averaged value, one can use Horovod allreduce. Below is an example on how to do the average. 
-```python
-def tensor_average(val, name):
-    tensor = torch.tensor(val)
-    if (with_hvd):
-        avg_tensor = hvd.allreduce(tensor, name=name)
-    else:
-        avg_tensor = tensor
-    return avg_tensor.item()
+```bash
+	module load conda/2022-07-01
+	conda activate
+    mpirun -n 1 python train_resnet34_hvd.py --num_steps 10 
+    mpirun -n 2 python train_resnet34_hvd.py --num_steps 10 
+    mpirun -n 4 python train_resnet34_hvd.py --num_steps 10 
+    mpirun -n 8 python train_resnet34_hvd.py --num_steps 10 
 ```
-We provided some examples in: [Horovod](Horovod/) 
-* [pytorch_mnist.py](pytorch_mnist.py)
-* [pytorch_cifar10.py](pytorch_cifar10.py)
 
-## Handson
-* [thetagpu.md](thetagpu.md): running on ThetaGPU (```--device gpu```)
+1 GPU: mean image/s =   281.22   standard deviation:    75.79
+2 GPU: mean image/s =   382.01   standard deviation:     8.42
+4 GPU: mean image/s =   689.22   standard deviation:    77.78
+8 GPU: mean image/s =  1341.25   standard deviation:    52.51 
+...
 
-For submitting jobs in the script (non-interactive) job mode, check the submission scripts in the [submissions](./submission/) folder. 
+
+* Visualizing communication 
+```
+HOROVOD_TIMELINE=timeline.json mpirun -n 8 python train_resnet34_hvd.py --num_steps 10
+```
+Horovod timeline
+![./images/horovod_timeline.png](./images/horovod_timeline.png)
+
+## Homework
+### Scaling MNIST example
+The goal of this homework is to modify a sequential mnist code into a data parallel code with Horovod and test the scaling efficiency
+
+* 50%: Modify the [./homework/tensorflow2_mnist.py](./homework/tensorflow2_mnist.py) to Horovod (save it as "./homework/tensorflow2_mnist_hvd.py"
+
+* 25%: Run scaling test upto 16 nodes, and check the overall timing
+```bash
+    mpirun -n 1 python tensorflow2_mnist_hvd.py
+    mpirun -n 2 python tensorflow2_mnist_hvd.py
+    mpirun -n 4 python tensorflow2_mnist_hvd.py
+    mpirun -n 8 python tensorflow2_mnist_hvd.py
+```
+
+* 25%: Plot the training accuracy and validation accuracy curve for different scales. (x-asix: epoch; y-axis: accuracy)
+Save your plots as pdf files in the [./homework](./homework) folder "accuracy_1.pdf, accuracy_2.pdf, accuracy_4.pdf, accuracy_8.pdf"
+
+Provide the link to your ./homework folder on your personal GitHub repo. 
+
+* Bonus: 
+The accuracy for large scale training can be improved by using smaller learning rate in the beginning few epochs (warmup epochs). Implement the warmup epochs 
