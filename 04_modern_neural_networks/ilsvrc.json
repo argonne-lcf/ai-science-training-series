@@ -1,0 +1,15 @@
+{
+   "data": {
+      "handler":                       "ilsvrc_dataset",
+      "batch_size":                    128,
+      "train_filelist":                "/lus/grand/projects/ALCFAITP/ilsvrc_train_filelist.txt",
+      "test_filelist":                 "/lus/grand/projects/ALCFAITP/ilsvrc_val_filelist.txt",
+      "shuffle_buffer":                200000,
+      "reshuffle_each_iteration":      true,
+      "num_parallel_readers":          32,
+      "prefetch_buffer_size":          10,
+      "crop_image_size":               [256,256],
+      "num_classes":                   1000,
+      "num_channels":                  3
+   }
+}
