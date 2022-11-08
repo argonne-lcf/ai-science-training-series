@@ -16,3 +16,18 @@ AI-Driven Science on Supercomputers @ ALCF 2022
  [Getting started on AI Testbed](https://www.alcf.anl.gov/support/ai-testbed-userdocs/index.html)
  
  [Useful AI Testbed Resources](https://github.com/argonne-lcf/AIaccelerators-SC22-tutorial)
+ 
+ **Homework**
+ 
+ Submit a paragraph about: 
+ 
+- How could you use AI for a problem that interests you? 
+- What is the task? 
+- What kind of data would you use? 
+- What kind of method or model might be appropriate? 
+- What kind of metric would you use to measure success? 
+
+Feel free to consult the Internet for ideas.
+
+This paragraph can be placed in a README in git and you can submit the link. 
+
