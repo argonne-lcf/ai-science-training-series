@@ -10,4 +10,4 @@ AI-Driven Science on Supercomputers @ ALCF 2022
     
  [Getting started on AI Testbed](https://www.alcf.anl.gov/support/ai-testbed-userdocs/index.html)
  
- [Useful AI testbed Resources] (https://github.com/argonne-lcf/AIaccelerators-SC22-tutorial)
+ [Useful AI testbed Resources](https://github.com/argonne-lcf/AIaccelerators-SC22-tutorial)
