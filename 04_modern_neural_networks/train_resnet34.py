@@ -316,9 +316,6 @@ def main():
 
     print(network.summary())
 
-
-
-
     epoch = tf.Variable(initial_value=tf.constant(0, dtype=tf.dtypes.int64), name='epoch')
     step_in_epoch = tf.Variable(
         initial_value=tf.constant(0, dtype=tf.dtypes.int64),

@@ -60,7 +60,7 @@ def get_datasets(config):
    return train_ds,valid_ds
 
 
-## Create a hash table for labels from string to int 
+## Create a hash table for labels from string to int
 def get_label_tables(config, train_filelist):
 
    # get the first filename
@@ -74,7 +74,7 @@ def get_label_tables(config, train_filelist):
 
    # this extracts the path up to: /.../ILSVRC/Data/CLS-LOC/train/
    label_path = '/'.join(filepath.split('/')[:-2])
-   # this globs for all the directories like "n02537312" to get 
+   # this globs for all the directories like "n02537312" to get
    # list of the string labels
    labels = glob.glob(label_path + os.path.sep + '*')
    if config['hvd'].rank() == 0:
@@ -116,22 +116,22 @@ def build_dataset_from_filelist(config,filelist_filename):
    batches_per_rank = int(len(filelist) / dc['batch_size'] / numranks)
    if config['hvd'].rank() == 0:
       print(f'input filelist contains {len(filelist)} files, estimated batches per rank {batches_per_rank}')
-   
+
    # convert python list to tensorflow vector object
    filelist = tf.data.Dataset.from_tensor_slices(filelist)
 
    # if using horovod (MPI) shard the data based on total ranks (size) and rank
    if config['hvd']:
       filelist = filelist.shard(config['hvd'].size(), config['hvd'].rank())
-   
+
    # shuffle the data, set shuffle buffer (needs to be large), and reshuffle after each epoch
    filelist = filelist.shuffle(dc['shuffle_buffer'],reshuffle_each_iteration=dc['reshuffle_each_iteration'])
 
    # run 'load_image_label_bb' on each input image file, process multiple files in parallel
    # this function opens the JPEG, converts it to a tensorflow vector and gets the truth class label
    ds = filelist.map(load_image_label_bb,
-                     num_parallel_calls=tf.data.experimental.AUTOTUNE)
-                     
+                     num_parallel_calls=config['data']['num_parallel_readers'])
+
    # unbatch called because some JPEGs result in more than 1 image returned
    ds = ds.apply(tf.data.Dataset.unbatch)
 
@@ -139,7 +139,7 @@ def build_dataset_from_filelist(config,filelist_filename):
    ds = ds.batch(dc['batch_size'])
 
    # setup a pipeline that pre-fetches images before they are needed (keeps CPU busy)
-   ds = ds.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)  
+   ds = ds.prefetch(buffer_size=config['data']['prefetch_buffer_size'])
 
    return ds
 
@@ -148,7 +148,7 @@ def build_dataset_from_filelist(config,filelist_filename):
 # label in the path to a numerical label, decodes the input JPEG, and returns
 # the input image and label
 def load_image_label_bb(image_path):
-   
+
    # for each JPEG, there is an Annotation file that contains a list of
    # classes contained in the image and a bounding box for each object.
    # However, some images contain a single class, in which case the
@@ -243,13 +243,13 @@ if __name__ == '__main__':
    # parse config file
    config = json.load(open(args.config_filename))
    config['hvd'] = hvd
-   
+
    # define some parallel processing sizes
    if args.interop is not None:
       tf.config.threading.set_inter_op_parallelism_threads(args.interop)
    if args.intraop is not None:
       tf.config.threading.set_intra_op_parallelism_threads(args.intraop)
-   
+
    # use the tensorflow profiler here
    if hvd.rank() == 0:
       tf.profiler.experimental.start(args.logdir)
@@ -263,7 +263,7 @@ if __name__ == '__main__':
       # profile data pipeline
       with tf.profiler.experimental.Trace('train_%02d' % i, step_num=i, _r=1):
          inputs,labels = next(trainds)
-      
+
       # print('batch_number = %s input shape = %s    labels shape = %s' %(i,inputs.shape,labels.shape))
       # print('batch_number = %s labels = %s' %(i,labels))
    # measure performance in images per second
