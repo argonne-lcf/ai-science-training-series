@@ -7,3 +7,7 @@ AI-Driven Science on Supercomputers @ ALCF 2022
 
     1. [AI Accelerators for Science](ALCF_AI_Testbed_Vishwanath.pdf) 
     2. [Gaussian Process Modeling](Gaussian_Process_Modeling.ipynb)
+    
+ [Getting started on AI Testbed](https://www.alcf.anl.gov/support/ai-testbed-userdocs/index.html)
+ 
+ [Useful AI testbed Resources] (https://github.com/argonne-lcf/AIaccelerators-SC22-tutorial)
