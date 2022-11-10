@@ -7,8 +7,6 @@ os.environ["TF_XLA_FLAGS"] = "--tf_xla_auto_jit=2"
 
 import tensorflow as tf
 
-
-
 #########################################################################
 # Here's the Residual layer from the first half again:
 #########################################################################
