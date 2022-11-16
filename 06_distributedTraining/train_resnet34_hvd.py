@@ -275,7 +275,7 @@ def train_epoch(i_epoch, step_in_epoch, train_ds, val_ds, network, optimizer, BA
 
         # Peform the training step for this batch
         loss, acc = training_step(network, optimizer, train_images, train_labels)
-        HVD - 8 average the metrics 
+        # HVD - 8 average the metrics 
         total_loss = hvd.allreduce(loss, average=True)
         total_acc = hvd.allreduce(acc, average=True)
         loss = total_loss
