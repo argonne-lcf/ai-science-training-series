@@ -154,8 +154,8 @@ def validation_step(images, labels):
 
 from tqdm import tqdm 
 t0 = time.time()
-nstep = nsamples//args.batch_size
-ntest_step = ntests//args.batch_size
+nstep = int(nsamples/args.batch_size/hvd.size())
+ntest_step = int(ntests/args.batch_size/hvd.size())
 metrics={}
 metrics['Epochs'] = []
 metrics['train_acc'] = []
