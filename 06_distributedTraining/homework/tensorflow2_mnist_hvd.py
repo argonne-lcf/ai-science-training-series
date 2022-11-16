@@ -206,6 +206,6 @@ for ep in range(args.epochs):
     metrics['time_per_epochs'].append(tt1 - tt0) 
 
 
-np.savetxt("metrics.dat", np.array([metrics['Epochs'],metrics['train_acc'], metrics['train_loss'], metrics['valid_acc'], metrics['valid_loss'], metrics['time_per_epochs']]).transpose())
+np.savetxt("metrics.dat", np.array([metrics['Epochs'], metrics['train_acc'], metrics['train_loss'], metrics['valid_acc'], metrics['valid_loss'], metrics['time_per_epochs']]).transpose())
 t1 = time.time()
 print("Total training time: %s seconds" %(t1 - t0))
