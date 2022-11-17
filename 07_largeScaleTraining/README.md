@@ -34,3 +34,27 @@ This section of the workshop will introduce you to some of the tools that we use
     ```bash
     tail -f "main-bs-${BS}.log" $(tail -1 logs/latest)
     ```
+---
+
+>  **Warning** 
+>  <br> If you run into issues with packages etc, try (**directly from a compute node**):
+>  ```bash
+>  module load conda
+>  conda activate base
+>  cd 07_largeScaleTraining/
+>  python3 -m venv venv --system-site-packages
+>  source venv/bin/activate
+>  python3 -m pip install --upgrade pip
+>  python3 -m pip install hydra-core hydra_colorlog
+>  python3 -m pip install -e .
+>  python3 -c 'import ai4sci; print(ai4sci.__file__)'
+>  ```
+>  - To run:
+>    ```bash
+>    cd src/ai4sci
+>    ./main.sh > main.log 2>&1 &
+>    ```
+>  - To view output:
+>    ```bash
+>    tail -f main.log $(tail -1 logs/latest)
+>    ```
