@@ -3,6 +3,8 @@
 *.output
 *.error
 
+.idea/
+
 logdir
 
 *.pb

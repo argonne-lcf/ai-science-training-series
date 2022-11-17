@@ -1,0 +1,2 @@
+# Homework submission
+Despite several attempts I wan't able to run this successfully. Best I could do for this submission is include sthe logs from my attempts which hopefully will bring insights on how far I got with it.  
