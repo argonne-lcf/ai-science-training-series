@@ -62,9 +62,9 @@ def main(cfg: DictConfig) -> None:
                 f'loss={metrics["loss"]:.4f}',
                 f'acc={metrics["acc"] * tf.constant(100., TF_FLOAT):.0f}%'
             ])
-            log.info((sep := '-' * len(summary)))
+            #log.info((sep := '-' * len(summary)))
             log.info(summary)
-            log.info(sep)
+            #log.info(sep)
 
             trainer.save_checkpoint()
 

@@ -22,12 +22,15 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
+venv/
+checkpoints/
 build/
 develop-eggs/
 dist/
 downloads/
 eggs/
 lib/
+**/core
 lib64/
 parts/
 sdist/

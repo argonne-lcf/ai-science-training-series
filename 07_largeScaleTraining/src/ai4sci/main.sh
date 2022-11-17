@@ -1,4 +1,14 @@
-#!/bin/bash
+#!/bin/bash -l
+#COBALT -t 20
+#COBALT -q full-node
+#COBALT -n 1
+#COBALT -A ALCFAITP
+#COBALT --attrs filesystems=home,grand
+
+# Set up software deps:
+module load conda/2022-07-01
+conda activate
+
 # -------------------------------------------------------
 # UG Section 2.5, page UG-24 Job Submission Options
 # Add another # at the beginning of the line to comment out a line
