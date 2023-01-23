@@ -39,7 +39,9 @@ num_parallel_readers = parallel_threads
 gpus = tf.config.experimental.list_physical_devices('GPU')
 tf.config.experimental.set_visible_devices(gpus[hvd.local_rank()], 'GPU')
 
-
+for gpu in gpus:
+		tf.config.experimental.set_memory_growth(gpu, True)
+    
 #########################################################################
 # Here's the Residual layer from the first half again:
 #########################################################################
