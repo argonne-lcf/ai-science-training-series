@@ -85,6 +85,7 @@ Reference: https://horovod.readthedocs.io/en/stable/
   8. Average metric across all the workers
 
 ## Example: TensorFlow with Horovod
+
 1) **Initialize Horovod**
 	```python
 	import horovod.tensorflow as hvd 
@@ -97,9 +98,14 @@ Reference: https://horovod.readthedocs.io/en/stable/
 	# Get the list of GPU
 	gpus = tf.config.experimental.list_physical_devices('GPU')
 	# Ping GPU to the rank
-	tf.config.experimental.set_visible_devices(gpus[hvd.local_rank()], 'GPU')
+	for gpu in gpus:
+    		tf.config.experimental.set_memory_growth(gpu, True)
+	if gpus:
+   		tf.config.experimental.set_visible_devices(gpus[hvd.local_rank()], 'GPU')
 	```
 	In this case, we set one GPU per process: ID=```hvd.local_rank()```
+	
+	** For Tensorflow with Horovod, it is important to set tf.config.experimental.set_memory_growth(gpu, True) **
 
 3) **Loading data according to rank ID and ajusting the number of time steps**
 
