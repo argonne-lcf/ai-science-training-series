@@ -105,7 +105,7 @@ Reference: https://horovod.readthedocs.io/en/stable/
 	```
 	In this case, we set one GPU per process: ID=```hvd.local_rank()```
 	
-	** For Tensorflow with Horovod, it is important to set tf.config.experimental.set_memory_growth(gpu, True) **
+	**For Tensorflow with Horovod, it is important to set tf.config.experimental.set_memory_growth(gpu, True)**
 
 3) **Loading data according to rank ID and ajusting the number of time steps**
 
