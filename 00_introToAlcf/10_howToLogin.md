@@ -12,7 +12,7 @@
     - [ALCF's Support Center](https://www.alcf.anl.gov/support-center)
     - [Get Started](https://www.alcf.anl.gov/support-center/get-started)
     - [Learn to Use Our Systems](https://www.alcf.anl.gov/support-center/get-started/learn-use-our-systems)
-    - **[ThetaGPU Documentation](https://argonne-lcf.github.io/ThetaGPU-Docs/)**
+    - **[ThetaGPU Documentation](https://docs.alcf.anl.gov/theta-gpu/getting-started/)**
 
 - For those who may be unfamiliar with using the command line or even just want a review, there is no shortage of available information to help you get started.
   - [The Linux Command Line for Beginners](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview)
