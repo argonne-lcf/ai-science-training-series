@@ -8,6 +8,8 @@ import numpy as np
 import argparse
 import time
 
+print( numba.config.NUMBA_NUM_THREADS)
+
 run_parallel = numba.config.NUMBA_NUM_THREADS > 1
 
 
