@@ -20,10 +20,11 @@ This repository is organized into one subdirectory per topic.  All content is pr
       <li> <a href="./00_introToAlcf/11_howToSetupEnvironment.md">How to Setup a Shell Enviroment</a></li>
       <li> <a href="./00_introToAlcf/12_jobQueuesSubmission.md">Submitting Jobs to a Queue</a></li>
     </ol>
-    <li> <a href="./01_machineLearning">Introduction to Machine Learning  </a> </li>
+    <li> <a href="./01_intro_AI_on_Supercomputer">Introduction to AI on Supercomputer </a> </li>
     <ol> 
-       <li> <a href="./01_machineLearning/01_linear_regression_sgd.ipynb"> Introduction to Machine Learning with Linear Regression </a></li>
-       <li> <a href="./01_machineLearning/02_clustering.ipynb">Introduction to Machine Learning with k-means Clustering</a></li>
+       <li> <a href="./01_intro_AI_on_Supercomputer/evolution.md"> History of computing </a></li>
+       <li> <a href="./01_intro_AI_on_Supercomputer/parallel_computing.md"> Parallel Computing </a></li>
+       <li> <a href="./01_machineLearning/01_linear_regression_sgd.ipynb">Simplest AI model: Linear regression</a></li>
     </ol>
     <li> <a href="./02_neural_networks_python"> Neural Networks in Python </a></li>
     <li> <a href="./03_neural_networks_tensorflow"> Neural Networks in TensorFlow </a></li> 
