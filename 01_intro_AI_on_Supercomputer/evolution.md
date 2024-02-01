@@ -88,11 +88,11 @@ The AI Testbed aims to help evaluate the usability and performance of machine le
 We are currently offering allocations on our Groq, Graphcore Bow IPUs, Cerebras CS-2, and SambaNova DataScale systems. 
 
 <p float="center">
-  <img src="https://www.alcf.anl.gov/sites/default/files/styles/965x543/public/2023-10/grockRack-ALCF-2023.png?itok=9_JmIQWJ" width="150" />
-  <img src="https://www.alcf.anl.gov/sites/default/files/styles/965x543/public/2023-04/crop-33116D_Cerebras.jpg?itok=CT9EgWVD" width="150" />
- <img src="https://www.alcf.anl.gov/sites/default/files/styles/965x543/public/2023-04/crop-33343D_SambaNova-AI-System.jpg?itok=G3oP50f0" width="150" />
-  <img src="https://www.alcf.anl.gov/sites/default/files/styles/965x543/public/2023-04/crop-33327D_Graphcore-AI-System.jpg?itok=VH25mF5H" width="150" />
-  <img src="https://www.alcf.anl.gov/sites/default/files/styles/965x543/public/2022-08/gaudi-system-SYS-420GH-TNGR-angle.png?itok=hBWg6KXb" width="150" />
+  <img src="https://www.alcf.anl.gov/sites/default/files/styles/965x543/public/2023-10/grockRack-ALCF-2023.png?itok=9_JmIQWJ" width="200" />
+  <img src="https://www.alcf.anl.gov/sites/default/files/styles/965x543/public/2023-04/crop-33116D_Cerebras.jpg?itok=CT9EgWVD" width="200" />
+ <img src="https://www.alcf.anl.gov/sites/default/files/styles/965x543/public/2023-04/crop-33343D_SambaNova-AI-System.jpg?itok=G3oP50f0" width="200" />
+  <img src="https://www.alcf.anl.gov/sites/default/files/styles/965x543/public/2023-04/crop-33327D_Graphcore-AI-System.jpg?itok=VH25mF5H" width="200" />
+  <img src="https://www.alcf.anl.gov/sites/default/files/styles/965x543/public/2022-08/gaudi-system-SYS-420GH-TNGR-angle.png?itok=hBWg6KXb" width="200" />
 </p>
 
 
