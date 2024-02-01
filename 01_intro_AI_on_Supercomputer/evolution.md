@@ -98,11 +98,10 @@ We are currently offering allocations on our Groq, Graphcore Bow IPUs, Cerebras 
 
 
 ## Supercomputers
-Supercomputers are designed by connecting massive amount of CPUs and GPUs 
+Supercomputers are designed by connecting massive amount of CPUs and GPUs together. 
 <p float="center">
-  <img src="https://www.alcf.anl.gov/sites/default/files/2023-03/Cropped-33410D_036_01_CELS_Aurora-Sunspot-Photos.jpg" width="250" />
- <img src="https://www.hpcwire.com/wp-content/uploads/2019/11/CELS_Altair_Aurora_X600.jpg" width="250" />
-  Aurora supercomputer
+  <img src="https://www.alcf.anl.gov/sites/default/files/2023-03/Cropped-33410D_036_01_CELS_Aurora-Sunspot-Photos.jpg" width="300" />
+ <img src="https://www.hpcwire.com/wp-content/uploads/2019/11/CELS_Altair_Aurora_X600.jpg" width="300" />
 </p>
 
 **The need for supercomputers** 
