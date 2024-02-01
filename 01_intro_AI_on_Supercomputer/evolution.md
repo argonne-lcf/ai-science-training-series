@@ -60,10 +60,14 @@ ENIAC, which stands for Electronic Numerical Integrator and Computer, was the wo
  <img src="figures/tablet_phone.png" width="200" />
 </p>
 
+* Macbook Pro M2: 3.6 TFLOPs (fp32)
+* iPhone 15: 2.15 TFLOPs (fp32)
+
+
 ## Moore's law
 Moore's Law is an observation and prediction made by Gordon Moore, co-founder of Intel, in 1965. The law states that the number of transistors on a microchip, and therefore the computing power of a semiconductor, tends to double approximately every two years, while the cost of manufacturing decreases. In essence, this implies a rapid and exponential increase in the performance of electronic devices over time.
 <p float="center">
-  <img src="figures/cpu.png" width="300" />
+  <img src="figures/cpu.png" width="600" />
 </p>
 
 ## Quantum Computers
@@ -74,24 +78,6 @@ Quantum computing is a field of computing that utilizes principles from quantum 
   <img src="figures/optics.png" width="150" />
 </p>
 
-## Supercomputers
-Supercomputers are designed by connecting massive amount of CPUs and GPUs 
-<p float="center">
-  <img src="https://www.alcf.anl.gov/sites/default/files/2023-03/Cropped-33410D_036_01_CELS_Aurora-Sunspot-Photos.jpg" width="250" />
- <img src="https://www.hpcwire.com/wp-content/uploads/2019/11/CELS_Altair_Aurora_X600.jpg" width="250" />
-  Aurora supercomputer
-</p>
-
-**The need for supercomputers** 
-Training large language model is very expensive. There is a need to train language 
-<p float="center">
-  <img src="figures/llm.png" width="500" />
-</p>
-
-**ALCF supercomputers**
-<p float="center">
-  <img src="figures/alcf_system.png" width="500" />
-</p>
 ## AI testbeds
 https://www.alcf.anl.gov/alcf-ai-testbed
 
@@ -107,4 +93,25 @@ We are currently offering allocations on our Groq, Graphcore Bow IPUs, Cerebras 
   <img src="https://www.alcf.anl.gov/sites/default/files/styles/965x543/public/2022-08/gaudi-system-SYS-420GH-TNGR-angle.png?itok=hBWg6KXb" width="150" />
 </p>
 
+
+
+## Supercomputers
+Supercomputers are designed by connecting massive amount of CPUs and GPUs 
+<p float="center">
+  <img src="https://www.alcf.anl.gov/sites/default/files/2023-03/Cropped-33410D_036_01_CELS_Aurora-Sunspot-Photos.jpg" width="250" />
+ <img src="https://www.hpcwire.com/wp-content/uploads/2019/11/CELS_Altair_Aurora_X600.jpg" width="250" />
+  Aurora supercomputer
+</p>
+
+**The need for supercomputers** 
+Training large language model is very expensive. There is a need to train language 
+<p float="center">
+  <img src="figures/llm.png" width="500" />
+</p>
+
+**History of supercomputers**
+<p float="center">
+  <img src="figures/supercomputer-computing.png" width="500" />
+  <img src="figures/alcf_system.png" width="500" />
+</p>
 
