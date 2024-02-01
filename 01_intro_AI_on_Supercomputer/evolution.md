@@ -15,8 +15,10 @@ An abacus is a simple counting device that has been used for centuries in variou
 ## Slide rule
 A slide rule is a hand-operated mechanical calculator consisting of slidable rulers for evaluating mathematical operations such as multiplication, division, exponents, roots, logarithms, and trigonometry. It is one of the simplest analog computers.
 
-![Drag Racing](figures/calc_ruler.png)
-![Drag Racing](figures/calc_ruler2.png)
+<p float="center">
+  <img src="figures/calc_ruler.png" width="300" />
+  <img src="figures/calc_ruler2.png" width="300" /> 
+</p>
 
 
 ## Pascal mechanical calculator
@@ -98,6 +100,7 @@ We are currently offering allocations on our Groq, Graphcore Bow IPUs, Cerebras 
 
 
 ## Supercomputers
+
 Supercomputers are designed by connecting massive amount of CPUs and GPUs together. 
 <p float="center">
   <img src="https://www.alcf.anl.gov/sites/default/files/2023-03/Cropped-33410D_036_01_CELS_Aurora-Sunspot-Photos.jpg" width="300" />
@@ -105,6 +108,7 @@ Supercomputers are designed by connecting massive amount of CPUs and GPUs togeth
 </p>
 
 **The need for supercomputers** 
+
 Training large language model is very expensive. There is a need to train language 
 <p float="center">
   <img src="figures/llm.png" width="500" />
