@@ -32,7 +32,7 @@ if comm.rank==0:
 
 ```bash
 ssh <username>@polaris.alcf.anl.gov
-qsub -A ALCFAITP -l select=1 -q ALCFAITP -l walltime=0:10:00 -l filesystems=home:eagle
+qsub -A ALCFAITP -l select=1 -q debug -l walltime=0:30:00 -l filesystems=home:eagle
 module load conda/2023-10-04
 conda activate /soft/datascience/ALCFAITP/2023-10-04
 cd YOUR_GITHUP_REPO
