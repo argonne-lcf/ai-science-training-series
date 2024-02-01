@@ -9,6 +9,7 @@ Counting rods were used in China for calculation. They are typically 3–14 cm (
 
 ## Abacus
 An abacus is a simple counting device that has been used for centuries in various cultures around the world. It typically consists of a series of rods or wires, each containing movable beads. The beads are manipulated to represent different numerical values, and the abacus is used for basic arithmetic operations such as addition, subtraction, multiplication, and division. It serves as a visual aid to facilitate calculations and is often employed as a teaching tool for learning mathematical concepts. The design and structure of abacuses may vary, but the fundamental principle remains the same across different versions.
+
 ![Drag Racing](figures/calc_pang.png)
 
 ## Slide rule
@@ -20,6 +21,7 @@ A slide rule is a hand-operated mechanical calculator consisting of slidable rul
 
 ## Pascal mechanical calculator
 Pascal's calculator (also known as the arithmetic machine or Pascaline) is a mechanical calculator invented by Blaise Pascal in 1642. Pascal was led to develop a calculator by the laborious arithmetical calculations required by his father's work as the supervisor of taxes in Rouen.[2] He designed the machine to add and subtract two numbers directly and to perform multiplication and division through repeated addition or subtraction.
+
 <p float="center">
   <img src="figures/calc_pasca.png" width="300" />
   <img src="figures/calc_sticks_2.png" width="150" /> 
@@ -73,9 +75,9 @@ Moore's Law is an observation and prediction made by Gordon Moore, co-founder of
 ## Quantum Computers
 Quantum computing is a field of computing that utilizes principles from quantum mechanics, a branch of physics that describes the behavior of matter and energy at the smallest scales. Unlike classical computers, which use bits to represent either a 0 or a 1, quantum computers use quantum bits, or qubits.
 <p float="center">
-  <img src="figures/google_qc.png" width="120" />
- <img src="figures/ion_trap.png" width="160" />
-  <img src="figures/optics.png" width="150" />
+  <img src="figures/google_qc.png" width="240" />
+ <img src="figures/ion_trap.png" width="320" />
+  <img src="figures/optics.png" width="300" />
 </p>
 
 ## AI testbeds
