@@ -6,4 +6,4 @@ Recording for this lecture will be here: https://www.alcf.anl.gov/events/intro-a
 
 1. [Evolution of computing systems](evolution.md)
 2. [Parallel computing](parallel_computing.md)
-3. [Linear regression ](01_linear_regression_sgd.ipynb)
+3. [A simplest AI model: Linear regression ](01_linear_regression_sgd.ipynb)
