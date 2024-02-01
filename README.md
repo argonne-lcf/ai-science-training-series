@@ -24,7 +24,7 @@ This repository is organized into one subdirectory per topic.  All content is pr
     <ol> 
        <li> <a href="./01_intro_AI_on_Supercomputer/evolution.md"> History of computing </a></li>
        <li> <a href="./01_intro_AI_on_Supercomputer/parallel_computing.md"> Parallel Computing </a></li>
-       <li> <a href="./01_intro_AI_on_Supercomputer/01_linear_regression_sgd.ipynb">Simplest AI model: Linear regression</a></li>
+       <li> <a href="./01_intro_AI_on_Supercomputer/01_linear_regression_sgd.ipynb"> Artificial Intelligence in a nutshell </a></li>
     </ol>
     <li> <a href="./02_neural_networks_python"> Neural Networks in Python </a></li>
     <li> <a href="./03_neural_networks_tensorflow"> Neural Networks in TensorFlow </a></li> 
