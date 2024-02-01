@@ -1,11 +1,11 @@
 # GitHub Introduction: Homework Submissions
 
-You will submit weekly homeworks via this [Google Form](https://forms.gle/HD2QKAhj6h5jswYY6)
+You will submit weekly homeworks via this [Homework Form](https://forms.office.com/g/0DvK4rxQWe)
 The form expects you to submit a URL to a file on [github.com](github.com). You will need an account on [GitHub](github.com) to do this.
 
 You will also need to setup SSH Keys on github and in your ALCF account. 
 * The SSH Key setup is [described here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
-* Setup git on Theta (or target machine):
+* Setup git on Polaris (or target machine):
 ```bash
 git config --global user.name "<first-name> <last-name>"
 git config --global user.user "<github-username>"
@@ -23,7 +23,7 @@ This repository is controled by the ALCF account space, but you can make a copy 
 
 ## Clone the repo in your Home directory
 
-After you have forked the repo, login to Theta, and _clone_ the repository in to your home directory. 
+After you have forked the repo, login to Polaris, and _clone_ the repository in to your home directory. 
 
 ![clone repo](img/git_clone.gif)
 

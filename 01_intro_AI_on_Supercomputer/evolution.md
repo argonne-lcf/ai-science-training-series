@@ -1,5 +1,5 @@
 # History of Computing
-**How my daughter calculate addition**
+**How my daughter calculate addition at home and in school (DuPage Montessori School)**
 <p float="center">
   <img src="figures/hand.png" width="200" />
   <img src="figures/montessori.png" width="200" />
