@@ -1,5 +1,5 @@
 # Introduction to AI-driven Science on Supercomputers: A Student Training Series
-## 2022 Fall Series
+## 2024 Spring Series
 
 [Public Page for Series Schedule](https://www.alcf.anl.gov/alcf-ai-science-training-series)
 
