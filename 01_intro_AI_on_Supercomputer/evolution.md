@@ -119,3 +119,4 @@ Training large language model is very expensive. There is a need to train langua
   <img src="figures/alcf_system.png" width="500" />
 </p>
 
+**Science enabled by supercomputing**: https://www.alcf.anl.gov/science
