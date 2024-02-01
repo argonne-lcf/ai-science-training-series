@@ -10,7 +10,8 @@ import time
 
 run_parallel = numba.config.NUMBA_NUM_THREADS > 1
 
-@numba.njit(parallel=run_parallel)
+
+@numba.njit(parallel=True)
 def calc_pi(n):
     x = 2*np.random.ranf(n)-1
     y = 2*np.random.ranf(n)-1

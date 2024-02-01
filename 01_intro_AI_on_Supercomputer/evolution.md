@@ -1,4 +1,11 @@
-# Evolution of computation
+# History of Computing
+**How my daughter calculate addition**
+<p float="center">
+  <img src="figures/hand.png" width="200" />
+  <img src="figures/montessori.png" width="200" />
+   <img src="figures/montessori2.png" width="150" />
+</p>
+
 ## Counting rods
 Counting rods were used in China for calculation. They are typically 3–14 cm (1" to 6") long, made with banboo, placed either horizontally or vertically to represent any integer or rational number.
 
