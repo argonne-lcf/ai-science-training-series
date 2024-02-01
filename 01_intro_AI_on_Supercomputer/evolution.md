@@ -16,7 +16,7 @@ An abacus is a simple counting device that has been used for centuries in variou
 A slide rule is a hand-operated mechanical calculator consisting of slidable rulers for evaluating mathematical operations such as multiplication, division, exponents, roots, logarithms, and trigonometry. It is one of the simplest analog computers.
 
 <p float="center">
-  <img src="figures/calc_ruler.png" width="300" />
+  <img src="figures/calc_ruler.png" width="150" />
   <img src="figures/calc_ruler2.png" width="300" /> 
 </p>
 
@@ -26,7 +26,6 @@ Pascal's calculator (also known as the arithmetic machine or Pascaline) is a mec
 
 <p float="center">
   <img src="figures/calc_pasca.png" width="300" />
-  <img src="figures/calc_sticks_2.png" width="150" /> 
 </p>
 
 ## Leibnez calculator
