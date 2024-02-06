@@ -17,5 +17,6 @@ res_tot = np.array(Nin, dtype='d')
 comm.Allreduce(res, res_tot, op=MPI.SUM)
 t1 = time.time()
 if comm.rank==0:
-    print(res_tot/float(N/4.0))
-    print("Time: %s" %(t1 - t0))
+    print(f"Number of processes: {comm.size}")
+    print(f"Pi = {res_tot/float(N/4.0)}")
+    print("Time: %4.6f" %(t1 - t0))
