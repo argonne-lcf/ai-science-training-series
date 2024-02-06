@@ -5,5 +5,5 @@
 Recording for this lecture will be here: https://www.alcf.anl.gov/events/intro-ai-series-intro-artificial-intelligence-supercomputers
 
 1. [Evolution of computing systems](evolution.md)
-2. [Parallel computing](parallel_computing.md)
+2. [Parallel computing](00_mpi_pi.ipynb)
 3. [AI in a nutshell](01_linear_regression_sgd.ipynb)

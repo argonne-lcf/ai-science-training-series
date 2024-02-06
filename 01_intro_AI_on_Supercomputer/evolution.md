@@ -102,7 +102,7 @@ Quantum computing is a field of computing that utilizes principles from quantum 
   <img src="figures/optics.png" width="300" />
 </p>
 
-## AI testbeds
+## AI testbeds @ ALCF
 https://www.alcf.anl.gov/alcf-ai-testbed
 
 The AI Testbed aims to help evaluate the usability and performance of machine learning-based high-performance computing applications running on these accelerators. The goal is to better understand how to integrate with existing and upcoming supercomputers at the facility to accelerate science insights.
