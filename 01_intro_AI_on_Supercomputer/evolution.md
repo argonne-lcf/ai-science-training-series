@@ -19,14 +19,14 @@ Counting rods were used in ancient China for calculation. It was originally used
   <img src="figures/calc_sticks_2.png" width="225" /> 
 </p>
 
-## Abacus (算盘) ~ 900 AC
+## Abacus (算盘) ~ 900 AD
 An abacus is a simple counting device that has been used for centuries in various cultures around the world, including ancient Mesopotamia, Asian, Indian, Persian and still in use today in many parts of the world. It typically consists of a series of rods or wires, each containing movable beads. The beads are manipulated to represent different numerical values, and the abacus is used for basic arithmetic operations such as addition, subtraction, multiplication, and division. It serves as a visual aid to facilitate calculations and is often employed as a teaching tool for learning mathematical concepts. The design and structure of abacuses may vary, but the fundamental principle remains the same across different versions.
 
 <p float="center">
   <img src="figures/calc_pang.png" width="450" />
 </p>
 
-## Slide rule ~ 1600 AC
+## Slide rule ~ 1600 AD
 The slide rule was invented by William Oughtred in the 1600's. A slide rule is a hand-operated mechanical calculator consisting of slidable rulers for evaluating mathematical operations such as multiplication, division, exponents, roots, logarithms, and trigonometry. It is one of the simplest analog computers. By the early 1900's engineering students in the US were commonly taught to use slide rules. 
 
 You can refer to [this document](https://www.nmt.edu/advancement/docs/sliderulehandout.pdf) on how to use the slide rule. 
@@ -37,14 +37,14 @@ You can refer to [this document](https://www.nmt.edu/advancement/docs/slideruleh
 </p>
 
 
-## Pascal mechanical calculator ~ 1642-1644 AC
+## Pascal mechanical calculator ~ 1642-1644 AD
 Pascal's calculator (also known as the arithmetic machine or Pascaline) is a mechanical calculator invented by Blaise Pascal in 1642. Pascal was led to develop a calculator by the laborious arithmetical calculations required by his father's work as the supervisor of taxes in Rouen.[2] He designed the machine to add and subtract two numbers directly and to perform multiplication and division through repeated addition or subtraction.
 
 <p float="center">
   <img src="figures/calc_pasca.png" width="450" />
 </p>
 
-## Leibnez calculator ~ 1672 AC
+## Leibnez calculator ~ 1672 AD
 
 The Leibniz calculator, also known as the stepped reckoner, was an early mechanical calculator invented by the German mathematician and philosopher Gottfried Wilhelm Leibniz in the late 17th century. Leibniz designed the calculator with the intention of automating arithmetic calculations, making it easier and more efficient than manual methods.
 
@@ -54,7 +54,7 @@ The Leibniz calculator used a stepped drum mechanism, where cylindrical drums wi
   <img src="figures/calc_leibnez.png" width="450" />
 </p>
 
-## ENIAC Computer ~ 1945 AC
+## ENIAC Computer ~ 1945 AD
 ENIAC, which stands for Electronic Numerical Integrator and Computer, was the world's first general-purpose electronic digital computer. It was designed and built during World War II to solve complex numerical calculations for the U.S. Army. The development of ENIAC started in 1943 and was completed in 1945 at the University of Pennsylvania.
 
 **Size and Structure**: ENIAC was massive, occupying a large room with dimensions of about 30 by 50 feet. It consisted of 40 panels and used over 17,000 vacuum tubes.
