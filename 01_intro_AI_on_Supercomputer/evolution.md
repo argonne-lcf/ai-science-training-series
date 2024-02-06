@@ -15,14 +15,16 @@ She can use the beads to represent the numbers, and she can use her finger only 
 Counting rods were used in ancient China for calculation. It was originally used in Divination (占卜). They are typically 3–14 cm (1" to 6") long, made with banboo, placed either horizontally or vertically to represent any integer or rational number.
 
 <p float="center">
-  <img src="figures/calc_sticks.png" width="300" />
-  <img src="figures/calc_sticks_2.png" width="150" /> 
+  <img src="figures/calc_sticks.png" width="450" />
+  <img src="figures/calc_sticks_2.png" width="225" /> 
 </p>
 
 ## Abacus (算盘) ~ 900 AC
 An abacus is a simple counting device that has been used for centuries in various cultures around the world, including ancient Mesopotamia, Asian, Indian, Persian and still in use today in many parts of the world. It typically consists of a series of rods or wires, each containing movable beads. The beads are manipulated to represent different numerical values, and the abacus is used for basic arithmetic operations such as addition, subtraction, multiplication, and division. It serves as a visual aid to facilitate calculations and is often employed as a teaching tool for learning mathematical concepts. The design and structure of abacuses may vary, but the fundamental principle remains the same across different versions.
 
-![Drag Racing](figures/calc_pang.png)
+<p float="center">
+  <img src="figures/calc_pang.png" width="450" />
+</p>
 
 ## Slide rule ~ 1600 AC
 The slide rule was invented by William Oughtred in the 1600's. A slide rule is a hand-operated mechanical calculator consisting of slidable rulers for evaluating mathematical operations such as multiplication, division, exponents, roots, logarithms, and trigonometry. It is one of the simplest analog computers. By the early 1900's engineering students in the US were commonly taught to use slide rules. 
@@ -30,8 +32,8 @@ The slide rule was invented by William Oughtred in the 1600's. A slide rule is a
 You can refer to [this document](https://www.nmt.edu/advancement/docs/sliderulehandout.pdf) on how to use the slide rule. 
 
 <p float="center">
-  <img src="figures/calc_ruler.png" width="150" />
-  <img src="figures/calc_ruler2.png" width="300" /> 
+  <img src="figures/calc_ruler.png" width="225" />
+  <img src="figures/calc_ruler2.png" width="450" /> 
 </p>
 
 
@@ -39,7 +41,7 @@ You can refer to [this document](https://www.nmt.edu/advancement/docs/slideruleh
 Pascal's calculator (also known as the arithmetic machine or Pascaline) is a mechanical calculator invented by Blaise Pascal in 1642. Pascal was led to develop a calculator by the laborious arithmetical calculations required by his father's work as the supervisor of taxes in Rouen.[2] He designed the machine to add and subtract two numbers directly and to perform multiplication and division through repeated addition or subtraction.
 
 <p float="center">
-  <img src="figures/calc_pasca.png" width="300" />
+  <img src="figures/calc_pasca.png" width="450" />
 </p>
 
 ## Leibnez calculator ~ 1672 AC
@@ -49,7 +51,7 @@ The Leibniz calculator, also known as the stepped reckoner, was an early mechani
 The Leibniz calculator used a stepped drum mechanism, where cylindrical drums with stepped notches were mounted on a common axis. Each notch on the drum represented a digit, and the rotation of the drums allowed for the manipulation of numerical values. Leibniz incorporated a carry mechanism, enabling the calculator to handle addition and carry-over operations automatically.
 
 <p float="center">
-  <img src="figures/calc_leibnez.png" width="300" />
+  <img src="figures/calc_leibnez.png" width="450" />
 </p>
 
 ## ENIAC Computer ~ 1945 AC
@@ -78,8 +80,8 @@ The first solid-state electronic calculator was created in the early 1960s. Pock
 ## Laptops, tablets, phones
 In today's world, the computing hardware evolved into a variety of forms, such as laptops, tablets, and phones. The size of hardware is much smaller and smaller, whereas the power of computation is increasing. For example, the MacBook Pro, 
 <p float="center">
-  <img src="figures/laptop.png" width="300" />
- <img src="figures/tablet_phone.png" width="200" />
+  <img src="figures/laptop.png" width="450" />
+ <img src="figures/tablet_phone.png" width="300" />
 </p>
 
 * Macbook Pro M2: 3.6 TFLOPs (fp32)
@@ -89,7 +91,7 @@ In today's world, the computing hardware evolved into a variety of forms, such a
 ## Moore's law
 Moore's Law is an observation and prediction made by Gordon Moore, co-founder of Intel, in 1965. The law states that the number of transistors on a microchip, and therefore the computing power of a semiconductor, tends to double approximately every two years, while the cost of manufacturing decreases. In essence, this implies a rapid and exponential increase in the performance of electronic devices over time.
 <p float="center">
-  <img src="figures/cpu.png" width="600" />
+  <img src="figures/cpu.png" width="800" />
 </p>
 
 ## Quantum Computers
@@ -121,21 +123,21 @@ We are currently offering allocations on our Groq, Graphcore Bow IPUs, Cerebras 
 
 Supercomputers are designed by connecting massive amount of CPUs and GPUs together. 
 <p float="center">
-  <img src="https://www.alcf.anl.gov/sites/default/files/2023-03/Cropped-33410D_036_01_CELS_Aurora-Sunspot-Photos.jpg" width="300" />
- <img src="https://www.hpcwire.com/wp-content/uploads/2019/11/CELS_Altair_Aurora_X600.jpg" width="300" />
+  <img src="https://www.alcf.anl.gov/sites/default/files/2023-03/Cropped-33410D_036_01_CELS_Aurora-Sunspot-Photos.jpg" width="400" />
+ <img src="https://www.hpcwire.com/wp-content/uploads/2019/11/CELS_Altair_Aurora_X600.jpg" width="400" />
 </p>
 
 **The need for supercomputers** 
 
 Training large language model is very expensive. There is a need to train language 
 <p float="center">
-  <img src="figures/llm.png" width="500" />
+  <img src="figures/llm.png" width="800" />
 </p>
 
 **History of supercomputers**
 <p float="center">
-  <img src="figures/supercomputer-computing.png" width="500" />
-  <img src="figures/alcf_system.png" width="500" />
+  <img src="figures/supercomputer-computing.png" width="800" />
+  <img src="figures/alcf_system.png" width="800" />
 </p>
 
 **Science enabled by supercomputing**: https://www.alcf.anl.gov/science
