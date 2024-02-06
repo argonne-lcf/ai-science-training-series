@@ -3,9 +3,9 @@ The term computer dates back to the 1600s. However, until the 1950s, the term re
 
 **How my daughter calculate addition at home and in school (DuPage Montessori School)**
 <p float="center">
-  <img src="figures/hand.png" width="400" />
-  <img src="figures/montessori.png" width="420" />
-   <img src="figures/montessori2.png" width="230" />
+  <img src="figures/hand.png" width="300" />
+  <img src="figures/montessori.png" width="306" />
+   <img src="figures/montessori2.png" width="180" />
 </p>
 My daughter, Phoebe, has difficulty calculating addition of two numbers. At first, I teached her to use her hands. But there was two issues. It was OK for smaller numbers like, 3+4=7. But when it exceeds 10. My daughter has trouble to do it. The second problem is that, when she trying to count the number of fingers, she likes to use one finger to point. That also confused her. Two weeks ago, I went to the parents day, and saw her using the calculating beads, it was so easy for her to do calculation. 
 
