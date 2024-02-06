@@ -57,13 +57,13 @@ The Leibniz calculator used a stepped drum mechanism, where cylindrical drums wi
 ## ENIAC Computer ~ 1945 AD
 ENIAC, which stands for Electronic Numerical Integrator and Computer, was the world's first general-purpose electronic digital computer. It was designed and built during World War II to solve complex numerical calculations for the U.S. Army. The development of ENIAC started in 1943 and was completed in 1945 at the University of Pennsylvania.
 
-**Size and Structure**: ENIAC was massive, occupying a large room with dimensions of about 30 by 50 feet. It consisted of 40 panels and used over 17,000 vacuum tubes.
+**Size and Structure**: ENIAC was massive, occupying a large room with dimensions of about $30 \times 50$ feet. It consisted of 40 panels and used over 17,000 vacuum tubes.
 
-**Electronic Components**: It was one of the first machines to use electronic components extensively, employing vacuum tubes for computation. Vacuum tubes were used for amplification and switching functions.
+**Electronic Components**: It was one of the first machines to use electronic components extensively, employing **vacuum tubes** for computation. Vacuum tubes were used for amplification and switching functions.
 
 **Programming**: ENIAC was programmed using a combination of plugboards and switches. The process of reprogramming the machine was time-consuming and required physical rearrangement of cables and settings.
 
-**Speed and Performance**: ENIAC was significantly faster than previous mechanical computers. It could perform calculations in seconds that would take hours or days with earlier technologies.
+**Speed and Performance**: ENIAC was significantly faster than previous mechanical computers. It could perform calculations in seconds that would take hours or days with earlier technologies. It can calculate **5000 operations** per second.
 
 <p float="center">
   <img src="figures/eniac.png" width="600" />
@@ -84,6 +84,7 @@ In today's world, the computing hardware evolved into a variety of forms, such a
  <img src="figures/tablet_phone.png" width="300" />
 </p>
 
+Speed of laptops and phones (TFLOPS=$10^{12}$ FLOPS)
 * Macbook Pro M2: 3.6 TFLOPs (fp32)
 * iPhone 15: 2.15 TFLOPs (fp32)
 
