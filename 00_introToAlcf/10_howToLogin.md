@@ -5,14 +5,14 @@
 ## Introduction / Background
 
 - Check out the [Get Started](https://www.alcf.anl.gov/support-center/get-started) page from [ALCF's Support Center](https://www.alcf.anl.gov/support-center) for general guidance on getting started
-  - To log into Theta, you will use the command: `ssh [username]@theta.alcf.anl.gov`
+  - To log into Polaris, you will use the command: `ssh [username]@polaris.alcf.anl.gov`
+    - or more generally: `ssh [username]@[system].alcf.anl.gov`
   - When questions or issues arise, feel free to discuss amongst yourselves in the Slack channel or bring the issue up to one of the organizers (we're here to help!)
   - When in doubt, there is a wealth of information available from ALCF on general best practices (+ tips & tricks for troubleshooting) 
   - Some important pages to keep close might be:
     - [ALCF's Support Center](https://www.alcf.anl.gov/support-center)
     - [Get Started](https://www.alcf.anl.gov/support-center/get-started)
     - [Learn to Use Our Systems](https://www.alcf.anl.gov/support-center/get-started/learn-use-our-systems)
-    - **[ThetaGPU Documentation](https://docs.alcf.anl.gov/theta-gpu/getting-started/)**
 
 - For those who may be unfamiliar with using the command line or even just want a review, there is no shortage of available information to help you get started.
   - [The Linux Command Line for Beginners](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview)

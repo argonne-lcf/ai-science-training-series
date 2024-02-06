@@ -79,3 +79,6 @@ scratch/
 
 # Misc
 .DS_Store
+
+# Custom
+03_neural_networks_tensorflow/image-dataset-cifar10/
