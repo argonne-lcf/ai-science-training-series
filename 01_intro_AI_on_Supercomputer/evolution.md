@@ -1,13 +1,13 @@
 # History of computing
 The term computer dates back to the 1600s. However, until the 1950s, the term referred almost exclusively to a human who performed computations. For human beings, the task of performing large amounts of computation is one that is laborious, time consuming, and error prone. Thus, the human desire to mechanize arithmetic is an ancient one. 
 
-**How my daughter calculate addition at home and in school (DuPage Montessori School)**
+**How my daughter calculate addition at home and in school**
 <p float="center">
   <img src="figures/hand.png" width="300" />
   <img src="figures/montessori.png" width="306" />
    <img src="figures/montessori2.png" width="180" />
 </p>
-My daughter, Phoebe, has difficulty calculating addition of two numbers. At first, I teached her to use her hands. But there was two issues. It was OK for smaller numbers like, 3+4=7. But when it exceeds 10. My daughter has trouble to do it. The second problem is that, when she trying to count the number of fingers, she likes to use one finger to point. That also confused her. Two weeks ago, I went to the parents day, and saw her using the calculating beads, it was so easy for her to do calculation. 
+My daughter has difficulty calculating addition of two numbers. At first, I teached her to use her hands. But there was two issues. It was OK for smaller numbers like, 3+4=7. But when it exceeds 10. My daughter has trouble to do it. The second problem is that, when she trying to count the number of fingers, she likes to use one finger to point. That also confused her. Two weeks ago, I went to the parents day, and saw her using the calculating beads, it was so easy for her to do calculation. 
 
 She can use the beads to represent the numbers, and she can use her finger only for counting. She was able to do one addition less than 5 seconds. This is the power of ``computer". 
 
