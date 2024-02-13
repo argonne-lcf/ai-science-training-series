@@ -10,7 +10,7 @@ This is a quick overview, but the goals are:
 
 Some rough definitions:
 - Artificial intelligence (AI) is a set of approaches to solving complex problems by imitating the brain's ability to learn. 
-- Machine learning (ML) is the field of study that gives computers the ability to learn without being explicitly programmed (i.e. learning patterns instead of writing down rules.) Arugably, machine learning is now a subfield of AI. 
+- Machine learning (ML) is the field of study that gives computers the ability to learn without being explicitly programmed (i.e. learning patterns instead of writing down rules.) Arguably, machine learning is now a subfield of AI. 
 
 Last week, we learned about using linear regression to predict the sale price of a house. We fit a function to the dataset:
 - Input: above ground square feet
