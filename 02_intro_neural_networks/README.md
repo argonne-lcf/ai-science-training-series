@@ -1,11 +1,33 @@
-# Neural Networks in Python
+# Introduction to Neural Networks 
 
-Author: Bethany Lusch, combining and adapting materials evolved over time by Asad Khan, Prasanna Balaprakash, Taylor Childers, Corey Adams, Kyle Felker, and Tanwi Mallick 
+Author: Bethany Lusch (blusch@anl.gov), combining and adapting materials evolved over time by Marieme Ngom, Asad Khan, Prasanna Balaprakash, Taylor Childers, Corey Adams, Kyle Felker, and Tanwi Mallick 
 
-This tutorial covers the basics of neural networks (aka "deep learning"), which is a technique within machine learning. We will learn about the mathematics of neural networks by building them "by hand." In next week's tutorial, we will learn about how to use the higher-level functions in the Python module TensorFlow. 
+This tutorial covers the basics of neural networks (aka "deep learning"), which is a technique within machine learning that tends to outperform other techniques when dealing with a large amount of data. 
 
-We'll start with an image classification problem in this notebook: 
-[Fitting MNIST with a multi-layer perceptron (MLP)](01_introduction_mlp.ipynb)
+This is a quick overview, but the goals are:
+- to introduce the fundamental concepts of deep learning through hands-on activities
+- to give you the necessary background for the more advanced topics in the coming weeks.
+
+Some rough definitions:
+- Artificial intelligence (AI) is a set of approaches to solving complex problems by imitating the brain's ability to learn. 
+- Machine learning (ML) is the field of study that gives computers the ability to learn without being explicitly programmed (i.e. learning patterns instead of writing down rules.) Arugably, machine learning is now a subfield of AI. 
+
+Last week, we learned about using linear regression to predict the sale price of a house. We fit a function to the dataset:
+- Input: above ground square feet
+- Output: sale price
+- Function type: linear 
+- Loss function: mean squared error 
+- Optimization algorithm: stochastic gradient descent 
+
+This week, we'll work on a "classification" problem, which means that we have a category label for each data point, and we fit a function that can categorize inputs. 
+
+The [MNIST dataset](http://yann.lecun.com/exdb/mnist/) contains thousands of examples of handwritten numbers, with each digit labeled 0-9.
+![MNIST Task](images/mnist_task.png)
+
+We'll start with the MNIST problem in this notebook: 
+[Fitting MNIST with a multi-layer perceptron (MLP)](01_introduction_mnist.ipynb)
+
+Next week, we'll learn about other types of neural networks. 
 
 
 
@@ -13,18 +35,18 @@ We'll start with an image classification problem in this notebook:
 ## Environment Setup
 1. If you are using ALCF, first log in. From a terminal run the following command:
 ```
-ssh username@theta.alcf.anl.gov
+ssh username@polaris.alcf.anl.gov
 ```
 
-2. Although last week we cloned the repo, you'll want the updated version. To be reminded of last week's instructions for syncing your fork, click [here](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/03_githubHomework.md). 
+2. Although we already cloned the repo before, you'll want the updated version. To be reminded of the instructions for syncing your fork, click [here](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/03_githubHomework.md). 
 
-3. Now that we have the updated notebooks, we can open them. If you are using ALCF JupyterHub, you can be reminded of the steps [here](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/02_jupyterNotebooks.md). 
+3. Now that we have the updated notebooks, we can open them. If you are using ALCF JupyterHub or Google Colab, you can be reminded of the steps [here](https://github.com/argonne-lcf/ai-science-training-series/blob/main/01_intro_AI_on_Supercomputer/01_linear_regression_sgd.ipynb). 
 
-4. Change the notebook's kernel to `conda/2022-07-01` (you may need to change kernel each time you open a notebook for the first time):
+4. Reminder: Change the notebook's kernel to `datascience/conda-2023-01-10` (you may need to change kernel each time you open a notebook for the first time):
 
     1. select *Kernel* in the menu bar
     1. select *Change kernel...*
-    1. select *conda/2022-07-01* from the drop-down menu
+    1. select *datascience/conda-2023-01-10* from the drop-down menu
 
 
 
