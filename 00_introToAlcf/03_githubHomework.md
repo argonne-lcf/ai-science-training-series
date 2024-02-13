@@ -46,7 +46,7 @@ Now you need to:
 
 ![commit homework](img/git_commit_push.gif)
 
-## Synching Your Fork
+## Sync Your Fork
 
 We will periodically update the content in the "upstream" repository at: https://github.com/argonne-lcf/ai-science-training-series
 
