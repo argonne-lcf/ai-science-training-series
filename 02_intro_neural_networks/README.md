@@ -38,15 +38,25 @@ Next week, we'll learn about other types of neural networks.
 ssh username@polaris.alcf.anl.gov
 ```
 
-2. Although we already cloned the repo before, you'll want the updated version. To be reminded of the instructions for syncing your fork, click [here](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/03_githubHomework.md). 
+2. Although we already cloned the repo before, you'll want the updated version. To be reminded of the instructions for syncing your fork, click [here](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/03_githubHomework.md).
 
-3. Now that we have the updated notebooks, we can open them. If you are using ALCF JupyterHub or Google Colab, you can be reminded of the steps [here](https://github.com/argonne-lcf/ai-science-training-series/blob/main/01_intro_AI_on_Supercomputer/01_linear_regression_sgd.ipynb). 
+3. We will be downloading data in our Jupyter notebook, which runs on hardware that by default has no Internet access. From the terminal on Polaris, edit the ~/.bash_profile file to have these proxy settings:
+```
+export HTTP_PROXY="http://proxy-01.pub.alcf.anl.gov:3128"
+export HTTPS_PROXY="http://proxy-01.pub.alcf.anl.gov:3128"
+export http_proxy="http://proxy-01.pub.alcf.anl.gov:3128"
+export https_proxy="http://proxy-01.pub.alcf.anl.gov:3128"
+export ftp_proxy="http://proxy-01.pub.alcf.anl.gov:3128"
+export no_proxy="admin,polaris-adminvm-01,localhost,*.cm.polaris.alcf.anl.gov,polaris-*,*.polaris.alcf.anl.gov,*.alcf.anl.gov"
+```
 
-4. Reminder: Change the notebook's kernel to `datascience/conda-2023-01-10` (you may need to change kernel each time you open a notebook for the first time):
+4. Now that we have the updated notebooks, we can open them. If you are using ALCF JupyterHub or Google Colab, you can be reminded of the steps [here](https://github.com/argonne-lcf/ai-science-training-series/blob/main/01_intro_AI_on_Supercomputer/01_linear_regression_sgd.ipynb). 
+
+5. Reminder: Change the notebook's kernel to `datascience/conda-2023-01-10` (you may need to change kernel each time you open a notebook for the first time):
 
     1. select *Kernel* in the menu bar
-    1. select *Change kernel...*
-    1. select *datascience/conda-2023-01-10* from the drop-down menu
+    2. select *Change kernel...*
+    3. select *datascience/conda-2023-01-10* from the drop-down menu
 
 
 
