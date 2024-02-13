@@ -1,3 +1,0 @@
-For homework this week, your job is to do the following:
-- train ResNet34 for 1 epoch.  You are welcome to change parameters like batch size, learning rate, etc. as you like.
-- Make a plot of the training accuracy and loss as a function of iteration.  You can put them on the same plot if you like, but it's not mandatory.
