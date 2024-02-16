@@ -1,0 +1,5 @@
+/usr/bin/python: can't open file 'mpi_pi.py': [Errno 2] No such file or directory
+/usr/bin/python: can't open file 'mpi_pi.py': [Errno 2] No such file or directory
+/usr/bin/python: can't open file 'mpi_pi.py': [Errno 2] No such file or directory
+x3006c0s31b1n0.hsn.cm.polaris.alcf.anl.gov: rank 0 exited with code 2
+x3006c0s31b1n0.hsn.cm.polaris.alcf.anl.gov: rank 1 died from signal 15
