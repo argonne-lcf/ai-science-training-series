@@ -3,7 +3,9 @@
 
 [Public Page for Series Schedule](https://www.alcf.anl.gov/alcf-ai-science-training-series)
 
-[Agenda with content links](https://events.cels.anl.gov/event/337/timetable/)
+[ALCF YouTube with recordings of sessions](https://www.youtube.com/@argonneleadershipcomputing8396)
+
+[Indico registration page (CLOSED)](https://events.cels.anl.gov/event/436)
 
 This repository is organized into one subdirectory per topic.  All content is prefixed by a two-digit index in the order of presentation in the tutorials.
 
