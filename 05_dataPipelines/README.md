@@ -3,7 +3,7 @@ Written by Taylor Childers and Corey Adams from Argonne
 
 ## Considering CPU and GPU Usage
 
-Our ThetaGPU & Polaris systems, and many modern systems, contain CPUs and GPUs. Both can be made to do work at the same time, or _concurrently_.
+Our Polaris supercomputer like many modern systems, contain CPUs and GPUs. Both can be made to do work at the same time, or _concurrently_.
 
 If we look at our workflow, we can see that we have a data processing piece and the model training piece. We can visualize it here:
 
@@ -121,12 +121,10 @@ for inputs,labels in ds:
    # ...
 ```
 
-## Parallel Processing on ThetaGPU or Polaris
+## Parallel Processing on Polaris
 
 The example `ilsvrc_dataset.py` can be run via
 ```bash
-qsub -A <project> -q <queue> train_resnet34_thetagpu.sh
-# OR
 qsub -A <project> -q <queue> train_resnet34_polaris.sh
 ```   
 
