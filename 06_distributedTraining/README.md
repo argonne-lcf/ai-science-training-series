@@ -6,7 +6,7 @@ Led by Huihuo Zheng from ALCF (<huihuo.zheng@anl.gov>)
 	- Model parallelism
 	- Data parallelism
 * Know how to modify your code with Horovod
-* Know how to run distributed training on Polaris / ThetaGPU and measuring the scaling efficiency
+* Know how to run distributed training on Polaris and measuring the scaling efficiency
 
 ## Concept of Parallel Computing  - pi examples
 
@@ -38,11 +38,10 @@ if comm.rank==0:
 
 
 ```bash
-ssh <username>@theta.alcf.anl.gov
-ssh thetagpusn1 
-qsub -A ALCFAITP -n 1 -q training-gpu -t 20 -I 
-module load conda/2022-07-01
-conda activate
+ssh USERNAME@polaris.alcf.anl.gov
+qsub -I -A ALCFAITP -l select=1 -q debug -l walltime=0:50:00 -l filesystems=home:eagle
+module load conda/2023-10-04
+conda activate /soft/datascience/ALCFAITP/2023-10-04
 cd YOUR_GITHUP_REPO
 mpirun -np 1 python pi.py   # 3.141988,   8.029037714004517  s
 mpirun -np 2 python pi.py   # 3.1415096   4.212774038314819  s
@@ -163,23 +162,21 @@ Examples for other frameworks (PyTorch, Keras, MxNet) can be found [here](https:
 ## Handson 
 * Changing the code into Horovod (during break time)
 ```bash
-ssh <username>@theta.alcf.anl.gov
-ssh thetagpusn1 
-cd /lus/grand/projects/ALCFAITP/hzheng/ai-science-training-series/06_distributedTraining
+ssh USERNAME@polaris.alcf.anl.gov
+cd REPLACE_WITH_YOUR_PATH/ai-science-training-series/06_distributedTraining
 cp train_resnet34.py train_resnet34_parallel.py 
 ```
 Implement```train_resnet34_parallel.py``` with Horovod
 
 * Throughput scaling
 ```
-ssh <username>@theta.alcf.anl.gov
-ssh thetagpusn1 
-qsub -A ALCFAITP -n 1 -q training-gpu -t 20 -I 
+ssh USERNAME@polaris.alcf.anl.gov
+qsub -I -A ALCFAITP -l select=1 -q debug -l walltime=0:50:00 -l filesystems=home:eagle
 ```
 
 ```bash
-	module load conda/2022-07-01
-	conda activate
+    module load conda/2023-10-04
+    conda activate /soft/datascience/ALCFAITP/2023-10-04	
     mpirun -n 1 python train_resnet34_hvd.py --num_steps 10 
     mpirun -n 2 python train_resnet34_hvd.py --num_steps 10 
     mpirun -n 4 python train_resnet34_hvd.py --num_steps 10 
