@@ -1,8 +1,8 @@
 # Introduction to Neural Networks: Part 2
 
-Author: Archit Vasan (avasan@anl.gov), including and adapting materials and discussions over time by Varuni Sastri, Carlo Taylor Childers, Venkat Vishwanath, Jay Alammar and Kevin Gimpel.
+Author: Archit Vasan (avasan@anl.gov), including and adapting materials and discussions over time by Varuni Sastri, Carlo Graziani, Taylor Childers, Venkat Vishwanath, Jay Alammar and Kevin Gimpel.
 
-This tutorial continues the discussion with Carlo Silvastri from last week on large language models (LLMs) where he introduced sequential data modeling, tokenization methods and embeddings.
+This tutorial continues the discussion with Carlo Graziani from last week on large language models (LLMs) where he introduced sequential data modeling, tokenization methods and embeddings.
 Here, we will attempt to demystify aspects of the Transformer model architecture.
 
 We will refer to this notebook:
