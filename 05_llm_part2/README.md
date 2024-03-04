@@ -9,7 +9,7 @@ We will refer to this notebook:
 
 https://github.com/argonne-lcf/ai-science-training-series/blob/architvasan/05_llm_part2/LLM_part02.ipynb
 
-We will discuss:
+The discussion will include:
 * positional encodings,
 * attention mechanisms,
 * output layers,
