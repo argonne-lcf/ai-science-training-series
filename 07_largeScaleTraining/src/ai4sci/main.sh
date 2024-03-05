@@ -55,29 +55,8 @@ echo "┗━━━━━━━━━━━━━━━━━━━━━━━�
 
 NCPUS=$(getconf _NPROCESSORS_ONLN)
 
-# ---- Check if running on ThetaGPU ----------------------------
-if [[ $(hostname) == theta* ]]; then
-  module load conda/2022-07-01
-  conda activate base
-  NRANKS=$(wc -l < ${COBALT_NODEFILE})
-  HOSTFILE=${COBALT_NODEFILE}
-  NGPU_PER_RANK=$(nvidia-smi -L | wc -l)
-  NGPUS=$((${NRANKS}*${NGPU_PER_RANK}))
-  MPI_COMMAND=$(which mpirun)
-  MPI_FLAGS="--verbose \
-    -n ${NGPUS} \
-    --hostfile ${HOSTFILE} \
-    -npernode ${NGPU_PER_RANK} \
-    -x PYTHONUSERBASE \
-    -x PYTHONSTARTUP \
-    -x http_proxy \
-    -x https_proxy \
-    -x PATH \
-    -x LD_LIBRARY_PATH"
-  VENV_DIR="${ROOT}/venvs/thetaGPU/2022-07-01"
-
 # ---- Check if running on Polaris -----------------------------
-elif [[ $(hostname) == x* ]]; then
+if [[ $(hostname) == x* ]]; then
   # echo Working directory is $PBS_O_WORKDIR
   # cd $PBS_O_WORKDIR
   export IBV_FORK_SAFE=1
