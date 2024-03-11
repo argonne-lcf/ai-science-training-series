@@ -18,7 +18,7 @@ _2024-03-12_
 1. Launch Job:
 
     ```bash
-    $ qsub -A argonne_tpc -q debug -l select=2 -l walltime=01:00:00,filesystems=eagle:home -I # train_llama_alcf_polaris_qsub.sh
+    $ qsub -A ALCFAITP -q debug -l select=2 -l walltime=01:00:00,filesystems=eagle:home -I # train_llama_alcf_polaris_qsub.sh
     qsub: waiting for job 1779554.polaris-pbs-01.hsn.cm.polaris.alcf.anl.gov to start
     qsub: job 1779554.polaris-pbs-01.hsn.cm.polaris.alcf.anl.gov ready
     ```
