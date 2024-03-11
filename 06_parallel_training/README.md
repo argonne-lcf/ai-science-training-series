@@ -83,7 +83,6 @@ _2024-03-12_
 
     ```bash
     (2023-10-04) $ python3 data/shakespeare_char/prepare.py
-    Using HF_DATASETS_CACHE=/lus/eagle/projects/datascience/foremans/tmp/wordplay/data/shakespeare_char/.cache/huggingface
     length of dataset in characters: 1,115,394
     all the unique characters:
      !$&',-.3:;?ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
