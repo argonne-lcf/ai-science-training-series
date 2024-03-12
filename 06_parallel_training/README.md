@@ -23,17 +23,18 @@ _2024-03-12_
     qsub: job 1779554.polaris-pbs-01.hsn.cm.polaris.alcf.anl.gov ready
     ```
 
-2. Clone [`saforem2/wordplay`](https://github.com/saforem2/wordplay):
+
+2. Load conda:
+
+    ```bash
+    $ module load conda/2023-10-04 ; conda activate base
+    ```
+
+3. Clone [`saforem2/wordplay`](https://github.com/saforem2/wordplay):
 
     ```bash
     $ git clone https://github.com/saforem2/wordplay
     $ cd wordplay
-    ```
-
-3. Load conda:
-
-    ```bash
-    $ module load conda/2023-10-04 ; conda activate base
     ```
 
 4. Make + activate virtual-env:
