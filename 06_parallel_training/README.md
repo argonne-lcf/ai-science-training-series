@@ -98,12 +98,12 @@ _2024-03-12_
     ```bash
     (2023-10-04) $ cd src/wordplay
     (2023-10-04) $ launch python3 __main__.py +experiment=shakespeare data=shakespeare train.backend=DDP train.max_iters=100 train.log_interval=5 train.compile=false
-    Connected to tcp://x3006c0s13b1n0.hsn.cm.polaris.alcf.anl.gov:7919
     ```
 
     <details closed><summary><code>Output:</code></summary>
 
     ```bash
+    Connected to tcp://x3006c0s13b1n0.hsn.cm.polaris.alcf.anl.gov:7919
     Found executable /lus/eagle/projects/datascience/foremans/tmp/wordplay/venvs/polaris/2023-10-04/bin/python3
     Launching application 52482c6c-599c-4d4a-b57b-34f0ac962249
     [2024-03-09 10:38:01][INFO][configs:72] - Setting HF_DATASETS_CACHE to /lus/eagle/projects/datascience/foremans/tmp/wordplay/.cache/huggingface/datasets
