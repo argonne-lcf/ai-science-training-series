@@ -1,6 +1,6 @@
 # Parallel Training Methods
 
-[Sam Foreman](https://samforeman.me)
+[Sam Foreman](https://samforeman.me)  
 _2024-03-12_
 
 - Slides: [📊 Parallel Training Slides](https://saforem2.github.io/parallel-training-slides)
@@ -350,3 +350,12 @@ _2024-03-12_
     ```
 
     </details>
+
+10. \[**Homework**\] Submit either:
+    - Link to W&B run, e.g.
+
+        ```bash
+        wandb: 🚀 View run feasible-sunset-4 at: https://wandb.ai/aurora_gpt/WordPlay/runs/6b22rdws
+        ```
+
+    - Path to logfile
