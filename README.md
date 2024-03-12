@@ -30,6 +30,13 @@ This repository is organized into one subdirectory per topic.  All content is pr
     </ol>
     <li> <a href="./02_intro_neural_networks"> Introduction to Neural Networks </a></li>
     <li> <a href="./03_advanced_neural_networks"> Advanced Topics in Neural Networks </a></li> 
+    <li> <a href="./04_intro_to_llms"> Introduction to LLMs </a></li> 
+    <li> <a href="./05_llm_part2"> LLMs -- Part II </a></li> 
+    <li> <a href="./06_parallel_training"> Parallel Training Techniques</a></li> 
+    <ol> 
+      <li> <a href="https://saforem2.github.io/parallel-training-slides/#/">📊 Slides</a></li>
+      <!--<li> <a href="https://github.com/argonne-lcf/ai-science-training-series/blob/main/06_parallel_training/README.md#hands-on"> Hands-On</a></li>-->
+    </ol>
   </ol>
 </details>
 
