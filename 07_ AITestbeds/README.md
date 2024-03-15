@@ -1,4 +1,4 @@
-# Programming Novel AI Accelerators for Scientific Computing
+# Programming Novel AI Accelerators at ALCF AI Testbed
 
 Scientific applications are increasingly adopting Artificial Intelligence (AI) techniques to advance science. There are specialized hardware accelerators designed and built to run AI applications efficiently. With a wide diversity in the hardware architectures and software stacks of these systems, it is challenging to understand the differences between these accelerators, their capabilities, programming approaches, and how they perform, particularly for scientific applications. 
 
