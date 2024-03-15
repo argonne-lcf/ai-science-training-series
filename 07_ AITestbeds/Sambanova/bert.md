@@ -10,7 +10,8 @@ cd ~/apps/nlp/bert
 ##### Copy script to Compile and Run
 
 ```bash
-git clone <path>
+git clone https://github.com/argonne-lcf/ai-science-training-series.git/
+cd ai-science-training-series/07_AITestbeds/Sambanova
 
 chmod +x Bertlarge.sh
 ```
