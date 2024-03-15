@@ -17,7 +17,7 @@ groq-login > ssh groq-r01-gn-09.ai.alcf.anl.gov
 # or any node with hostname of form groq-r01-gn-0[1-9].ai.alcf.anl.gov
 ```
 
-## Create Virtual Environment 
+## STEP 0: (Pre-requisite for hands-on) Create Virtual Environment 
 
 ### Install Miniconda
 
@@ -50,7 +50,7 @@ popd
 
 ## Job Queuing and Submission
 
-Groq jobs in the AI Testbed's groqrack are managed by the PBS job scheduler.
+Groq jobs in the AI Testbed's Groqrack are managed by the PBS job scheduler.
 
 * `qsub` : to submit a batch job using a script
 * `qstat`: to display queue information
