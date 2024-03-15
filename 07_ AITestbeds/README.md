@@ -11,7 +11,7 @@ We will cover an overview of the AI accelerators landscape with a focus on Samba
 
 ## Hands-On Session
 
-* [SambaNova](./SambaNova/README.md)                                    
+* [SambaNova](./Sambanova/README.md)                                    
 * [Graphcore](./Graphcore/README.md)  
 * [Cerebras](./Cerebras/README.md)    
 * [Groq](./Groq/README.md)        
