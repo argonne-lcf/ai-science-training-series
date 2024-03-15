@@ -1,14 +1,14 @@
 # BERT on Graphcore 
 
-These instructions are to train a BERT pytorch model on the POD16. 
+These instructions are to train a BERT Pytorch model on the POD16. 
 
-Go to direcotry with BERT example 
+Go to directory with BERT example 
 ```bash
 cd ~/graphcore/examples/nlp/bert/pytorch
 ```
 
 
-Activate PopTroch Environment 
+Activate PopTorch Environment 
 
 ```bash
 source ~/venvs/graphcore/poptorch33_env/bin/activate
