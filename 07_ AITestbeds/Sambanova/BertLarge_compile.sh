@@ -6,9 +6,9 @@ if [ "$1" ] ; then
 LOGDIR=$1
 fi
 MODEL_NAME="BertLarge"
-OUTPUT_PATH=/data/ANL/results/$(hostname)/${USER}/${LOGDIR}/${MODEL_NAME}.out
+OUTPUT_PATH=${PWD}/${LOGDIR}/${MODEL_NAME}.out
 echo "Using ${OUTPUT_PATH} for output"
-mkdir -p /data/ANL/results/$(hostname)/${USER}/${LOGDIR}
+mkdir -p ${PWD}/${LOGDIR}
 export SOFTWARE_HOME=/opt
 
 ACTIVATE=/opt/sambaflow/apps/nlp/transformers_on_rdu/venv/bin/activate
@@ -54,7 +54,7 @@ fi
 #######################
 echo "RUN" >> ${OUTPUT_PATH} 2>&1
 env >> ${OUTPUT_PATH} 2>&1
-/usr/local/bin/sbatch --output=${HOME}/slurm-%A.out --ntasks 16 --gres=rdu:8 --ntasks-per-node 16  --nodes 1 --nodelist $(hostname) --cpus-per-task=8  /data/ANL/scripts/BertLarge_run.sh $1 >> ${OUTPUT_PATH} 2>&1
+/usr/local/bin/sbatch --output=${HOME}/slurm-%A.out --ntasks 16 --gres=rdu:8 --ntasks-per-node 16  --nodes 1 --nodelist $(hostname) --cpus-per-task=8  ${PWD}/BertLarge_run.sh $1 >> ${OUTPUT_PATH} 2>&1
 
 #######################
 echo "Machine state After: " >> ${OUTPUT_PATH} 2>&1
