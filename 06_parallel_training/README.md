@@ -3,9 +3,8 @@
 [Sam Foreman](https://samforeman.me)  
 _2024-03-12_
 
-- Slides: [📊 Parallel Training Slides](https://saforem2.github.io/parallel-training-slides)
-    - \[[GitHub](https://github.com/saforem2/parallel-training-slides)\]
-
+- **Recording**: 🎬 [Intro to AI Series: Parallel Training Methods for AI](https://www.youtube.com/watch?v=z1t_xmHTJeU)
+- Slides: [📊 Parallel Training Slides](https://saforem2.github.io/parallel-training-slides) \[[GitHub](https://github.com/saforem2/parallel-training-slides)\]
 
 ## Hands-On
 
