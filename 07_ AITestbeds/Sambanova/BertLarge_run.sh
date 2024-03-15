@@ -6,9 +6,9 @@ if [ "$1" ] ; then
 LOGDIR=$1
 fi
 MODEL_NAME="BertLarge"
-OUTPUT_PATH=/data/ANL/results/$(hostname)/${USER}/${LOGDIR}/${MODEL_NAME}.out
+OUTPUT_PATH=${PWD}/${LOGDIR}/${MODEL_NAME}.out
 echo "Using ${OUTPUT_PATH} for output"
-mkdir -p /data/ANL/results/$(hostname)/${USER}/${LOGDIR}
+mkdir -p ${PWD}/${LOGDIR}
 export SOFTWARE_HOME=/opt
 
 LOGDIR=`date +%m%d%y.%H`
@@ -16,9 +16,9 @@ if [ "$1" ] ; then
 LOGDIR=$1
 fi
 MODEL_NAME="BertLarge"
-OUTPUT_PATH=/data/ANL/results/$(hostname)/${USER}/${LOGDIR}/${MODEL_NAME}.out
+OUTPUT_PATH=${PWD}/${LOGDIR}/${MODEL_NAME}.out
 echo "Using ${OUTPUT_PATH} for output"
-mkdir -p /data/ANL/results/$(hostname)/${USER}/${LOGDIR}
+mkdir -p ${PWD}/${LOGDIR}
 export SOFTWARE_HOME=/opt
 
 ACTIVATE=/opt/sambaflow/apps/nlp/transformers_on_rdu/venv/bin/activate
