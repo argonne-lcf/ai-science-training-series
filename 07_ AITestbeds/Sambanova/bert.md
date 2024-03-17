@@ -13,7 +13,7 @@ cd ~/apps/nlp/bert
 git clone https://github.com/argonne-lcf/ai-science-training-series.git/
 cd ai-science-training-series/07_AITestbeds/Sambanova
 
-chmod +x Bertlarge.sh
+chmod +x BertLarge.sh
 ```
 
 ##### Run the script to Compile and Run
