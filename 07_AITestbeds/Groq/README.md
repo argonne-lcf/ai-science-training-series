@@ -57,7 +57,7 @@ Groq jobs in the AI Testbed's Groqrack are managed by the PBS job scheduler.
 * `qdel`: to delete (cancel) a job:
 * `qhold`: to hold a job
 
-### Schedule batch Job
+<!-- ### Schedule batch Job
 
 <details>
   <summary>Sample run_minilmv2.sh script</summary>
@@ -90,7 +90,7 @@ Groq jobs in the AI Testbed's Groqrack are managed by the PBS job scheduler.
 Then run the script as a batch job with PBS:
 ```bash
 qsub run_minilmv2.sh
-```
+``` -->
 
 
 ### Schedule Interactive Job
@@ -107,14 +107,18 @@ Other flags that can be used
 
 ## Hands-on Example
 
-<!-- * [ResNet50](./resnet50.md) -->
-<!-- * [MiniLMv2](./minilm.md) -->
+
 * [Bert](./bert.md)
 
 ## Homework
 
-* [GPT2](./gpt2.md)
+Run BERT example with custom input instead of dummy input. 
 
+## Additional Examples (Optional)
+
+* [ResNet50](./resnet50.md)
+* [MiniLMv2](./minilm.md)
+<!-- * * [GPT2](./gpt2.md) -->
 
 ## Useful Resources 
 
