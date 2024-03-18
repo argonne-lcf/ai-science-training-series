@@ -11,7 +11,7 @@ To connect to a CS-2 login, ssh to login nodes:
 ssh ALCFUserID@cerebras.ai.alcf.anl.gov
 ```
 
-## Create Virtual Environment 
+## Prerequisite: Create Virtual Environment 
 
 ### PyTorch virtual environment
 
@@ -33,15 +33,22 @@ pip install cerebras_pytorch==2.0.2
 ## Clone Cerebras modelzoo
 
 We use example from [Cerebras Modelzoo repository](https://github.com/Cerebras/modelzoo) for this hands-on. 
-Clone the modezoo repository.<br>
-```bash
-mkdir ~/R_2.0.3
-cd ~/R_2.0.3
-git clone https://github.com/Cerebras/modelzoo.git
-cd modelzoo
-git tag
-git checkout Release_2.0.3
-```
+
+* Clone the modezoo repository.<br>
+    ```bash
+    mkdir ~/R_2.0.3
+    cd ~/R_2.0.3
+    git clone https://github.com/Cerebras/modelzoo.git
+    cd modelzoo
+    git tag
+    git checkout Release_2.0.3
+    
+    ```
+* Install requirements for modelzoo
+    ```bash
+    cd modelzoo
+    pip install -r requirements.txt 
+    ```
 
 ## Job Queuing and Submission
 
@@ -61,6 +68,12 @@ See `csctl -h` for more options.
 * [BERT](./bert-large.md)
 
 ## Homework
+
+Run BERT example with different batch sizes like 512, 2048 and observe the performance difference.  
+
+### Additional Examples (Optional)
+
+* [GPT-J](./gptj.md)
 * [GPT-2](./gpt2.md)
 
 # Useful Resources 
