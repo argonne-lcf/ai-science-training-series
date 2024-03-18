@@ -17,7 +17,7 @@ groq-login > ssh groq-r01-gn-09.ai.alcf.anl.gov
 # or any node with hostname of form groq-r01-gn-0[1-9].ai.alcf.anl.gov
 ```
 
-## Pre-requisite for hands-on: Create Virtual Environment 
+## Prerequisite: Create Virtual Environment 
 
 ### Install Miniconda
 

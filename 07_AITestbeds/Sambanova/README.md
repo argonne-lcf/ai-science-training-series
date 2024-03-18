@@ -23,7 +23,7 @@ ssh sn30-r1-h1
 
 You can also ssh to `sn30-r1-h1` , `sn30-r1-h2`, `sn30-r2-h1`, `sn30-r2-h2`, `sn30-r3-h1`, `sn30-r3-h2`, `sn30-r4-h1`, `sn30-r4-h2`.
 
-## Copy Applications to `$HOME` directory
+## Prerequisite: Copy Applications to `$HOME` directory
 
 Sambanova software stack and associated environmental variables are automatically setup at login for a SN30 node. 
 
@@ -41,7 +41,13 @@ cp -r opt/sambaflow/apps/ ~
 
 ## Homework
 
+For BERT example, understand flags used in the script. Change values for flags like `--ntasks` and `--gres` and measure its efect on performance. 
+
+
+## Additional Examples (Optional) 
+
 * [GPT 1.5B](./gpt15b.md)
+* [GPT 13B](./gpt15b.md)
 
 
 ## Additional Resources

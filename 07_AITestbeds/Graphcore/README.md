@@ -20,7 +20,7 @@ login-01.ai.aclf.anl.gov > ssh gc-poplar-03.ai.alcf.anl.gov
 login-01.ai.aclf.anl.gov > ssh gc-poplar-04.ai.alcf.anl.gov
 ```
 
-## Pre-requisite for hands-on: Create Virtual Environment 
+## Prerequisite: Create Virtual Environment 
 
 ### PyTorch virtual environment
 
