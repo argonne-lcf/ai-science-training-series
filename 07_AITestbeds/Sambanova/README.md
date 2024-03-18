@@ -36,7 +36,7 @@ cp -r /opt/sambaflow/apps/ ~
 
 ## Hands-on Example
 
-* [BERT](./bert.md)
+* [BERT](./bert/bert.md)
 
 
 ## Homework
