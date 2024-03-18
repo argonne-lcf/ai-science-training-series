@@ -34,10 +34,9 @@ This repository is organized into one subdirectory per topic.  All content is pr
     <li> <a href="./05_llm_part2"> LLMs -- Part II </a></li> 
     <li> <a href="./06_parallel_training"> Parallel Training Techniques</a></li> 
     <ol> 
-      <li> <a href="https://saforem2.github.io/parallel-training-slides/#/">📊 Slides</a></li>
-      <!--<li> <a href="https://github.com/argonne-lcf/ai-science-training-series/blob/main/06_parallel_training/README.md#hands-on"> Hands-On</a></li>-->
-    </ol>
-  </ol>
+      <li> <a href="https://saforem2.github.io/parallel-training-slides/#/">📊 Slides</a></li></ol>
+    <li> <a href="./07_ AITestbeds/"> AI Testbeds</a></li> 
+    
 </details>
 
 
