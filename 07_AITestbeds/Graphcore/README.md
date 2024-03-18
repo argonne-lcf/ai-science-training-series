@@ -76,13 +76,17 @@ e.g. `srun --ipus=1 python mnist_poptorch.py`
 
 ## Homework
 
+Understand meaning of flags  `--ipus-per-replica` and `--replication-factor`. Run BERT example by changing values of these parameters and observe the performance implications. 
+
+## Additional Examples (Optional)
+
 * [GPT2](./gpt2.md)
 
 ```bash
 Note: Precompiled artifacts are present at the /software/graphcore/projects/models_compile location for the above models.
 copy them to your ~/tmp and set export POPTORCH_CACHE_DIR=~/tmp to skip the compile process.
 ```
-## Profiling 
+## Profiling (Optional) 
 
 We will use Pop Vision Graph Analyzer and System Analyzer to produce profiles. 
 
