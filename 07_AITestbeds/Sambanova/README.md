@@ -21,7 +21,7 @@ Once you are on the login node, ssh to one of the sambanova nodes.
 ssh sn30-r1-h1       
 ```
 
-You can also ssh to `sn30-r1-h1` , `sn30-r1-h2`, `sn30-r2-h1`, `sn30-r2-h2`, `sn30-r3-h1`, `sn30-r3-h2`, `sn30-r4-h1`, `sn30-r4-h2`.
+You can also ssh to `sn30-r1-h1`, `sn30-r1-h2`, `sn30-r2-h1`, `sn30-r2-h2`, `sn30-r3-h1`, `sn30-r3-h2`, `sn30-r4-h1`, `sn30-r4-h2`.
 
 ## Prerequisite: Copy Applications to `$HOME` directory
 
@@ -31,7 +31,7 @@ Each of the samples or application examples provided by SambaNova has its own pr
 
 Copy them to your `$HOME` directory
 ```bash
-cp -r opt/sambaflow/apps/ ~
+cp -r /opt/sambaflow/apps/ ~
 ```
 
 ## Hands-on Example
