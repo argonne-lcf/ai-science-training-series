@@ -7,7 +7,7 @@ We will cover an overview of the AI accelerators landscape with a focus on Samba
 
 ## Slides
 
-* [Programming Novel AI Accelerators at ALCF AI Testbed](./Intro.pdf)
+* [Programming Novel AI Accelerators at ALCF AI Testbed](https://anl.box.com/s/49cbivn9u46ry5onfewgyntjrhxyvk0u)
 
 ## Hands-On Session
 
