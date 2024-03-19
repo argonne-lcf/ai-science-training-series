@@ -41,7 +41,7 @@ cp -r /opt/sambaflow/apps/ ~
 
 ## Homework
 
-For BERT example, understand flags used in the script. Change values for flags like `--ntasks` and `--gres` and measure its efect on performance. 
+For BERT example, understand flags used in the script. Change values for flags like `--ntasks` and measure its efect on performance. 
 
 
 ## Additional Examples (Optional) 
