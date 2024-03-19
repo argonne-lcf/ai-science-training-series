@@ -56,7 +56,6 @@ fi
 #######################
 echo "RUN" >> ${OUTPUT_PATH} 2>&1
 env >> ${OUTPUT_PATH} 2>&1
-echo $PWD
 /usr/local/bin/sbatch --output=${HOME}/slurm-%A.out --ntasks 16 --gres=rdu:8 --ntasks-per-node 16  --nodes 1 --nodelist $(hostname) --cpus-per-task=8  ${PROJ_DIR}/BertLarge_run.sh $1 >> ${OUTPUT_PATH} 2>&1
 
 #######################
