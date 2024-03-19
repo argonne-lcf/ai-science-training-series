@@ -35,7 +35,7 @@ This repository is organized into one subdirectory per topic.  All content is pr
     <li> <a href="./06_parallel_training"> Parallel Training Techniques</a></li> 
     <ol> 
       <li> <a href="https://saforem2.github.io/parallel-training-slides/#/">📊 Slides</a></li></ol>
-    <li> <a href="./07_ AITestbeds/"> AI Testbeds</a></li> 
+    <li> <a href="./07_AITestbeds/"> AI Testbeds</a></li> 
     
 </details>
 
