@@ -46,7 +46,7 @@ We use example from [Cerebras Modelzoo repository](https://github.com/Cerebras/m
     ```
 * Install requirements for modelzoo
     ```bash
-    cd modelzoo
+    cd ~/R_2.0.3/modelzoo
     pip install -r requirements.txt 
     ```
 
