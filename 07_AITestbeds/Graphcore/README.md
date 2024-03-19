@@ -72,11 +72,11 @@ e.g. `srun --ipus=1 python mnist_poptorch.py`
 
 ## Hands-on Example
 
-* [BERT](./bert.md)
+* [MNIST](./mnist.md)
 
 ## Homework
 
-Understand meaning of flags  `--ipus-per-replica` and `--replication-factor`. Run BERT example by changing values of these parameters and observe the performance implications. 
+Understand meaning of flags  `--ipus-per-replica` and `--replication-factor`. Run MNIST example by changing values of these parameters and observe the performance implications. 
 
 ## Additional Examples (Optional)
 
