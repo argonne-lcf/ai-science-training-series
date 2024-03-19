@@ -23,4 +23,4 @@ You can view the log in a seperate terminal while the compilation is ongoing. Co
 Once the compilation is complete, look for the slurm-id(Look for `Submitted batch job`) in the same log file. 
 Or you can also use the `squeue` command to know the slurm ID associated with your run. 
 
-Use ~/slurm-<id>.out to get the path of the training log. 
+Use `~/slurm-<id>.out` to get the path of the training log. 
