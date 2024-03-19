@@ -72,7 +72,7 @@ e.g. `srun --ipus=1 python mnist_poptorch.py`
 
 ## Hands-on Example
 
-* [MNIST](./mnist.md)
+* [BERT](./bert.md)
 
 ## Homework
 
@@ -81,6 +81,7 @@ Run MNIST example by changing values of the input parameters like batch-size, le
 ## Additional Examples (Optional)
 
 * [GPT2](./gpt2.md)
+* [MNIST](./mnist.md)
 
 ```bash
 Note: Precompiled artifacts are present at the /software/graphcore/projects/models_compile location for the above models.
