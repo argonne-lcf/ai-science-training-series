@@ -27,12 +27,14 @@ It is also recommended to ssh to other compute nodes namely, `sn30-r1-h1`, `sn30
 
 Sambanova software stack and associated environmental variables are automatically setup at login for a SN30 node. 
 
-Each of the samples or application examples provided by SambaNova has its own pre-built virtual environment which can be readily used. They are present in the `/opt/sambaflow/apps/` directory tree within each of the applications. 
+Each of the samples or application examples provided by SambaNova has its own pre-built virtual environment which can be readily used. They are present in the `/opt/sambaflow/apps/` directory tree within each of the applications. This directory contains all the different models currently supported with the Sambanova software stack.
 
+<!---
 Copy them to your `$HOME` directory
 ```bash
 cp -r /opt/sambaflow/apps/ ~
 ```
+--->
 
 ## Hands-on Example
 
@@ -43,12 +45,12 @@ cp -r /opt/sambaflow/apps/ ~
 
 For BERT example, understand flags used in the script. Change values for flags like `--ntasks` and measure its efect on performance. 
 
-
+<!---
 ## Additional Examples (Optional) 
 
 * [GPT 1.5B](./gpt15b.md)
 * [GPT 13B](./gpt15b.md)
-
+--->
 
 ## Additional Resources
 
