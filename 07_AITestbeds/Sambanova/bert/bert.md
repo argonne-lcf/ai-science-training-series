@@ -5,7 +5,7 @@
 
 ```bash
 git clone https://github.com/argonne-lcf/ai-science-training-series.git/
-cd ai-science-training-series/07_\ AITestbeds/Sambanova/bert/
+cd ai-science-training-series/07_AITestbeds/Sambanova/bert/
 chmod +x BertLarge.sh
 ```
 
