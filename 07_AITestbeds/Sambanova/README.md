@@ -16,12 +16,12 @@ Password: < MobilePASS+ code >
 
 Note: Use the ssh "-v" option in order to debug any ssh problems.
 
-Once you are on the login node, ssh to one of the sambanova nodes.
+Once you are on the login node, ssh to one of the sambanova compute node.
 ```bash
 ssh sn30-r1-h1       
 ```
 
-You can also ssh to `sn30-r1-h1`, `sn30-r1-h2`, `sn30-r2-h1`, `sn30-r2-h2`, `sn30-r3-h1`, `sn30-r3-h2`, `sn30-r4-h1`, `sn30-r4-h2`.
+It is also recommended to ssh to other compute nodes namely, `sn30-r1-h1`, `sn30-r1-h2`, `sn30-r2-h1`, `sn30-r2-h2`, `sn30-r3-h1`, `sn30-r3-h2`, `sn30-r4-h1`, `sn30-r4-h2`. Note: This avoids all your jobs being queued up on the same node.  
 
 ## Prerequisite: Copy Applications to `$HOME` directory
 
