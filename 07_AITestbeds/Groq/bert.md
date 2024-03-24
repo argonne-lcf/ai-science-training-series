@@ -8,9 +8,9 @@
 qsub -I -l walltime=1:00:00
 ```
 
-#### Go to directory with Resnet50 example. 
+#### Go to directory with BERT example. 
 ```bash
-cd ~groqflow/proof_points/natural_language_processing/bert
+cd <path-to-groqflow>/proof_points/natural_language_processing/bert
 ```
 
 #### Activate groqflow virtual Environment 
