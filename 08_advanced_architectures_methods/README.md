@@ -11,6 +11,6 @@ Intro to AI-Driven Science on Supercomputers @ ALCF 2024
 
  
  **Homework**
-Homework: What do you think is a particularly good use case for LLMs for science? How would you evaluate it?
+What do you think is a particularly good use case for LLMs for science? How would you evaluate it?
 Your answer does not need to be in paragraphs. When you submit your homework form, you can link to a file in your Github repo where you wrote your answer.
 
