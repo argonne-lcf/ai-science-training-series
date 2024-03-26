@@ -7,7 +7,7 @@ Intro to AI-Driven Science on Supercomputers @ ALCF 2024
 
 [Overview of LLM Evaluation](https://github.com/argonne-lcf/ai-science-training-series/blob/main/08_advanced_architectures_methods/LLM_Evaluation_Overview.pdf)
     
-
+[Link to breakout rooms forms](https://drive.google.com/drive/folders/1BN_aBlNU-7KVIcySntRtbkBXRGpkMSyz)
 
  
  **Homework**
