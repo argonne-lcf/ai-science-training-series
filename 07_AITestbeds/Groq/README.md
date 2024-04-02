@@ -30,23 +30,31 @@ bash Miniconda3-latest-Linux-x86_64.sh
 
 ```bash
 export PYTHON_VERSION=3.10.12
-conda create -n groqflow python=$PYTHON_VERSION
+conda create -n groqflow python=$PYTHON_VERSION -y
 conda activate groqflow
 ```
 
 ### Install Groqflow
 
 ```bash
-git clone https://github.com/groq/groqflow.git
-cd groqflow
+# Alter this if you have cloned groqflow to some other location.
+cd ~/groqflow
+if [ -d "groqflow.egg-info" ]; then rm -r groqflow.egg-info; fi
 pip install --upgrade pip
-pip install -e .
+pip list --format=freeze > frozen.txt
+pip install -r frozen.txt -e .
 pushd . 
 cd demo_helpers
+if [ -d "groqflow_demo_helpers.egg-info" ]; then rm -r groqflow_demo_helpers.egg-info; fi
 pip install -e .
 popd
+pip install soundfile
 ```
 
+### Use GroqFlow
+```bash
+conda activate groqflow
+```
 
 ## Job Queuing and Submission
 
