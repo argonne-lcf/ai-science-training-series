@@ -37,8 +37,9 @@ conda activate groqflow
 ### Install Groqflow
 
 ```bash
+git clone https://github.com/groq/groqflow.git
 # Alter this if you have cloned groqflow to some other location.
-cd ~/groqflow
+cd groqflow
 if [ -d "groqflow.egg-info" ]; then rm -r groqflow.egg-info; fi
 pip install --upgrade pip
 pip list --format=freeze > frozen.txt
