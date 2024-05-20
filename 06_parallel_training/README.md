@@ -1,7 +1,8 @@
 # Parallel Training Methods
 
 [Sam Foreman](https://samforeman.me)  
-_2024-03-12_
+Created: _2024-03-12_
+Updated: _2024-05-20_
 
 - **Recording**: 🎬 [Intro to AI Series: Parallel Training Methods for AI](https://www.youtube.com/watch?v=z1t_xmHTJeU)
 - Slides: [📊 Parallel Training Slides](https://saforem2.github.io/parallel-training-slides) \[[GitHub](https://github.com/saforem2/parallel-training-slides)\]
@@ -14,7 +15,7 @@ _2024-03-12_
 #### Wordplay @ ALCF
 
 
-1. Launch Job:
+1. 🧑‍💻 Launch Job:
 
     ```bash
     $ qsub -A ALCFAITP -q debug -l select=2 -l walltime=01:00:00,filesystems=eagle:home -I
@@ -23,40 +24,41 @@ _2024-03-12_
     ```
 
 
-2. Load conda:
+2. 🐍 Load conda:
 
     ```bash
-    $ module load conda/2023-10-04 ; conda activate base
+    $ module use /soft/modulefiles ; module load conda/2024-04-29
     ```
 
-3. Clone [`saforem2/wordplay`](https://github.com/saforem2/wordplay):
+3. ⬇️ Clone [`saforem2/wordplay`](https://github.com/saforem2/wordplay):
 
     ```bash
     $ git clone https://github.com/saforem2/wordplay
     $ cd wordplay
     ```
 
-4. Make + activate virtual-env:
+4. ➕ Make + activate virtual-env:
 
     ```bash
-    $ mkdir -p venvs/polaris/2023-10-04
-    $ python3 -m venv venvs/polaris/2023-10-04 --system-site-packages
-    $ source venvs/polaris/2023-10-04/bin/activate
+    $ VENV_DIR="venvs/$(echo $CONDA_PREFIX | tr '\/' '\t' | awk '{print $NF}')"
+    $ echo "Creating venv in: ${VENV_DIR}" && mkdir -p " ${VENV_DIR}"
+    $ python3 -m venv "${VENV_DIR}" --system-site-packages
+    $ source "${VENV_DIR}/bin/activate"
     ```
 
-6. Install [`wordplay`](https://github.com/saforem2/wordplay):
+6. 📦 Install [`wordplay`](https://github.com/saforem2/wordplay):
 
     ```bash
-    (2023-10-04) $ python3 -m pip install -e "."
+    $ python3 -m pip install -e "."
     ```
 
-7. Install [`ezpz`](https://github.com/saforem2/ezpz):
+7. 📦 Install [`ezpz`](https://github.com/saforem2/ezpz):
 
     ```bash
-    (2023-10-04) $ git clone https://github.com/saforem2/ezpz
-    (2023-10-04) $ python3 -m pip install -e "ezpz[dev]"
-    (2023-10-04) $ source ezpz/src/ezpz/bin/savejobenv > /tmp/savejobenv.log 2>&1  # || exit
-    (2023-10-04) $ source ezpz/src/ezpz/bin/getjobenv  # || exit
+    $ git clone https://github.com/saforem2/ezpz
+    $ python3 -m pip install -e "ezpz[dev]"
+    $ source ezpz/src/ezpz/bin/savejobenv > /tmp/savejobenv.log 2>&1  # || exit
+    $ source ezpz/src/ezpz/bin/getjobenv  # || exit
     ┌──────────────────────────────────────────────────────────────────
     │ [Hosts]:
     │     • [host:0] - x3006c0s13b1n0.hsn.cm.polaris.alcf.anl.gov
@@ -79,10 +81,10 @@ _2024-03-12_
     └──────────────────────────────────────────────────────────────────
     ```
 
-8. Prepare data:
+8. 📊 Prepare data:
 
     ```bash
-    (2023-10-04) $ python3 data/shakespeare_char/prepare.py
+    $ python3 data/shakespeare_char/prepare.py
     length of dataset in characters: 1,115,394
     all the unique characters:
      !$&',-.3:;?ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
@@ -91,12 +93,12 @@ _2024-03-12_
     val has 111,540 tokens
     ```
 
-9. Launch Training:
+9. 🚀 Launch Training:
 
 
     ```bash
-    (2023-10-04) $ cd src/wordplay
-    (2023-10-04) $ launch python3 __main__.py +experiment=shakespeare data=shakespeare train.backend=DDP train.max_iters=100 train.log_interval=5 train.compile=false
+    $ cd src/wordplay
+    $ launch python3 __main__.py +experiment=shakespeare data=shakespeare train.backend=DDP train.max_iters=100 train.log_interval=5 train.compile=false
     ```
 
     <details closed><summary><code>Output:</code></summary>
@@ -351,7 +353,7 @@ _2024-03-12_
 
     </details>
 
-10. \[**Homework**\] Submit either:
+10. 📝 \[**Homework**\] Submit either:
     - Link to W&B run, e.g.
 
         ```bash
