@@ -1,7 +1,7 @@
 # Parallel Training Methods
 
 [Sam Foreman](https://samforeman.me)  
-Created: _2024-03-12_
+Created: _2024-03-12_  
 Updated: _2024-05-20_
 
 - **Recording**: 🎬 [Intro to AI Series: Parallel Training Methods for AI](https://www.youtube.com/watch?v=z1t_xmHTJeU)
