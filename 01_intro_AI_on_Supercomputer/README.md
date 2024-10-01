@@ -1,4 +1,4 @@
-# Introduction AI on Supercomputers
+# Introduction to AI on Supercomputers
 
 [Huihuo Zheng](https://www.alcf.anl.gov/about/people/huihuo-zheng), Argonne Leandership Computing Facility, <huihuo.zheng@anl.gov>
 
