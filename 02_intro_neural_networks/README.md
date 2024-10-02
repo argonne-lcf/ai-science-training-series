@@ -32,17 +32,15 @@ Next week, we'll learn about other types of neural networks.
 We will also be working on Google Collab this week.
 
 ## Signing into Google Collab
-1. Sign in at 
-```https://colab.research.google.com/
-```
+1. Sign in at
+[https://colab.research.google.com/](https://colab.research.google.com/) 
 
 2. Go to `File -> Github` then search `argonne-lcf` then `argonne-lcf/ai-science-training-series` and pick `01_introduction_mnist.ipynb`.
 
 
-
 ## __References:__
 
-Here are Asad Khan's recommendations for further reading:
+Here are some recommendations for further reading:
 
 - [tensorflow.org tutorials](https://www.tensorflow.org/tutorials)
 - [keras.io tutorials](https://keras.io/examples/)
@@ -51,6 +49,4 @@ Here are Asad Khan's recommendations for further reading:
 - [PyTorch Challenge, Udacity](https://www.udacity.com/facebook-pytorch-scholarship)
 - [Deep Learning with Python](https://www.amazon.com/Deep-Learning-Python-Francois-Chollet/dp/1617294438)
 - [Keras Blog](https://blog.keras.io/)
-
-
-And a thorough hands-on textbook: [book](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) with [notebooks](https://github.com/ageron/handson-ml2).
+- [book](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) with [notebooks](https://github.com/ageron/handson-ml2).
