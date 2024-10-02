@@ -1,6 +1,6 @@
 # Introduction to Neural Networks 
 
-Author: Bethany Lusch (blusch@anl.gov), combining and adapting materials evolved over time by Marieme Ngom, Asad Khan, Prasanna Balaprakash, Taylor Childers, Corey Adams, Kyle Felker, and Tanwi Mallick 
+Author:Marieme Ngom (mngom@anl.gov), combining and adapting materials evolved over time by Bethany Lusch, Asad Khan, Prasanna Balaprakash, Taylor Childers, Corey Adams, Kyle Felker, and Tanwi Mallick 
 
 This tutorial covers the basics of neural networks (aka "deep learning"), which is a technique within machine learning that tends to outperform other techniques when dealing with a large amount of data. 
 
