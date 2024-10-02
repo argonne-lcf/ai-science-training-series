@@ -49,4 +49,4 @@ Here are some recommendations for further reading:
 - [PyTorch Challenge, Udacity](https://www.udacity.com/facebook-pytorch-scholarship)
 - [Deep Learning with Python](https://www.amazon.com/Deep-Learning-Python-Francois-Chollet/dp/1617294438)
 - [Keras Blog](https://blog.keras.io/)
-- [book](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) with [notebooks](https://github.com/ageron/handson-ml2).
+- [Hands-on ML book](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) with [notebooks](https://github.com/ageron/handson-ml2).
