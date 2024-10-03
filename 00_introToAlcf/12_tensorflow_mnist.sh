@@ -1,11 +1,12 @@
 #!/bin/bash -l
-#COBALT -q single-gpu
-#COBALT -t 10
-#COBALT -n 1
-#COBALT --attrs filesystems=home,theta-fs0
+#PBS -q by-gpu
+#PBS -l walltime=0:10:0
+#PBS -l select=1
+#PBS -l filesystems=eagle:home_fs
 
+# meant for running on Sophia
 
-module load conda/2022-07-01
+module load conda
 conda activate
 
 python 12_tensorflow_mnist.py
