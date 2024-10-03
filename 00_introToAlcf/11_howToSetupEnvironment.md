@@ -12,9 +12,10 @@ Theta uses [Modules](https://modules.readthedocs.io/en/latest/) to control the l
 
 Let's take Python as an example. If I want to run a Python script, I need to type `python script_name.py`. However, Bash needs to know where to find the `python` executable. If you have just logged into Theta and type `which python` you might notice Bash finds it here `/usr/bin/python` and running `python --version` tells you that this is Python v2.7.18. We want to use a more modern Python for our example so we will run:
 ```bash
-module load conda/2021-09-22
+module load conda
+conda activate
 ```
-This is a Python distribution installed in September 2021, so it's up to date. If you run `which python` again, you'll find the Python executable is now something similar to `/lus/theta-fs0/software/datascience/conda/conda/2021-09-22/mconda3/bin/python` and the version is v3.8.10. There are many modules installed on Theta, but we will focus on using this Python environment.
+This is will load our latest Python distribution. If you run `which python` again, you'll find the Python executable is now something similar to `/lus/theta-fs0/software/datascience/conda/conda/<date-of-build>/mconda3/bin/python. There are typically multiple Conda modules installed on our machines, which you can view using `module avail conda`.
 
 It is important to know that when you login to any supercomputer, you land on a _login_ node which typically has standard CPUs on it while the _worker_ nodes will have a different configuration, including the high-speed network. This means software must be compiled carefully to run on the _worker_ node. This may mean that if you compile code for the _worker_ node, you may also not be able to run it on the _login_ node without getting hard to interpret errors. Therefore, if you need to compile software, we recommend doing so on the _worker_ node. You can do this using an _interactive_ job which will be covered in the job submission section.
 
