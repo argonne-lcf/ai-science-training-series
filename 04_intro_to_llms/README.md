@@ -4,7 +4,7 @@ Author: Archit Vasan , including materials on LLMs by Varuni Sastri and Carlo Gr
 
 Inspiration from the blog posts "The Illustrated Transformer" and "The Illustrated GPT2" by Jay Alammar, highly recommended reading.
 
-This tutorial covers the some fundamental concepts necessary to to study of large language models (LLMs).  The goal is to set the table for Archit Vasan's exploration of LLM pipelines, next week.
+This tutorial covers the some fundamental concepts necessary to to study of large language models (LLMs).
 
 ## Brief overview
 * Scientific applications for language models
