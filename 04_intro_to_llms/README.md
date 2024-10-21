@@ -14,10 +14,10 @@ This tutorial covers the some fundamental concepts necessary to to study of larg
 * Pipeline using HuggingFace
 * Model loading
 
-## Environment Setup
+## Sophia Setup
 1. If you are using ALCF, first log in. From a terminal run the following command:
 ```
-ssh username@polaris.alcf.anl.gov
+ssh username@sophia.alcf.anl.gov
 ```
 
 2. Although we already cloned the repo before, you'll want the updated version.  To be reminded of the instructions for syncing your fork, click [here](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/03_githubHomework.md).
@@ -29,7 +29,16 @@ ssh username@polaris.alcf.anl.gov
     1. select *Kernel* in the menu bar
     2. select *Change kernel...*
     3. select *datascience/conda-2024-08-08* from the drop-down menu
+  
+## Google colab setup
+In case you have trouble accessing Sophia, all notebook material can be run in google colab.
 
+Just:
+1. Go to this link: [Colab](https://colab.research.google.com/#scrollTo=Wf5KrEb6vrkR)
+2. Click on `File/Open notebook`
+3. Nagivate to the `GitHub` tab and find `argonne-lcf/ai-science-training-series`
+4. Click on `04_intro_to_llms/IntroLLMs.ipynb`
+   
 ## __References:__
 
 I strongly recommend reading ["The Illustrated Transformer"](https://jalammar.github.io/illustrated-transformer/) by Jay AlammarAlammar also has a useful post dedicated more generally to Sequence-to-Sequence modeling ["Visualizing A Neural Machine Translation Model (Mechanics of Seq2seq Models With Attention)](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/), which illustrates the attention mechanism in the context of a more generic language translation model.
