@@ -4,7 +4,9 @@
 ## Logging in
 Login via: https://jupyter.alcf.anl.gov/
 
-Select "Login ThetaGPU" and use your ALCF credentials and Multi-Factor Authentication.
+Select "Login Polaris" and use your ALCF credentials and Multi-Factor Authentication.
+
+**Note: some of the images below show "ThetaGPU" being used, however, similar instructions apply to "Polaris" or "Sophia".**
 
 ![Login GIF](img/jupyter_login_01.gif)
 
@@ -13,7 +15,7 @@ Select "Login ThetaGPU" and use your ALCF credentials and Multi-Factor Authentic
 
 You'll want to set your server options to the following:
 * job profile: ThetaGPU Compute Node
-* ThetaGPU Queue: single-gpu
+* Sophia Queue: by-gpu
 * Project List: ALCFAITP
 * Runtime: can be 5 to 60 minutes
 

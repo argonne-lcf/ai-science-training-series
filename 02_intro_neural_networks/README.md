@@ -1,6 +1,6 @@
 # Introduction to Neural Networks 
 
-Author: Bethany Lusch (blusch@anl.gov), combining and adapting materials evolved over time by Marieme Ngom, Asad Khan, Prasanna Balaprakash, Taylor Childers, Corey Adams, Kyle Felker, and Tanwi Mallick 
+Author: Marieme Ngom (mngom@anl.gov), combining and adapting materials evolved over time by Bethany Lusch, Asad Khan, Prasanna Balaprakash, Taylor Childers, Corey Adams, Kyle Felker, and Tanwi Mallick 
 
 This tutorial covers the basics of neural networks (aka "deep learning"), which is a technique within machine learning that tends to outperform other techniques when dealing with a large amount of data. 
 
@@ -29,40 +29,18 @@ We'll start with the MNIST problem in this notebook:
 
 Next week, we'll learn about other types of neural networks. 
 
+We will also be working on Google Collab this week.
 
+## Signing into Google Collab
+1. Sign in at
+[https://colab.research.google.com/](https://colab.research.google.com/) 
 
-
-## Environment Setup
-1. If you are using ALCF, first log in. From a terminal run the following command:
-```
-ssh username@polaris.alcf.anl.gov
-```
-
-2. Although we already cloned the repo before, you'll want the updated version. To be reminded of the instructions for syncing your fork, click [here](https://github.com/argonne-lcf/ai-science-training-series/blob/main/00_introToAlcf/03_githubHomework.md).
-
-3. We will be downloading data in our Jupyter notebook, which runs on hardware that by default has no Internet access. From the terminal on Polaris, edit the ~/.bash_profile file to have these proxy settings:
-```
-export HTTP_PROXY="http://proxy-01.pub.alcf.anl.gov:3128"
-export HTTPS_PROXY="http://proxy-01.pub.alcf.anl.gov:3128"
-export http_proxy="http://proxy-01.pub.alcf.anl.gov:3128"
-export https_proxy="http://proxy-01.pub.alcf.anl.gov:3128"
-export ftp_proxy="http://proxy-01.pub.alcf.anl.gov:3128"
-export no_proxy="admin,polaris-adminvm-01,localhost,*.cm.polaris.alcf.anl.gov,polaris-*,*.polaris.alcf.anl.gov,*.alcf.anl.gov"
-```
-
-4. Now that we have the updated notebooks, we can open them. If you are using ALCF JupyterHub or Google Colab, you can be reminded of the steps [here](https://github.com/argonne-lcf/ai-science-training-series/blob/main/01_intro_AI_on_Supercomputer/01_linear_regression_sgd.ipynb). 
-
-5. Reminder: Change the notebook's kernel to `datascience/conda-2023-01-10` (you may need to change kernel each time you open a notebook for the first time):
-
-    1. select *Kernel* in the menu bar
-    2. select *Change kernel...*
-    3. select *datascience/conda-2023-01-10* from the drop-down menu
-
+2. Go to `File -> Github` then search `argonne-lcf` then `argonne-lcf/ai-science-training-series` and pick `01_introduction_mnist.ipynb`.
 
 
 ## __References:__
 
-Here are Asad Khan's recommendations for further reading:
+Here are some recommendations for further reading:
 
 - [tensorflow.org tutorials](https://www.tensorflow.org/tutorials)
 - [keras.io tutorials](https://keras.io/examples/)
@@ -71,6 +49,4 @@ Here are Asad Khan's recommendations for further reading:
 - [PyTorch Challenge, Udacity](https://www.udacity.com/facebook-pytorch-scholarship)
 - [Deep Learning with Python](https://www.amazon.com/Deep-Learning-Python-Francois-Chollet/dp/1617294438)
 - [Keras Blog](https://blog.keras.io/)
-
-
-And Bethany's personal favorite: a thorough hands-on textbook: [book](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) with [notebooks](https://github.com/ageron/handson-ml2).
+- [Hands-on ML book](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) with [notebooks](https://github.com/ageron/handson-ml2).
