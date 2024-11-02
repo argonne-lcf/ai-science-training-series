@@ -24,7 +24,7 @@ ssh username@sophia.alcf.anl.gov
 
 3. Now that we have the updated notebooks, we can open them. If you are using ALCF JupyterHub or Google Colab, you can be reminded of the steps [here](https://github.com/argonne-lcf/ai-science-training-series/blob/main/01_intro_AI_on_Supercomputer/01_linear_regression_sgd.ipynb). 
 
-5. Reminder: Change the notebook's kernel to `datascience/conda-2023-01-10` (you may need to change kernel each time you open a notebook for the first time):
+5. Reminder: Change the notebook's kernel to `datascience/conda-2024-08-08` (you may need to change kernel each time you open a notebook for the first time):
 
     1. select *Kernel* in the menu bar
     2. select *Change kernel...*
