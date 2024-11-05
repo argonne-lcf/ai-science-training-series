@@ -1,7 +1,7 @@
 # Parallel Training Methods for AI
 
-@ [Intro to AI-driven Science on Supercomputers: A Student Training Series](https://www.alcf.anl.gov/alcf-ai-science-training-series)
-by [Sam Foreman](https://samforeman.me)  
+@ [Intro to AI-driven Science on Supercomputers: A Student Training Series](https://www.alcf.anl.gov/alcf-ai-science-training-series)  
+by [Sam Foreman](https://samforeman.me)
 
 - Slides: <https://samforeman.me/talks/ai-for-science-2024/slides>
   - HTML version: <https://samforeman.me/talks/ai-for-science-2024>
