@@ -12,7 +12,7 @@ _2024-11-05_
 1. Submit interactive job:
 
     ```bash
-    qsub -A ALCFAITP -q by-node -l select=1 -l walltime=01:00:00,filesystems=eagle:home
+    qsub -A ALCFAITP -q by-node -l select=1 -l walltime=01:00:00,filesystems=eagle:home -I
     ```
 
 1. On Sophia:
