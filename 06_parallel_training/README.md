@@ -92,3 +92,22 @@ _2024-11-05_
         train.log_interval=10 \
         train.compile=false
     ```
+
+## 🎒 Homework
+
+Submit _proof_ that you were able to successfully follow the above instructions and launch a distributed data parallel training run.
+
+Where _proof_ can be any of:
+
+- The contents printed out to your terminal during the run
+- A path to a logfile containing the output from a run on the ALCF filesystems
+- A screenshot of:
+  - the text printed out from the run
+  - a graph from the W&B Run
+  - anything that shows that you clearly were able to run the example
+- url to a W&B Run or [W&B Report](https://api.wandb.ai/links/aurora_gpt/7du35js1)
+- etc.
+
+
+
+<!--[^gpu]: If you do not have access to the ALCF systems, you can install [OpenMPI](https://docs.open-mpi.org/en/v5.0.x/) and run across multiple CPUs as well-->
