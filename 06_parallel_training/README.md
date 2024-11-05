@@ -90,5 +90,5 @@ Sam Foreman
         model.block_size=1024 \
         train.max_iters=1000 \
         train.log_interval=10 \
-        train.compile=false \
+        train.compile=false
     ```
