@@ -1,7 +1,7 @@
-# Machine Learning and Foundation Models at Scale
+# Parallel Training Methods for AI
 
-Sam Foreman  
-[Intro to AI-driven Science on Supercomputers: A Student Training Series](https://www.alcf.anl.gov/alcf-ai-science-training-series)
+@ [Intro to AI-driven Science on Supercomputers: A Student Training Series](https://www.alcf.anl.gov/alcf-ai-science-training-series)
+by [Sam Foreman](https://samforeman.me)  
 
 - Slides: <https://samforeman.me/talks/ai-for-science-2024/slides>
   - HTML version: <https://samforeman.me/talks/ai-for-science-2024>
@@ -13,7 +13,6 @@ Sam Foreman
     ```bash
     qsub -A argonne_tpc -q by-node -l select=1 -l walltime=01:00:00,filesystems=eagle:home
     ```
-
 
 1. On Sophia:
 
