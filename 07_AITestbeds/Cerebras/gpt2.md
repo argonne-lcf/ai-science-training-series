@@ -2,12 +2,12 @@
 
 * Go to directory with the bert example. 
   ```bash
-  cd ~/R_2.0.3/modelzoo/transformers/pytorch/gpt2
+  cd ~/R_2.3.0/modelzoo/transformers/pytorch/gpt2
   ```
 
 * Activate PyTroch virtual Environment 
   ```bash
-  source ~/R_2.0.3/venv_cerebras_pt/bin/activate
+  source ~/R_2.3.0/venv_cerebras_pt/bin/activate
   ```
 
 * Modify config file path to datasets on the system.
@@ -33,14 +33,14 @@
   --params configs/params_gpt2_small.yaml \
   --num_workers_per_csx=1 --mode train \
   --model_dir $MODEL_DIR --mount_dirs /home/ /software/ \
-  --python_paths /home/$(whoami)/R_2.0.3/modelzoo/ \
+  --python_paths /home/$(whoami)/R_2.3.0/modelzoo/ \
   --compile_dir $(whoami) |& tee mytest.log
   ```
   <details>
     <summary>Sample Output</summary>
     
     ```bash
-  $ python run.py CSX --job_labels name=gpt2_pt  --params configs/params_gpt2_small.yaml --num_workers_per_csx=1 --mode train --model_dir $MODEL_DIR --mount_dirs /home/ /software/ --python_paths /home/$(whoami)/R_2.0.3/modelzoo/ --compile_dir $(whoami) |& tee mytest.log
+  $ python run.py CSX --job_labels name=gpt2_pt  --params configs/params_gpt2_small.yaml --num_workers_per_csx=1 --mode train --model_dir $MODEL_DIR --mount_dirs /home/ /software/ --python_paths /home/$(whoami)/R_2.3.0/modelzoo/ --compile_dir $(whoami) |& tee mytest.log
   Initializing module Gpt2Model.accuracy_metric: [00:02, note=Initializing parameters]2024-03-14 03:18:49,076 WARNING:   LinearLR got 1 unexpected and unused parameters: ['alpha'].
   Please ensure that you specified the correct parameters:
   LinearLR(optimizer: torch.optim.optimizer.Optimizer, initial_learning_rate: float = 0.0006, end_learning_rate: float = 0.0, total_iters: int = 150000, cycle: bool = False)

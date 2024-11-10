@@ -16,18 +16,15 @@ ssh ALCFUserID@cerebras.ai.alcf.anl.gov
 ### PyTorch virtual environment
 
 ```bash
-#Make your home directory navigable
-chmod a+xr ~/
-mkdir ~/R_2.1.1
-chmod a+x ~/R_2.1.1/
-cd ~/R_2.1.1
+mkdir ~/R_2.3.0
+cd ~/R_2.3.0
 # Note: "deactivate" does not actually work in scripts.
 deactivate
 rm -r venv_cerebras_pt
 /software/cerebras/python3.8/bin/python3.8 -m venv venv_cerebras_pt
 source venv_cerebras_pt/bin/activate
 pip install --upgrade pip
-pip install cerebras_pytorch==2.1.1
+pip install cerebras_pytorch==2.3.0
 ```
 
 ## Clone Cerebras modelzoo
@@ -36,18 +33,18 @@ We use an example from [Cerebras Modelzoo repository](https://github.com/Cerebra
 
 * Clone the modezoo repository.<br>
 ```bash
-mkdir ~/R_2.1.1
-cd ~/R_2.1.1
+mkdir ~/R_2.3.0
+cd ~/R_2.3.0
 git clone https://github.com/Cerebras/modelzoo.git
 cd modelzoo
 git tag
-git checkout Release_2.1.1    
+git checkout Release_2.3.0
 ```
 * Install requirements for modelzoo
-    ```bash
-    cd ~/R_2.1.1/modelzoo
-    pip install -r requirements.txt 
-    ```
+```bash
+cd ~/R_2.3.0/modelzoo
+pip install -r requirements.txt 
+```
 
 ## Job Queuing and Submission
 
@@ -64,16 +61,17 @@ See `csctl -h` for more options.
 
 ## Hands-on Example
 
-* [BERT](./bert-large.md)
-
-## Homework
-
-Run BERT example with different batch sizes like 512, 2048 and observe the performance difference.  
+* [GPT-2](./gpt2.md)
 
 ### Additional Examples (Optional)
 
 * [GPT-J](./gptj.md)
-* [GPT-2](./gpt2.md)
+* [BERT](./bert-large.md)
+
+
+<!-- ## Homework
+
+Run BERT example with different batch sizes like 512, 2048 and observe the performance difference.   -->
 
 # Useful Resources 
 

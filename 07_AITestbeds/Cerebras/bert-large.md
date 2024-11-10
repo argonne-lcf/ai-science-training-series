@@ -2,7 +2,7 @@
 
 * Go to the directory with the BERT example. 
   ```bash
-  cd ~/R_2.1.1/modelzoo/modelzoo/transformers/pytorch/bert
+  cd ~/R_2.3.0/modelzoo/modelzoo/transformers/pytorch/bert
   ```
 
 * Activate PyTorch virtual Environment 
@@ -17,7 +17,7 @@
   ```
 * Note: change the path of the vocabulary file referenced in configs/bert_large_MSL128_sampleds.yaml to 
   ``` bash
-  /home/$(whoami)/R_2.1.1/modelzoo/modelzoo/transformers/vocab/google_research_uncased_L-12_H-768_A-12.txt
+  /home/$(whoami)/R_2.3.0/modelzoo/modelzoo/transformers/vocab/google_research_uncased_L-12_H-768_A-12.txt
   ```
 
 * Run Training Job
@@ -30,7 +30,7 @@
   --params configs/bert_large_MSL128_sampleds.yaml \
   --num_workers_per_csx=1 --mode train \
   --model_dir $MODEL_DIR --mount_dirs /home/ /software/ \
-  --python_paths /home/$(whoami)/R_2.1.1/modelzoo/ \
+  --python_paths /home/$(whoami)/R_2.3.0/modelzoo/ \
   --compile_dir $(whoami) |& tee mytest.log
   ```
   <details>
