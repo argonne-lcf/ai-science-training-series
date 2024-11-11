@@ -72,21 +72,21 @@ e.g. `srun --ipus=1 python mnist_poptorch.py`
 
 ## Hands-on Example
 
-* [BERT](./bert.md)
+* [GPT2](./gpt2.md)
+> Note: Precompiled artifacts are present at the `/software/graphcore/projects/models_compile` location for the above models.
+copy them to your `~/tmp` and set `export POPTORCH_CACHE_DIR=~/tmp` to skip the compile process.
 
-## Homework
+<!-- ## Homework
 
-Run MNIST example by changing values of the input parameters like batch-size, learning rate and number of epochs trained and observe and report the performance implications. 
+Run MNIST example by changing values of the input parameters like batch-size, learning rate and number of epochs trained and observe and report the performance implications.  -->
 
 ## Additional Examples (Optional)
 
-* [GPT2](./gpt2.md)
 * [MNIST](./mnist.md)
+* [BERT](./bert.md)
 
-```bash
-Note: Precompiled artifacts are present at the /software/graphcore/projects/models_compile location for the above models.
-copy them to your ~/tmp and set export POPTORCH_CACHE_DIR=~/tmp to skip the compile process.
-```
+
+
 ## Profiling (Optional) 
 
 We will use Pop Vision Graph Analyzer and System Analyzer to produce profiles. 

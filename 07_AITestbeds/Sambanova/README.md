@@ -23,7 +23,17 @@ ssh sn30-r1-h1
 
 It is also recommended to ssh to other compute nodes namely, `sn30-r1-h1`, `sn30-r1-h2`, `sn30-r2-h1`, `sn30-r2-h2`, `sn30-r3-h1`, `sn30-r3-h2`, `sn30-r4-h1`, `sn30-r4-h2`. Note: This avoids all your jobs being queued up on the same node.  
 
-## Prerequisite: Copy Applications to `$HOME` directory
+
+
+## Hands-on Example
+
+* [GPT-2](./gpt.md)
+
+## Additonal Examples
+
+* [BERT](./bert/bert.md)
+
+##### Copy Applications to `$HOME` directory
 
 Sambanova software stack and associated environmental variables are automatically setup at login for a SN30 node. 
 
@@ -36,21 +46,10 @@ cp -r /opt/sambaflow/apps/ ~
 ```
 --->
 
-## Hands-on Example
+<!-- ## Homework
 
-* [BERT](./bert/bert.md)
+For BERT example, understand flags used in the script. Change values for flag `--ntasks` and measure its effect on performance.  -->
 
-
-## Homework
-
-For BERT example, understand flags used in the script. Change values for flag `--ntasks` and measure its effect on performance. 
-
-<!---
-## Additional Examples (Optional) 
-
-* [GPT 1.5B](./gpt15b.md)
-* [GPT 13B](./gpt15b.md)
---->
 
 ## Additional Resources
 
