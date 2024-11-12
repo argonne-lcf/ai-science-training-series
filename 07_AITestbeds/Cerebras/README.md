@@ -62,7 +62,7 @@ See `csctl -h` for more options.
 ## Hands-on Example
 
 
-* [GPT-J](./gptj.md)
+* [GPT-J](./gpt-j.md)
 
 ### Additional Examples (Optional)
 
