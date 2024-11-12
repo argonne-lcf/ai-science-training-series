@@ -61,11 +61,12 @@ See `csctl -h` for more options.
 
 ## Hands-on Example
 
-* [LLAMA2-7B](./llama2-7b.md)
+
+* [GPT-J](./gptj.md)
 
 ### Additional Examples (Optional)
 
-* [GPT-J](./gptj.md)
+* [LLAMA2-7B](./llama2-7b.md)
 * [BERT](./bert-large.md)
 
 
