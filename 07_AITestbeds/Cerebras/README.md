@@ -69,9 +69,9 @@ See `csctl -h` for more options.
 * [BERT](./bert-large.md)
 
 
-<!-- ## Homework
+## Homework
 
-Run BERT example with different batch sizes like 512, 2048 and observe the performance difference.   -->
+Run [BERT example](./bert-large.md) with different batch sizes like 512, 2048 and observe the performance difference. Submit proof (contents printed out to your terminal, path to a logfile or screenshot) that you were able to successfully follow the instructions and execute. 
 
 # Useful Resources 
 

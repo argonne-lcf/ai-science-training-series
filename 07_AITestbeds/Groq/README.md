@@ -118,9 +118,9 @@ Other flags that can be used
 
 * [GPT-2](./gpt2.md)
 
-<!-- ## Homework
+## Homework
 
-Run BERT example with custom input instead of dummy input.  -->
+Run [MiniLM](./minilm.md) example with custom input instead of dummy input. Submit proof (contents printed out to your terminal, path to a logfile or screenshot) that you were able to successfully follow the instructions and execute.
 
 ## Additional Examples (Optional)
 

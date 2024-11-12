@@ -76,9 +76,9 @@ e.g. `srun --ipus=1 python mnist_poptorch.py`
 > Note: Precompiled artifacts are present at the `/software/graphcore/projects/models_compile` location for the above models.
 copy them to your `~/tmp` and set `export POPTORCH_CACHE_DIR=~/tmp` to skip the compile process.
 
-<!-- ## Homework
+## Homework
 
-Run MNIST example by changing values of the input parameters like batch-size, learning rate and number of epochs trained and observe and report the performance implications.  -->
+Run [MNIST example](./mnist.md) by changing values of the input parameters like batch-size, learning rate and number of epochs trained and observe and report the performance implications. Submit proof (contents printed out to your terminal, path to a logfile or screenshot) that you were able to successfully follow the instructions and execute.
 
 ## Additional Examples (Optional)
 

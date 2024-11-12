@@ -46,9 +46,9 @@ cp -r /opt/sambaflow/apps/ ~
 ```
 --->
 
-<!-- ## Homework
+## Homework
 
-For BERT example, understand flags used in the script. Change values for flag `--ntasks` and measure its effect on performance.  -->
+For [BERT example](./bert/), understand flags used in the script. Change values for flag `--ntasks` and measure its effect on performance. Submit proof (contents printed out to your terminal, path to a logfile or screenshot) that you were able to successfully follow the instructions and execute.
 
 
 ## Additional Resources
