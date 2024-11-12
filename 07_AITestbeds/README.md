@@ -9,8 +9,7 @@ We will cover an overview of the AI accelerators landscape with a focus on Samba
 
 ## Slides
 
-* [Intro to AI Series: AI Accelerators]() 
-    > Slides will be uploaded shortly after the talk.
+* [Intro to AI Series: AI Accelerators](./AI_Accelerators.pdf) 
 
 ## Hands-On Sessions
 
