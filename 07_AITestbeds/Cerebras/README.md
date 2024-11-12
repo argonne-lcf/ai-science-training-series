@@ -61,7 +61,7 @@ See `csctl -h` for more options.
 
 ## Hands-on Example
 
-* [GPT-2](./gpt2.md)
+* [LLAMA2-7B](./llama2-7b.md)
 
 ### Additional Examples (Optional)
 

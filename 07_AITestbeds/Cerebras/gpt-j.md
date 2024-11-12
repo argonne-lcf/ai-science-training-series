@@ -2,12 +2,12 @@
 
 * Go to the directory with the GPT-J example. 
   ```bash
-  cd ~/R_2.3.0/modelzoo/modelzoo/transformers/pytorch/gptj
+  cd ~/R_2.3.0/modelzoo/src/cerebras/modelzoo/models/nlp/gptj
   ```
 
 * Activate PyTroch virtual Environment 
   ```bash
-  source ~/R_2.3.0/venv_pt/bin/activate
+  source ~/R_2.3.0/venv_cerebras_pt/bin/activate
   ```
 
 * Replace config file with correct configurations file. 
