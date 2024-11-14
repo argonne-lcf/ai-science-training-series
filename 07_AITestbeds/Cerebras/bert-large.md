@@ -15,10 +15,7 @@
   ```bash
   cp /software/cerebras/dataset/bert_large/bert_large_MSL128_sampleds.yaml configs/bert_large_MSL128_sampleds.yaml
   ```
-* Note: change the path of the vocabulary file referenced in configs/bert_large_MSL128_sampleds.yaml to 
-  ``` bash
-  /home/$(whoami)/R_2.3.0/modelzoo/modelzoo/transformers/vocab/google_research_uncased_L-12_H-768_A-12.txt
-  ```
+
 
 * Run Training Job
   ```bash
