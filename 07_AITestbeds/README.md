@@ -9,7 +9,8 @@ We will cover an overview of the AI accelerators landscape with a focus on Samba
 
 ## Slides
 
-* [Intro to AI Series: AI Accelerators](./AI_Accelerators.pdf) 
+* [Intro to AI Series: AI Accelerators]() 
+    > Slides will be uploaded shortly after the talk.
 
 ## Hands-On Sessions
 
@@ -35,6 +36,33 @@ You need to submit either Theory Homework or Hands-on Homework.
 * Identify the primary differences between these AI accelerator systems in terms of their architecture and programming models.
 * Based on hands-on sessions, describe a typical workflow for refactoring an AI model to run on one of ALCF's AI testbeds (e.g., SambaNova or Cerebras). What tools or software stacks are typically used in this process?
 * Give an example of a project that would benefit from AI accelerators and why?
+
+
+<details>
+<summary>Theory Homework Solutions</summary>
+
+1. **What are the key architectural features that make these systems suitable for AI workloads?**
+   The key architectural features that make AI accelerators like SambaNova, Cerebras, Graphcore, and Groq systems suitable for AI workloads are:
+   1. Specialized Hardware Design to accelerate matrix multiplications and tensor operations.
+   2. High Memory Bandwidth and larger amount of on-chip memory help to accelerate memory intensive AI worklaods. 
+   3. Scalability and Parallelism: Parallel processing of data across many cores or processing units, which significantly speeds up training and inference tasks
+
+
+2. **Identify the primary differences between these AI accelerator systems in terms of their architecture and programming models.**
+   
+    1.  Sambanovas Reconfigurable Dataflow Unit (RDU) allows for flexible dataflow processing that features a multi-tiered memory architecture with terabytes of addressable memory for efficinet handling of large data. 
+    2.  Cerebras Wafer-Scale Engine (WSE) consists of processing elements (PEs) with its own memory and operates independently. Fine-grained dataflow control mechanism within its PEs make the system highly parallel and scalable.
+    3. Graphcore’s Intelligence Processing Unit (IPU) consists of many interconnected processing tiles, each with its own core and local memory. The IPU operates in two phases—computation and communication—using Bulk Synchronous Parallelism (BSP).
+    4. Groq’s Tensor Streaming Processor (TSP) architecture focuses on deterministic execution which s particularly advantageous for inference tasks where low latency is critical.
+
+
+3. **Based on hands-on sessions, describe a typical workflow for refactoring an AI model to run on one of ALCF's AI testbeds (e.g., SambaNova or Cerebras). What tools or software stacks are typically used in this process?**
+
+    Typical worksflow involves using vendor specific implementation of ML framework like PyTorch to port model. Refer to following documentation examples to understand details of workflow. 
+    * [PyTroch to PopTroch](https://docs.graphcore.ai/projects/poptorch-user-guide/en/latest/pytorch_to_poptorch.html)
+    * [Sambaflow Model Conversion](https://docs.sambanova.ai/developer/latest/porting-overview.html)
+</details>
+
 
 ##### Hands-on Homework
 
