@@ -2,12 +2,12 @@
 
 * Go to the directory with the BERT example. 
   ```bash
-  cd ~/R_2.3.0/modelzoo/modelzoo/transformers/pytorch/bert
+  cd ~/R_2.3.0/modelzoo/src/cerebras/modelzoo/models/nlp/bert
   ```
 
 * Activate PyTorch virtual Environment 
   ```bash
-  source ~/R_2.0.3/venv_cerebras_pt/bin/activate
+  source ~/R_2.3.0/venv_cerebras_pt/bin/activate
   ```
 
 * Replace the config file with the correct configurations file. 
@@ -15,10 +15,7 @@
   ```bash
   cp /software/cerebras/dataset/bert_large/bert_large_MSL128_sampleds.yaml configs/bert_large_MSL128_sampleds.yaml
   ```
-* Note: change the path of the vocabulary file referenced in configs/bert_large_MSL128_sampleds.yaml to 
-  ``` bash
-  /home/$(whoami)/R_2.3.0/modelzoo/modelzoo/transformers/vocab/google_research_uncased_L-12_H-768_A-12.txt
-  ```
+
 
 * Run Training Job
   ```bash

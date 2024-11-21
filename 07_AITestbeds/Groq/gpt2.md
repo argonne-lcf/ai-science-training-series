@@ -14,8 +14,8 @@ qsub -I -l walltime=1:00:00
 
 #### Go to directory with GPT2 example. 
 ```bash
-git clone git@github.com:argonne-lcf/ALCF_Hands_on_HPC_Workshop.git
-cd aiTestbeds/Groq
+git clone git@github.com:argonne-lcf/ai-science-training-series.git
+cd 07_AITestbeds/Groq
 ```
 
 #### Activate groqflow virtual Environment 

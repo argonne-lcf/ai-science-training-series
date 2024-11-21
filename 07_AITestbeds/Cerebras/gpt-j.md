@@ -2,12 +2,12 @@
 
 * Go to the directory with the GPT-J example. 
   ```bash
-  cd ~/R_2.3.0/modelzoo/modelzoo/transformers/pytorch/gptj
+  cd ~/R_2.3.0/modelzoo/src/cerebras/modelzoo/models/nlp/gptj
   ```
 
 * Activate PyTroch virtual Environment 
   ```bash
-  source ~/R_2.3.0/venv_pt/bin/activate
+  source ~/R_2.3.0/venv_cerebras_pt/bin/activate
   ```
 
 * Replace config file with correct configurations file. 
@@ -19,7 +19,7 @@
   ```bash
   export MODEL_DIR=model_dir_gptj_pytorch
   if [ -d "$MODEL_DIR" ]; then rm -Rf $MODEL_DIR; fi
-  python run.py CSX --job_labels name=gptj_pt --params configs/params_gptj_6B_sampleds.yaml --num_workers_per_csx=1 --mode train --model_dir $MODEL_DIR --mount_dirs /home/ /software/ --python_paths /home/$(whoami)/R_1.9.2/modelzoo/ --compile_dir $(whoami) |& tee mytest.log
+  python run.py CSX --job_labels name=gptj_pt --params configs/params_gptj_6B_sampleds.yaml --num_workers_per_csx=1 --mode train --model_dir $MODEL_DIR --mount_dirs /home/ /software/ --python_paths /home/$(whoami)/R_2.3.0/modelzoo/ --compile_dir $(whoami) |& tee mytest.log
   ```
   <details>
     <summary>Sample Output (last section)</summary>

@@ -23,7 +23,15 @@ ssh sn30-r1-h1
 
 It is also recommended to ssh to other compute nodes namely, `sn30-r1-h1`, `sn30-r1-h2`, `sn30-r2-h1`, `sn30-r2-h2`, `sn30-r3-h1`, `sn30-r3-h2`, `sn30-r4-h1`, `sn30-r4-h2`. Note: This avoids all your jobs being queued up on the same node.  
 
+## Job Queuing and Submission
 
+SambaNova uses Slurm for job submission and queueing. Below are some of the important commands for using Slurm.
+
+* `srun` : can be used to run individual Python scripts in parallel with other scripts on a cluster managed by Slurm.
+* `sbatch` :jobs can be submitted to the Slurm workload manager through a batch script by using the sbatch command.
+* `squeue` : command provides information about jobs located in the Slurm scheduling queue.
+* `sinfo` : is used to view partition and node information for a system running Slurm.
+* `scancel` : is used to signal or cancel jobs, job arrays, or job steps.
 
 ## Hands-on Example
 

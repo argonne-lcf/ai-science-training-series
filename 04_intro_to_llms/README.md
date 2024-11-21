@@ -42,3 +42,7 @@ Just:
 ## __References:__
 
 I strongly recommend reading ["The Illustrated Transformer"](https://jalammar.github.io/illustrated-transformer/) by Jay AlammarAlammar also has a useful post dedicated more generally to Sequence-to-Sequence modeling ["Visualizing A Neural Machine Translation Model (Mechanics of Seq2seq Models With Attention)](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/), which illustrates the attention mechanism in the context of a more generic language translation model.
+
+## Homework solutions
+Solutions to homework problems are posted in IntroLLMHWSols.ipynb
+To see BertViz attention mechanisms, simply open the notebook in google colab.
