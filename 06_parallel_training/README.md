@@ -111,3 +111,7 @@ Where _proof_ can be any of:
 
 
 <!--[^gpu]: If you do not have access to the ALCF systems, you can install [OpenMPI](https://docs.open-mpi.org/en/v5.0.x/) and run across multiple CPUs as well-->
+
+## Homework Submission
+
+- Link to the W&B Run of Wordplay in Sophia. [W&B Report] (https://wandb.ai/jsgs/WordPlay/reports/WordPlay-on-Sophia-Run--VmlldzoxMDI4Mjk4NQ)
