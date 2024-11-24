@@ -1,8 +1,18 @@
-Graphcore example:
+Graphcore HW:
 
-97.62%
+Increasing from 5 to 10 epochs allowed the model to continue to train, increasing the accuracy on the test set--it is not overfitting yet.
+batch_size = 8 ,   learning_rate = 0.03,   epochs = 5, accuracy = 95.78%:
+batch_size = 8 ,   learning_rate = 0.03,   epochs = 10, accuracy = 97.62%:
 
-Below is the output for 
+A smaller learning rate was very helpful in increasing the accuracy on the test set.
+batch_size = 8 ,   learning_rate = 0.003,   epochs = 5, accuracy = 98.36%:
+batch_size = 8 ,   learning_rate = 0.03,   epochs = 5, accuracy = 95.78%:
+
+A larger training batch size was greatly beneficially in increasing the accuracy on the test set.
+batch_size = 8 ,   learning_rate = 0.03,   epochs = 5, accuracy = 95.78%:
+batch_size = 16,   learning_rate = 0.03,   epochs = 5, accuracy = 98.51%:
+
+Below is the output for batch_size = 8 ,   learning_rate = 0.03,   epochs = 10, accuracy = 97.62%:
 
 (poptorch33_env) cjcurry@gc-poplar-02:~/graphcore/examples/tutorials/simple_applications/pytorch/mnist$ /opt/slurm/bin/srun --ipus=1 python mnist_poptorch.py
 srun: job 27971 queued and waiting for resources
