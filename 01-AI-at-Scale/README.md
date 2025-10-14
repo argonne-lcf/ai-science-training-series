@@ -53,7 +53,7 @@ Here we are presenting a simple example, where we use the base transformer
 model in its default configuration, with a synthetic dataset to demonstrate 
 how to implement a training loop.
 
-```
+```diff
 import torch
 + device = torch.device('cuda')
 
@@ -109,7 +109,7 @@ to leverage DDP for our example:
 
 ### Code changes to train on multiple GPUs using PyTorch Distributed Data Parallel (DDP)
 
-```
+```diff
 + from mpi4py import MPI
 + import os, socket
 import torch
@@ -294,7 +294,7 @@ with open(output_path, "w") as f:
 To trace individual functions in a complex code, the profilers `record_function`
 method can be used as well:
 
-```
+```python
 with profilel(activities=[ProfilerActivity.CPU, ProfilerActivity.XPU],
  record_shapes=True,
  profile_memory=True,
@@ -308,7 +308,7 @@ This method works well for non-compiled use cases. If we want to profile a
 compiled model, this method may not work, as indicated by the following warning
 message generated during my attempts:
 
-```
+```bash
 [rank1]:W1014 04:35:13.299000 2672109 site-packages/torch/_logging/_internal.py:1154] 
 [0/0] Profiler function <class 'torch.autograd.profiler.record_function'> will be ignored
 ```
@@ -368,7 +368,7 @@ This at the very high level can be as simple as wrapping the model around with
 `torch.compile` or in some cases as `model().compile()`. We have an example 
 case ready to play with an implementation of the first instance
 
-```
+```python
 model = torch.compile(model)
 ```
 
