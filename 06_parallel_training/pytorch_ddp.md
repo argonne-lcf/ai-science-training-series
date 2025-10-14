@@ -9,8 +9,21 @@ to do a back of the envelope calculation to estimate the requirements!
     - Total number of parameters $10^{12}$ $\times$ Memory per parameters
     - With FP16 -- each parameter requires 2 Bytes
     - $2 \times 10^{12}$ = $2$ TB
-- Store the Gradinets
+- Store the Gradients
+    - Gradients are stored for each parameter
+    - Takes $2$ TB
 - Store the Optimizer States
+    - Consider Adam Optimizer
+    - Requires storing 2 additional states (momentum and variance)
+    - $2 \times 2$ = $4$ TB
+- Store Activations
+    - These are dependent on Number of layers, sequence length, and hidden 
+    dimension and batch size
+    - Typical, layers=$120$, Sequence length=$2$k, Hidden Dimension=$12$K, and
+    Batch Size=$128$
+    - $128 \times 120 \times 2048 \times 12288 \times 2$ ~ $0.8$ TB
+
+So, in total, we will need at least $10.8$ TB of memory.
 
 And we need these parameters on the GPU to perform each step of the training 
 loop! One of the flagship GPUs today have memory of ~140 GB ([Nvidia B200](https://www.nvidia.com/en-us/data-center/dgx-b200/))
@@ -189,6 +202,8 @@ associated job scripts for Polaris. We will work through them in the hands-on
 section.
 
 ## How well is our code doing -- Profile
+Now that we have a working example, we will try to profile it using the PyTorch
+profiler. Profilers 
 
 ## Read the data from a file
 
