@@ -40,7 +40,7 @@ Here we are presenting a simple example, where we use the base transformer
 model in its default configuration, with a synthetic dataset to demonstrate 
 how to implement a training loop.
 
-```
+```diff
 import torch
 + device = torch.device('cuda')
 
@@ -96,7 +96,7 @@ to leverage DDP for our example:
 
 ### Code changes to train on multiple GPUs using PyTorch Distributed Data Parallel (DDP)
 
-```
+```diff
 + from mpi4py import MPI
 + import os, socket
 import torch
@@ -156,6 +156,7 @@ for epoch in range(10):
 # DDP: cleanup
 + torch.distributed.destroy_process_group()
 ```
+
 A few points to notice here:
 
 - We need to be able to count the ranks, for example, the total number of GPU 
