@@ -6,7 +6,7 @@
 
 [ALCF YouTube with recordings of sessions](https://www.youtube.com/@argonneleadershipcomputing8396)
 
-[Indico registration page (CLOSED)](https://events.cels.anl.gov/event/436)
+[Indico registration page (CLOSED)](https://events.cels.anl.gov/event/698/)
 
 This repository is organized into one subdirectory per topic.  All content is prefixed by a two-digit index in the order of presentation in the tutorials.
 
