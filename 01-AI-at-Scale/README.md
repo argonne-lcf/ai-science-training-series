@@ -19,8 +19,8 @@ to do a back of the envelope calculation to estimate the requirements!
 - Store Activations
     - These are dependent on Number of layers, sequence length, and hidden 
     dimension and batch size
-    - Typical, layers=$120$, Sequence length=$2$K, Hidden Dimension=$12$K, and
-    Batch Size=$128$
+    - Typical, layers = $120$, Sequence length = $2$K, Hidden Dimension = $12$K, and
+    Batch Size = $128$
     - $128 \times 120 \times 2048 \times 12288 \times 2$ ~ $0.8$ TB
 
 So, in total, we will need at least $10.8$ TB of memory.
