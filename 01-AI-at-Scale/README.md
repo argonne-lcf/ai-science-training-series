@@ -53,7 +53,7 @@ Here we are presenting a simple example, where we use the base transformer
 model in its default configuration, with a synthetic dataset to demonstrate 
 how to implement a training loop.
 
-```diff
+```
 import torch
 + device = torch.device('cuda')
 
@@ -109,7 +109,7 @@ to leverage DDP for our example:
 
 ### Code changes to train on multiple GPUs using PyTorch Distributed Data Parallel (DDP)
 
-```diff
+```
 + from mpi4py import MPI
 + import os, socket
 import torch
@@ -203,12 +203,174 @@ section.
 
 ## How well is our code doing -- Profile
 Now that we have a working example, we will try to profile it using the PyTorch
-profiler. Profilers 
+profiler. Profilers give us many information, for example:
 
+- Data loading
+- Compute
+- Memory access patterns
+- Communication (specially in distributed computing)
+
+In this age and time, where we are increasingly becoming more dependent on
+external codes, and models; perhaps, a profiler can be treated as a useful
+_learning tool?_
+
+
+There are many profilers available for profiling AI/ML applications, specially
+coming from vendor specific software stack. The PyTorch profiler gives us a
+native profiling capability which can be useful in comparing the performance of
+an application across different hardware.
+
+### Information provided by the profiler
+
+The PyTorch profiler can provide us various information, including, but not
+limited to:
+
+- __Operator Execution Time__ (CPU time & GPU time): Typically they are denoted as
+`cpu_op`s and `kernel`s
+- __Kernel Execution Details__: Including launch time and duration of execution
+- __Operator Input Shapes__: This is optional, by setting`record_shapes=True`
+while initializing the profiler, we can see the shapes of the matrices computed
+    by a `gemm` kernel, for example.
+- __Stack Traces__ and __Module Hierarchy__: Setting `with_stack=True`
+allows the profiler to record the Python source code location
+(file and line number) that invoked each operation.
+- __Estimated FLOPs__: For certain common operators like matrix multiplication and
+2D convolution, the profiler can estimate the number of
+floating-point operations (FLOPs) performed if `with_flops=True` is set.
+This can help in assessing the computational intensity of different parts of
+the model.
+- __Execution Timeline (Trace View)__: Perhaps the most widely used and
+powerful feature for detailed analysis is the ability to export a chronological
+trace of events. This comes as a `JSON` file, and can be viewed using the
+[perfetto trace viewer](https://ui.perfetto.dev/). We will do a hands-on
+exercise to view the trace of our simple example.
+
+### Eanbling the profiler
+
+We enable the PyTorch profiler in a way that allows us to tell the profiler
+when to take the next step. For that we do the following:
+
+```python
+from torch.profiler import profile, record_function, ProfilerActivity
+
+activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA]
+
+schedule = torch.profiler.schedule(wait=1, warmup=1, active=2, repeat=1)
+prof = profile(activities=activities, record_shapes=True, schedule=schedule, profile_memory=True)
+prof.start()
+
+for epoch in range(10):
+    if RANK == 0:
+        print(epoch)
+    # DDP: set epoch to sampler for shuffling
+    sampler.set_epoch(epoch)
+
+    for source, targets in loader:
+        source = source.to(device)
+        if RANK == 0:
+            print(f"Microbatchsize = {source.shape[0]}")
+        targets = targets.to(device)
+        optimizer.zero_grad()
+
+        output = model(source, targets)
+        loss = criterion(output, targets)
+
+        loss.backward()
+        optimizer.step()
+        prof.step()
+
+os.makedirs(args.trace_dir, exist_ok=True)
+prof.export_chrome_trace(f"{args.trace_dir}/cuda_pt_2p8-{RANK}-of-{SIZE}.json")
+output_path = f"{args.trace_dir}/cuda_pt_2p8_self_cuda_time_total-{RANK}-of-{SIZE}.txt"
+os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+with open(output_path, "w") as f:
+    f.write(prof.key_averages().table(
+        sort_by="cuda_time_total", row_limit=-1))
+```
+
+#### Another way of enabling the profiler
+
+To trace individual functions in a complex code, the profilers `record_function`
+method can be used as well:
+
+```
+with profilel(activities=[ProfilerActivity.CPU, ProfilerActivity.XPU],
+ record_shapes=True,
+ profile_memory=True,
+ with_stack=True) as prof:
+    with record_function(“data_preprocessing”): #user custom annotation
+        ...
+        # portion of the code you would like to
+    train(model, loader, epochs=args.epochs, steps_per_epoch = args.steps)
+```
+This method works well for non-compiled use cases. If we want to profile a
+compiled model, this method may not work, as indicated by the following warning
+message generated during my attempts:
+
+```
+[rank1]:W1014 04:35:13.299000 2672109 site-packages/torch/_logging/_internal.py:1154] 
+[0/0] Profiler function <class 'torch.autograd.profiler.record_function'> will be ignored
+```
 ## Read the data from a file
+At this point we have all the tools needed for simulating a situation closer to
+real life! In our example of generating synthetic data bypasses a significant 
+bottle neck of an actual training event. In this case, every rank generates its
+own data and loops over it, that removes the complete data I/O mechanism, which is
+critical to Deep Learning workloads.
 
+The data can come from many different sources, and in many different file 
+formats. Specially for multi-modal trainings. Once we have the data, we would 
+like to transform it to a data format based on PyTorch tensors, which is well
+suited for training iterations with PyTorch. 
+More here: [Torch Transform Tutorial](https://docs.pytorch.org/tutorials/beginner/basics/transforms_tutorial.html)
 
+For demonstration purposes, we write the synthetic data in an `h5` file, and 
+access it through the `h5py` library. `h5` is quite popular in the deep 
+learning space, and has many features that makes storage in an organized 
+fashion possible. Then at each iteration, we read from the file. Here are the
+snapshots for the data loading part of the profiles.
 
+![From Memory](./figures/mem_dataload.png)
+Notice, the slowest data loading step is ~950 us,
+
+Whereas, with the `h5` file as an input source
+
+![From h5](./figures/h5_dataload.png)
+the slowest data loading step is ~3 ms! Roughly 3x slowdown! There are other 
+file formats `.pt` and `safetensors` that are used for production runs, but
+this remains a significant bottleneck in the training steps.
+
+## Collectives
+An important part of the distributed training is the collective communication.
+Notice that, we __did not__ explicitly call any collective communication 
+operation in our example, except the `barrier` in the data creation step. We 
+needed the other ranks to be on hold until Rank 0 is done preparing the data. 
+The collectives are done for us under the hood in the backward pass step. We 
+can look at the profiles and find out what kind of collectives are happening, 
+and how long is it taking.
+
+![NCCL ALLREDUCE](./figures/nccl_collective.png)
+In this case, the collective is an _allreduce_ to do gradient synchronization 
+and the slowest of them is taking ~1.5 ms, almost half of the I/O time.
+
+Here we have identified one of the two key bottlenecks of the large scale 
+trainings using PyTorch profiler.
+
+## `torch.compile`
+
+`torch.compile` is another mode of operation which can provide better 
+performance in appropriate cases through JIT-compilation, functional 
+transformation and further optimizing the functional transformation graphs for
+more efficient execution. More here: [Torch Compile Tutorial](https://docs.pytorch.org/tutorials/intermediate/torch_compile_tutorial.html#introduction-to-torch-compile)
+
+This at the very high level can be as simple as wrapping the model around with
+`torch.compile` or in some cases as `model().compile()`. We have an example 
+case ready to play with an implementation of the first instance
+
+```
+model = torch.compile(model)
+```
 
 ## Homeworks
 
@@ -217,4 +379,11 @@ profiler. Profilers
 `mpi4py` and `PALS`. Try to implement the rank counting method using just 
 `PALS` or `mpi4py`. `device_count()` methods can be useful here.
 - Play with different dimensions of the `src` and `tgt` tensors.
+- Explore the cost of collective communication, by setting up a scenario, 
+where you have only two ranks, but each rank resides on a different node. 
+Profile and try to reason about the results.
+- Try other file formats to explore the I/O bottleneck.
+- Make the tensors really large, specially the 2nd and 3rd dimension and 
+explore different data types.
+
 
