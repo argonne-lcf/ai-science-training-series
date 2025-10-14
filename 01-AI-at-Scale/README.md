@@ -52,6 +52,16 @@ double the memory. The activations are a bit complicated, but if we consider
 them similar to the optimizers, then our lower estimate by summing all of them
 up should be fairly reliable!
 
+## Clone the repository from a `login` node
+
+```
+git clone git@github.com:argonne-lcf/ai-science-training-series.git
+```
+If the `ssh` keys are not set up, please try the `http`-clone
+```
+git clone https://github.com/argonne-lcf/ai-science-training-series.git
+```
+
 ## Request a Node:
 ```
 qsub -I -l select=1 -l walltime=0:59:00 -q ALCFAITP -l filesystems=home:eagle -A ALCFAITP
@@ -399,7 +409,7 @@ for Polaris. Here are the nomenclature:
 - `_compile` in the name: implements `torch.compile`
 
 These scripts are standalone scripts and can be run in any order. A suggestion 
-is to run in the following order:
+is to run in the following order (from a __compute__ node):
 
 - `bash run_ddp_pytorch_2p8_N1_R4.sh`
 - `bash run_ddp_pytorch_2p8_hdf5_N1_R4.sh`
