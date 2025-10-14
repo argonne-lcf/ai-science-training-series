@@ -38,6 +38,11 @@ requirements. Today, we will talk about a scenario, where our model is small
 enough to fit on a GPU but our dataset is large enough that we will need more 
 than 1 GPU. This is commonly known as the Data Parallel training.
 
+There are other degrees of paralllelisms that are employed in the 
+state-of-the-art large model trainings, for example, tensor parallelism, 
+sequence parallelism etc. for more efficient resource usage. We will learn more
+about these techniques in the next lecture of this series.
+
 _Note_: To quickly estimate the resource requirements of a model training, the
 shortcut could be: Trillion($10^{12}$)  parameter models ~ TB, Billion 
 ($10^{9}$) parameter models ~ GB. If FP16, then $2$ Bytes per parameters, if
@@ -46,6 +51,12 @@ of two! Also, gradients will take same memory as parameters, optimizers take
 double the memory. The activations are a bit complicated, but if we consider 
 them similar to the optimizers, then our lower estimate by summing all of them
 up should be fairly reliable!
+
+## Request a Node:
+```
+qsub -I -l select=1 -l walltime=0:59:00 -q ALCFAITP -l filesystems=home:eagle -A ALCFAITP
+```
+`-I` stands for an interactive job.
 
 ## A single GPU program with a random dataset:
 
@@ -371,6 +382,39 @@ case ready to play with an implementation of the first instance
 ```
 model = torch.compile(model)
 ```
+
+## Hands-on
+
+In the repository there are mainly two cases to consider
+
+- In memory data loading
+- Loading the data from an `h5` file
+
+There are `.py` files for each case, and corresponding interactive job scripts
+for Polaris. Here are the nomenclature:
+
+- `pytorch_2p8_ddp` in the name: implements data parallel
+- `_hdf5` in the name: implements data loading from `h5`
+- `_prof` in the name: implements a profiling strategy (output appears in `./traces/`)
+- `_compile` in the name: implements `torch.compile`
+
+These scripts are standalone scripts and can be run in any order. A suggestion 
+is to run in the following order:
+
+- `bash run_ddp_pytorch_2p8_N1_R4.sh`
+- `bash run_ddp_pytorch_2p8_hdf5_N1_R4.sh`
+- `bash run_ddp_prof_pytorch_2p8_N1_R4.sh`
+- `bash run_ddp_prof_pytorch_2p8_hdf5_N1_R4.sh`
+
+and any case of interest.
+
+The job script for __non-profiling__ cases are set up to run on any number of 
+nodes with 4 ranks per node (as we have 4 GPUs per node). These are determined
+by parameters `NRANKS` and `NRANKS_PER_NODE`
+
+__Profiling__ cases are set to profile 2 ranks on a single node. It would be 
+a good exercise to try and set the script up for 2 ranks each on a different 
+node.
 
 ## Homeworks
 
