@@ -2,7 +2,7 @@
 
 ## 2025 Fall Series
 
-[Public Page for Series Schedule](https://www.alcf.anl.gov/alcf-ai-science-training-series)
+[Public Page for Series Schedule](https://ai4science-series.alcf.anl.gov/advanced-topics-ai-schedule)
 
 [ALCF YouTube with recordings of sessions](https://www.youtube.com/@argonneleadershipcomputing8396)
 
