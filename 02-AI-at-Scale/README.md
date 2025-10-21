@@ -25,6 +25,7 @@ The exercise is experimenting with tensor parallelism with [ezpz.examples.fsdp_t
     ```bash
     export PATH="/opt/pbs/bin:${PATH}"  # workaround, for now
     export HF_HOME=./.cache 
+    export WANDB_DISABLED="true" #For disabling "Weights & Biases" experiment tracking
     ezpz-launch python3 -m ezpz.examples.fsdp_tp --dataset random --tp=4 #--n-layers=8
     ```
 
