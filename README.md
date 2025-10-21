@@ -14,5 +14,6 @@ This repository is organized into one subdirectory per topic.  All content is pr
   <summary>  <b>Table of Contents</b> </summary>
   <ol start="0.">
     <li> <a href="./00-Intro-to-ALCF/">Introduction to ALCF Systems </a> </li>
-    <li> <a href="./01-AI-at-Scale/README.md">AI at Scale</a></li>
+    <li> <a href="./01-AI-at-Scale/README.md">AI at Scale - Part 1</a></li>
+    <li> <a href="./02-AI-at-Scale/README.md">AI at Scale - Part 2</a></li>
 </details>
