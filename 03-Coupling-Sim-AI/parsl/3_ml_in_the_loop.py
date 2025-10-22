@@ -11,6 +11,7 @@ import numpy as np
 from concurrent.futures import as_completed
 from pathlib import Path
 import random
+import sys
 
 # This example will loop through the following steps:
 # 1. Collect training data by running several simulations
@@ -25,9 +26,13 @@ np.random.seed(seed)
 random.seed(seed)
 
 # Define parameters for the workflow
-initial_count = 8  # Number of simulations to run for first model training
-search_count = 32  # Number of molecules to simulate in total
-batch_size = 4  # Number of molecules to simulate in each batch of simulations
+initial_training_count = 8  # Number of trianing samples to collect for first model training
+max_training_count = 32  # Maximum number of training samples to collect for training
+batch_size = 4  # Number of molecules to simulate in each iteration of active training loop
+if initial_training_count >= max_training_count:
+    print("Must do at least 1 active trianing iteration.")
+    print("Change the values of initial_training_count and/or max_training_count and try again.")
+    sys.exit(1)
 
 # Define Parsl apps for each step in the workflow
 # Simulation app to compute the ionization energy of a molecule
@@ -62,13 +67,13 @@ if __name__ == "__main__":
         # Mark when we started
         start_time = monotonic()
 
-        print(f"Will run {search_count} simulations in total")
+        print(f"Will collect a maximum of {max_training_count} training samples for training.")
         print(f"Will run {batch_size} new simulations in each loop iteration to refine the model\n")
 
         # Start with some random guesses for simulations to create initial training data
-        print(f"Creating initial training data composed of {initial_count}/{search_space_size} random molecules")
+        print(f"Creating initial training data composed of {initial_training_count}/{search_space_size} random molecules")
         train_data = []
-        init_mols = search_space.sample(initial_count)['smiles']
+        init_mols = search_space.sample(initial_training_count)['smiles']
         sim_futures = [compute_vertical_app(mol) for mol in init_mols]
         print(f'Submitted {len(sim_futures)} simulations for initial training ...')
         already_ran = set()
@@ -107,7 +112,7 @@ if __name__ == "__main__":
         # Use the number of nodes and workers per node to determine how many chunks to create
         num_nodes = polaris_config.executors[0].provider.nodes_per_block  # Get the number of nodes from the config
         num_workers_pn = polaris_config.executors[0].workers_per_node  # Get the number of workers per node from the config
-        num_chunks = min(num_nodes * num_workers_pn * 2, len(search_space['smiles']))  # Limit the number of chunks by the number of workers
+        num_chunks = min(num_nodes * num_workers_pn, len(search_space['smiles']))  # Limit the number of chunks by the number of workers
         chunks = np.array_split(np.array(search_space['smiles']), num_chunks)
         
         # ML-in-the-loop
@@ -117,7 +122,7 @@ if __name__ == "__main__":
         batch = 1
         best_molecules = []
         model_accuracy = []
-        while len(train_data) < search_count:
+        while len(train_data) < max_training_count:
             start_loop_time = monotonic()
             print(f"Iteration {batch}:")
             print(f"\tTraining on {len(train_data)}/{search_space_size} random molecules")
