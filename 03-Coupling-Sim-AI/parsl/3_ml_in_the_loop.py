@@ -1,3 +1,4 @@
+from asyncio import new_event_loop
 from parsl_config import polaris_config
 from chemfunctions import compute_vertical, train_model, run_model
 from matplotlib import pyplot as plt
@@ -61,11 +62,11 @@ if __name__ == "__main__":
         # Mark when we started
         start_time = monotonic()
 
-        print(f"Create initial training data composed of {initial_count}/{search_space_size} random molecules")
         print(f"Will run {search_count} simulations in total")
         print(f"Will run {batch_size} new simulations in each loop iteration to refine the model\n")
 
         # Start with some random guesses for simulations to create initial training data
+        print(f"Creating initial training data composed of {initial_count}/{search_space_size} random molecules")
         train_data = []
         init_mols = search_space.sample(initial_count)['smiles']
         sim_futures = [compute_vertical_app(mol) for mol in init_mols]
@@ -118,14 +119,15 @@ if __name__ == "__main__":
         model_accuracy = []
         while len(train_data) < search_count:
             start_loop_time = monotonic()
-            print(f"Batch {batch} training on {len(train_data)} simulation results")
+            print(f"Iteration {batch}:")
+            print(f"\tTraining on {len(train_data)}/{search_space_size} random molecules")
             
             # Train and predict as shown in the previous example.
             train_future = train_model_app(train_data)
             inference_futures = [inference_app(train_future, chunk) for chunk in chunks]
             predictions = combine_inferences(inputs=inference_futures).result()
 
-            # Sort inference predictions, store best molecules, and compute accuracy
+            # Sort inference predictions and store best molecules
             predictions.sort_values('ie', ascending=False, inplace=True)
             for i in range(5):
                 best_molecules.append({
@@ -133,18 +135,7 @@ if __name__ == "__main__":
                         'ie': predictions['ie'].iloc[i],
                         'batch': batch,
                 })
-            error = 0.
-            for smiles in train_data['smiles']:
-                true_ie = train_data[train_data['smiles'] == smiles]['ie'].iloc[0]
-                predicted_ie = predictions[predictions['smiles'] == smiles]['ie'].iloc[0]
-                error += abs(true_ie - predicted_ie)/true_ie
-            error /= len(train_data)
-            model_accuracy.append({
-                'batch': batch,
-                'error': error,
-            })
-            print(f"Best predicted molecule: {predictions['smiles'].iloc[0]} with ionization energy {predictions['ie'].iloc[0]}")
-            print(f"Model MRE: {error:.8f}%")
+            print(f"\tBest predicted molecule: {predictions['smiles'].iloc[0]} with ionization energy {predictions['ie'].iloc[0]:.2f} Ha")
 
             # Submit new simulations for the top predictions
             sim_futures = []
@@ -154,7 +145,6 @@ if __name__ == "__main__":
                     already_ran.add(smiles)
                     if len(sim_futures) >= batch_size:
                         break
-            print(f'Submitted {len(sim_futures)} new simulations for this batch')
 
             # Wait for every simulation in the current batch to complete, and store successful results
             new_results = []
@@ -166,23 +156,46 @@ if __name__ == "__main__":
                         'batch': batch, 
                         'time': monotonic() - start_time
                     })
-            print("Done!")
+            new_results = pd.DataFrame(new_results)
+            print(f'\tPerformed {len(sim_futures)} new simulations')
+
+            # Compute model accuracy (even if just on new molecules simulated)
+            error = 0.
+            for smiles in new_results['smiles']:
+                true_ie = new_results[new_results['smiles'] == smiles]['ie'].iloc[0]
+                predicted_ie = predictions[predictions['smiles'] == smiles]['ie'].iloc[0]
+                error += abs(true_ie - predicted_ie) / true_ie
+            error /= len(new_results)
+            model_accuracy.append({
+                'batch': batch,
+                'error': error,
+            })
+            print(f"\tEstimate of KNN Model Mean Relative Error (MRE): {error:.2f} %")
    
             # Update the training data and repeat
             batch += 1
-            train_data = pd.concat((train_data, pd.DataFrame(new_results)), ignore_index=True)
-            print(f"Finished loop iter in {(monotonic() - start_loop_time):.2f}s\n")
+            train_data = pd.concat((train_data, new_results), ignore_index=True)
+            print(f"\tFinished loop iteration in {(monotonic() - start_loop_time):.2f}s\n")
+
+        end_time = monotonic()
+        print(f"Training completed in {(end_time - start_time):.2f} seconds")
     
-    print("Active training loop complete, plotting results...")
+    print("\nPlotting results...")
     best_molecules = pd.DataFrame(best_molecules)
-    print(best_molecules)
-    fig, ax = plt.subplots(figsize=(4.5, 3.))
-    ax.scatter(best_molecules['batch'], best_molecules['ie'])
-    ax.step(np.array(best_molecules['batch']), np.array(best_molecules['ie'].cummax()), 'k--')
-    ax.set_xlabel('Loop Iteration')
-    ax.set_ylabel('Ion. Energy (Ha)')
-    ax.grid(True)
-    ax.set_title('Best Predicted Molecules by Loop Iteration')
+    model_accuracy = pd.DataFrame(model_accuracy)
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 3.))
+    ax1.scatter(best_molecules['batch'], best_molecules['ie'])
+    ax1.step(np.array(best_molecules['batch']), np.array(best_molecules['ie'].cummax()), 'k--')
+    ax1.set_xlabel('Loop Iteration')
+    ax1.set_ylabel('Ion. Energy (Ha)')
+    ax1.grid(True)
+    ax1.set_title('Best Predicted Molecules')
+    ax2.plot(model_accuracy['batch'], model_accuracy['error'], 'o-', color='red')
+    ax2.set_ylim(0, model_accuracy['error'].max() * 1.1)
+    ax2.set_xlabel('Loop Iteration')
+    ax2.set_ylabel('MRE (%)')
+    ax2.grid(True)
+    ax2.set_title('Mean Relative Error of KNN Model')
     fig.tight_layout()
     fig.savefig('parsl_ml_in_the_loop.png', dpi=300)
 
