@@ -16,4 +16,5 @@ This repository is organized into one subdirectory per topic.  All content is pr
     <li> <a href="./00-Intro-to-ALCF/">Introduction to ALCF Systems </a> </li>
     <li> <a href="./01-AI-at-Scale/README.md">AI at Scale - Part 1</a></li>
     <li> <a href="./02-AI-at-Scale/README.md">AI at Scale - Part 2</a></li>
+    <li> <a href="./03-Coupling-Sim-AI/README.md">Coupling Simulation and AI</a></li>
 </details>
