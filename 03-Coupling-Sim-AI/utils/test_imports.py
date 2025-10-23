@@ -7,6 +7,9 @@ from tqdm.notebook import tqdm
 # Parsl
 import parsl
 
+# DragonHPC
+import dragon
+
 # Example dependencies
 import ase
 import rdkit

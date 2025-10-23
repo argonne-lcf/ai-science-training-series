@@ -12,7 +12,7 @@ Lecture style slides can be found in: [slides/ALCF_AI-students-advanced-03.pdf](
 
 ## Hands On
 
-0. Clone the [repository](https://github.com/argonne-lcf/ai-science-training-series) or pull form the main branch:
+0. Clone the repository or pull form the main branch:
 
     ```bash
     cd /path/to/desired_location
@@ -37,6 +37,8 @@ Lecture style slides can be found in: [slides/ALCF_AI-students-advanced-03.pdf](
     source 0_activate_env.sh
     ```
 
+    Instructions for creating the environment are located at [utils/install_env.md](./utils/install_env.md). 
+
 3. Run the Parsl example:
 
     ```bash
@@ -44,6 +46,15 @@ Lecture style slides can be found in: [slides/ALCF_AI-students-advanced-03.pdf](
     python 1_run_simulation.py
     python 2_training_and_inference.py
     python 3_ml_in_the_loop.py
+    ```
+
+4. Run the DragonHPC example:
+
+    ```bash
+    cd /path/to/desired_location/ai-science-training-series/03-Coupling-Sim-AI/dragonhpc
+    dragon 1_run_simulation.py
+    dragon 2_training_and_inference.py
+    dragon 3_ml_in_the_loop.py
     ```
 
 ## Homework
