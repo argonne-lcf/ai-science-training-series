@@ -14,7 +14,7 @@ from concurrent.futures import as_completed
 # 3. Run the model on a large search space of molecules to predict their properties
 
 # Define parameters for the workflow
-initial_count: int = 16  # Number of simulations to run for first model training
+training_count: int = 16  # Number of simulations to run for model training
 
 # Define Parsl apps for each step in the workflow
 # Simulation app to compute the ionization energy of a molecule
@@ -46,11 +46,11 @@ if __name__ == "__main__":
 
         start_time = monotonic()  # Start a timer to measure how long the simulations take
         
-        print(f"Create initial training data composed of {initial_count}/{search_space_size} random molecules\n")
+        print(f"Create initial training data composed of {training_count}/{search_space_size} random molecules\n")
         
         # Create training data by running several simulations
         # randomly sample molecules from the search space to simulate
-        smiles = search_space.sample(initial_count)['smiles']
+        smiles = search_space.sample(training_count)['smiles']
         futures = [compute_vertical_app(s) for s in smiles]
         print(f'Submitted {len(futures)} simulations to start training ...')
 

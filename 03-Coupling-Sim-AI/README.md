@@ -39,22 +39,20 @@ Lecture style slides can be found in: [slides/ALCF_AI-students-advanced-03.pdf](
 
     Instructions for creating the environment are located at [utils/install_env.md](./utils/install_env.md). 
 
-3. Run the Parsl example:
+3. Run the ML-in-the-loop example with Parsl:
 
     ```bash
-    cd /path/to/desired_location/ai-science-training-series/03-Coupling-Sim-AI/parsl
+    cd /path/to/desired_location/ai-science-training-series/03-Coupling-Sim-AI/ml-in-the-loop
     python 1_run_simulation.py
     python 2_training_and_inference.py
     python 3_ml_in_the_loop.py
     ```
 
-4. Run the DragonHPC example:
+4. Run the producer-consumer example:
 
     ```bash
-    cd /path/to/desired_location/ai-science-training-series/03-Coupling-Sim-AI/dragonhpc
-    dragon 1_run_simulation.py
-    dragon 2_training_and_inference.py
-    dragon 3_ml_in_the_loop.py
+    cd /path/to/desired_location/ai-science-training-series/03-Coupling-Sim-AI/producer-consumer
+    dragon 5_dragon_ddict.py
     ```
 
 ## Homework

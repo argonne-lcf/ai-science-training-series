@@ -34,7 +34,7 @@
     ```bash
     cd /path/to/desired_location
     git clone https://github.com/argonne-lcf/ai-science-training-series.git
-    cd ai-science-training-series/03-Coupling-Sim-AI/chemfunctions
+    cd ai-science-training-series/03-Coupling-Sim-AI/ml-in-the-loop/chemfunctions
     pip install .
     ```
 
