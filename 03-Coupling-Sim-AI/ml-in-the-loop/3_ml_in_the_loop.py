@@ -54,7 +54,7 @@ def combine_inferences(inputs=[]):
     return pd.concat(inputs, ignore_index=True)
 
 # Search space of molecules to sample from
-search_space = pd.read_csv('../data/QM9-search.tsv', sep=r'\s+')  # Our search space of molecules
+search_space = pd.read_csv('./data/QM9-search.tsv', sep=r'\s+')  # Our search space of molecules
 search_space_size = len(search_space)
 
 if __name__ == "__main__":
