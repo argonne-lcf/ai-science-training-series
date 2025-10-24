@@ -9,7 +9,7 @@
 
 2. Create a new conda env (can't install xtb-python via pip, so can't use a Python venv)
     ```bash
-    conda create --prefix -y /eagle/datascience/balin/AI4S/_ai4s_simAI python=3.12 pip
+    conda create -y --prefix /eagle/datascience/balin/AI4S/_ai4s_simAI python=3.12 pip
     conda activate /eagle/datascience/balin/AI4S/_ai4s_simAI
     ```
 
