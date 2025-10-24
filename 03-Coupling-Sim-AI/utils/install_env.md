@@ -19,6 +19,11 @@
     conda install -c conda-forge -y xtb-python
     ```
 
+3. Install PyTorch
+   ```bash
+   pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cu128
+   ```
+
 3. Install Parsl
     ```bash
     pip install parsl

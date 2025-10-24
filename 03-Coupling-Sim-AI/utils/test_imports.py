@@ -19,6 +19,8 @@ from sklearn.base import TransformerMixin, BaseEstimator
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.pipeline import Pipeline
 
+import torch
+
 # Custom dependencies
 import chemfunctions
 
