@@ -9,8 +9,9 @@ import numpy as np
 from math import pi as PI
 from time import sleep, perf_counter
 import torch
-import torch.nn as nn
 import argparse
+
+from model import SimpleCNN
 
 
 def simulation(period, grid_size):
@@ -43,35 +44,14 @@ def simulation(period, grid_size):
 
     # Write data to DDict (use period in key to make it unique for each simulation)
     tic = perf_counter()
-    dd[f"inputs_{period}"] = inputs
-    dd[f"outputs_{period}"] = outputs
+    dd[f"inputs_{int(period)}"] = inputs
+    dd[f"outputs_{int(period)}"] = outputs
     toc = perf_counter()
     return toc - tic
 
 
-class SimpleCNN(nn.Module):
-    """Simple autoregressive CNN model to predict the next step of a wave equation
-    """
-    def __init__(self, kernel_size: int = 3):
-        super().__init__()
-        # Encoder: extract spatial features
-        self.conv1 = nn.Conv2d(1, 8, kernel_size=kernel_size, padding='same')
-        self.conv2 = nn.Conv2d(8, 16, kernel_size=kernel_size, padding='same')
-        # Decoder: reconstruct same-sized output
-        self.conv3 = nn.Conv2d(16, 8, kernel_size=kernel_size, padding='same')
-        self.conv4 = nn.Conv2d(8, 1, kernel_size=kernel_size, padding='same')
-        self.relu = nn.ReLU()
-
-    def forward(self, x):
-        x = self.relu(self.conv1(x))
-        x = self.relu(self.conv2(x))
-        x = self.relu(self.conv3(x))
-        x = self.conv4(x)   # last layer linear (no activation) to produce real values
-        return x
-
-
 def trainer(kernel_size: int = 3):
-    """Train the autoregressive CNN model on the data in the DDict
+    """Train the autoregressive CNN model the simulation data
     Args:
         kernel_size: kernel size for the convolutional layers
     """
@@ -80,7 +60,7 @@ def trainer(kernel_size: int = 3):
 
     # Initialize the model, loss function, and optimizer
     model = SimpleCNN(kernel_size=kernel_size)
-    loss_fn = nn.MSELoss()
+    loss_fn = torch.nn.MSELoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
     
     # Get the training data from the DDict and create a DataLoader
@@ -127,7 +107,7 @@ if __name__ == "__main__":
     # Parse command line arguments
     parser = argparse.ArgumentParser()
     parser.add_argument("--num_sims", type=int, default=4, help="Number of simulations to run")
-    parser.add_argument("--grid_size", type=int, default=100, help="Size of the grid for each simulation")
+    parser.add_argument("--grid_size", type=int, default=128, help="Size of the grid for each simulation")
     args = parser.parse_args()
 
     # Set the mp start method
@@ -146,7 +126,7 @@ if __name__ == "__main__":
     # Initialize the DDict on all the nodes
     ddict_mem_per_node = 0.5 * head_node.physical_mem # dedicate 50% of each node's memory to the DDict
     tot_ddict_mem = int(ddict_mem_per_node * num_nodes)
-    managers_per_node = 1
+    managers_per_node = 2
     dd = DDict(managers_per_node, num_nodes, tot_ddict_mem)
     print(f"Started DDict on {num_nodes} nodes with {tot_ddict_mem/1024/1024/1024:.1f}GB of memory\n",flush=True)
 
@@ -158,7 +138,7 @@ if __name__ == "__main__":
 
     num_workers = min(num_cores_per_node * num_nodes, args.num_sims)
     sim_args = [(period, args.grid_size) for period in np.linspace(40,80,args.num_sims)]
-    print(f"Launching {num_workers} simulations to generate training data ...")
+    print(f"Launching {args.num_sims} simulations on {num_workers} workers to generate training data ...")
     tic = perf_counter()
     pool = DragonPool(num_workers, initializer=setup, initargs=(dd,))
     results = pool.map_async(lambda args: simulation(*args), sim_args).get()
@@ -166,7 +146,7 @@ if __name__ == "__main__":
     pool.close()
     pool.join()
     print(f"Done in {perf_counter() - tic:.2f} seconds")
-    print(f"IO time: {io_time:.2f} seconds\n",flush=True)
+    print(f"IO time: {io_time:.3f} seconds\n",flush=True)
 
     # Run an ensemble of CNN models (consumer)
     num_gpus = num_gpus_per_node * num_nodes
@@ -183,7 +163,7 @@ if __name__ == "__main__":
     pool.close()
     pool.join()
     print(f"Done in {perf_counter() - tic:.2f} seconds")
-    print(f"IO time: {io_time:.2f} seconds\n",flush=True)
+    print(f"IO time: {io_time:.3f} seconds\n",flush=True)
 
     # Clean up
     dd.destroy()
