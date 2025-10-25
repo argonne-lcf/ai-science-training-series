@@ -55,6 +55,7 @@ Lecture style slides can be found in: [slides/ALCF_AI-students-advanced-03.pdf](
     dragon 5_dragon_ddict.py
     dragon 6_dragon_producer_consumer.py
     python 7_parsl_fs_producer_consumer.py
+    python 8_parsl_fut_producer_consumer.py
     ```
 
 ## Homework
