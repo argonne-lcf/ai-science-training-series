@@ -106,8 +106,8 @@ def trainer(kernel_size: int = 3):
 if __name__ == "__main__":
     # Parse command line arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument("--num_sims", type=int, default=4, help="Number of simulations to run")
-    parser.add_argument("--grid_size", type=int, default=128, help="Size of the grid for each simulation")
+    parser.add_argument("--num_sims", type=int, default=32, help="Number of simulations to run")
+    parser.add_argument("--grid_size", type=int, default=512, help="Size of the grid for each simulation")
     args = parser.parse_args()
 
     # Set the mp start method

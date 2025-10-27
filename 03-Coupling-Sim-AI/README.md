@@ -58,10 +58,10 @@ The lecture slides can be found in: [slides/ALCF_AI-students-advanced-03.pdf](sl
 
     ```bash
     cd /path/to/desired_location/ai-science-training-series/03-Coupling-Sim-AI/producer-consumer
-    dragon 5_dragon_ddict.py
-    dragon 6_dragon_producer_consumer.py
-    python 7_parsl_fs_producer_consumer.py
-    python 8_parsl_fut_producer_consumer.py
+    python 5_parsl_fut_producer_consumer.py
+    python 6_parsl_fs_producer_consumer.py
+    dragon 7_dragon_ddict.py
+    dragon 8_dragon_producer_consumer.py
     ```
 
 ## Homework

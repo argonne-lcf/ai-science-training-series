@@ -40,15 +40,18 @@ def simulation(period, grid_size):
         inputs.append(u)
         outputs.append(udt)
 
-    return inputs, outputs
+    # Write data to the filesystem
+    tic = perf_counter()
+    np.save(f"./data/inputs_{int(period)}.npy", inputs)
+    np.save(f"./data/outputs_{int(period)}.npy", outputs)
+    toc = perf_counter()
+    return toc - tic
 
 
 @python_app
-def trainer(input_list: list, output_list: list, kernel_size: int = 3):
+def trainer(kernel_size: int = 3):
     """Train the autoregressive CNN model on the simulation data
     Args:
-        input_list: list of input arrays
-        output_list: list of output arrays
         kernel_size: kernel size for the convolutional layers
     """
     # Import packages
@@ -66,8 +69,22 @@ def trainer(input_list: list, output_list: list, kernel_size: int = 3):
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
     
     # Get the training data from the DDict and create a DataLoader
-    inputs = torch.from_numpy(np.array(input_list)).unsqueeze(1).float()
-    outputs = torch.from_numpy(np.array(output_list)).unsqueeze(1).float()
+    inputs = []
+    outputs = []
+    io_time = 0.0
+    for file in os.listdir("./data"): # not ideal at large scale, but okay for this example
+        if "inputs" in file:
+            tic = perf_counter()
+            arrays = np.load(f"./data/{file}")
+            io_time += perf_counter() - tic
+            inputs.append(torch.from_numpy(np.array(arrays)).unsqueeze(1).float())
+        if "outputs" in file:
+            tic = perf_counter()
+            arrays = np.load(f"./data/{file}")
+            io_time += perf_counter() - tic
+            outputs.append(torch.from_numpy(np.array(arrays)).unsqueeze(1).float())
+    inputs = torch.cat(inputs, dim=0)
+    outputs = torch.cat(outputs, dim=0)
     dataset = torch.utils.data.TensorDataset(inputs, outputs)
     dataloader = torch.utils.data.DataLoader(dataset, batch_size=4, shuffle=True)
 
@@ -85,14 +102,17 @@ def trainer(input_list: list, output_list: list, kernel_size: int = 3):
             loss.backward()
             optimizer.step()
 
-    return model.to("cpu")
+    tic = perf_counter()
+    torch.save(model.to("cpu").state_dict(), f"./data/model_{kernel_size}.pt")
+    io_time += perf_counter() - tic
+    return io_time
 
 
 if __name__ == "__main__":
     # Parse command line arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument("--num_sims", type=int, default=4, help="Number of simulations to run")
-    parser.add_argument("--grid_size", type=int, default=128, help="Size of the grid for each simulation")
+    parser.add_argument("--num_sims", type=int, default=32, help="Number of simulations to run")
+    parser.add_argument("--grid_size", type=int, default=512, help="Size of the grid for each simulation")
     args = parser.parse_args()
 
     # Create a fresh data directory
@@ -112,15 +132,14 @@ if __name__ == "__main__":
         sim_args = [(period, args.grid_size) for period in np.linspace(40,80,args.num_sims)]
         tic = perf_counter()
         sim_futures = [simulation(*args) for args in sim_args]
-        input_list = []
-        output_list = []
+        results = []
         while len(sim_futures) > 0:
             future = next(as_completed(sim_futures))
             sim_futures.remove(future)
-            inputs, outputs = future.result()
-            input_list.extend(inputs)
-            output_list.extend(outputs)
+            results.append(future.result())
+        io_time = sum(results)/len(results)
         print(f"Done in {perf_counter() - tic:.2f} seconds")
+        print(f"IO time: {io_time:.3f} seconds\n",flush=True)
 
     # Run an ensemble of CNN models (consumer)
     with parsl.load(polaris_gpu_config):
@@ -133,10 +152,12 @@ if __name__ == "__main__":
         print(f"Launching {num_workers} CNN models to train on the simulaiton data ...")
         ml_args = [int(kernel_size) for kernel_size in range(3,2*num_workers+3,2)]
         tic = perf_counter()
-        ml_futures = [trainer(input_list, output_list, arg) for arg in ml_args]
-        models = []
+        ml_futures = [trainer(arg) for arg in ml_args]
+        results = []
         while len(ml_futures) > 0:
             future = next(as_completed(ml_futures))
             ml_futures.remove(future)
-            models.append(future.result())
+            results.append(future.result())
+        io_time = sum(results)/len(results)
         print(f"Done in {perf_counter() - tic:.2f} seconds")
+        print(f"IO time: {io_time:.3f} seconds\n",flush=True)

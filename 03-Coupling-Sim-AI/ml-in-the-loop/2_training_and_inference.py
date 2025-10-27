@@ -43,13 +43,11 @@ if __name__ == "__main__":
 
     # Load the Parsl configuration
     with parsl.load(polaris_config):
-
-        start_time = monotonic()  # Start a timer to measure how long the simulations take
-        
         print(f"Create initial training data composed of {training_count}/{search_space_size} random molecules\n")
         
         # Create training data by running several simulations
         # randomly sample molecules from the search space to simulate
+        sim_start_time = monotonic()  # Start a timer to measure how long the simulations take
         smiles = search_space.sample(training_count)['smiles']
         futures = [compute_vertical_app(s) for s in smiles]
         print(f'Submitted {len(futures)} simulations to start training ...')
@@ -80,14 +78,15 @@ if __name__ == "__main__":
                     'smiles': smiles,
                     'ie': future.result(),
                     'batch': 0,
-                    'time': monotonic() - start_time
+                    'time': monotonic() - sim_start_time
                 })
-        print("Training data collected!\n")
+        print(f"Training data collected in {(monotonic() - sim_start_time):.2f} seconds!\n")
         train_data = pd.DataFrame(train_data)
         print(train_data)
         
         # Train model
-        print("\nStarting training and inference ...")
+        print("\n\nStarting training and inference ...")
+        train_start_time = monotonic()  # Start a timer to measure how long the training and inference takes
         train_future = train_model_app(train_data)
 
         # Chunk the search space into smaller pieces, so that each inference task can run in parallel
@@ -103,6 +102,6 @@ if __name__ == "__main__":
         #  See: https://parsl.readthedocs.io/en/stable/userguide/workflow.html#mapreduce
         predictions = combine_inferences(inputs=inference_futures).result()
         predictions.sort_values('ie', ascending=False, inplace=True)
-        print("Training and inference completed!\n")
+        print(f"Training and inference completed in {(monotonic() - train_start_time):.2f} seconds!\n")
         print("Inference predictions (sorted by ionization energy):")
         print(predictions)
