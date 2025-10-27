@@ -27,8 +27,8 @@ random.seed(seed)
 
 # Define parameters for the workflow
 initial_training_count = 8  # Number of trianing samples to collect for first model training
-max_training_count = 32  # Maximum number of training samples to collect for training
-batch_size = 4  # Number of molecules to simulate in each iteration of active training loop
+max_training_count = 24  # Maximum number of training samples to collect for training
+batch_size = 4  # Number of molecules to simulate in each iteration of active learning loop
 if initial_training_count >= max_training_count:
     print("Must do at least 1 active trianing iteration.")
     print("Change the values of initial_training_count and/or max_training_count and try again.")
@@ -68,7 +68,7 @@ if __name__ == "__main__":
         start_time = monotonic()
 
         print(f"Will collect a maximum of {max_training_count} training samples for training.")
-        print(f"Will run {batch_size} new simulations in each loop iteration to refine the model\n")
+        print(f"Will run {batch_size} new simulations in each loop iteration to refine the model.\n")
 
         # Start with some random guesses for simulations to create initial training data
         print(f"Creating initial training data composed of {initial_training_count}/{search_space_size} random molecules")
@@ -118,7 +118,7 @@ if __name__ == "__main__":
         # ML-in-the-loop
         # Run training, inference, and simulation in a loop continuously until we've simulated enough molecules
         # Each successive batch of simulations should predict higher ionization energies
-        print("Starting active training loop\n")
+        print("Starting active learning loop\n")
         batch = 1
         best_molecules = []
         model_accuracy = []
@@ -139,6 +139,7 @@ if __name__ == "__main__":
                         'smiles': predictions['smiles'].iloc[i],
                         'ie': predictions['ie'].iloc[i],
                         'batch': batch,
+                        'time': monotonic() - start_time
                 })
             print(f"\tBest predicted molecule: {predictions['smiles'].iloc[0]} with ionization energy {predictions['ie'].iloc[0]:.2f} Ha")
 
@@ -164,7 +165,7 @@ if __name__ == "__main__":
             new_results = pd.DataFrame(new_results)
             print(f'\tPerformed {len(sim_futures)} new simulations')
 
-            # Compute model accuracy (even if just on new molecules simulated)
+            # Compute model error estimate (even if just on new molecules simulated)
             error = 0.
             for smiles in new_results['smiles']:
                 true_ie = new_results[new_results['smiles'] == smiles]['ie'].iloc[0]
@@ -191,20 +192,22 @@ if __name__ == "__main__":
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 3.))
     ax1.scatter(best_molecules['batch'], best_molecules['ie'])
     ax1.step(np.array(best_molecules['batch']), np.array(best_molecules['ie'].cummax()), 'k--')
+    ax1.set_xticks(range(1,batch))
     ax1.set_xlabel('Loop Iteration')
     ax1.set_ylabel('Ion. Energy (Ha)')
     ax1.grid(True)
-    ax1.set_title('Best Predicted Molecules')
-    ax2.plot(model_accuracy['batch'], model_accuracy['error'], 'o-', color='red')
-    ax2.set_ylim(0, model_accuracy['error'].max() * 1.1)
-    ax2.set_xlabel('Loop Iteration')
-    ax2.set_ylabel('MRE (%)')
+    ax1.set_title('Best Predicted Molecules over Loop Iterations')
+    ax2.scatter(best_molecules['time'], best_molecules['ie'])
+    ax2.step(np.array(best_molecules['time']), np.array(best_molecules['ie'].cummax()), 'k--')
+    ax2.set_xlim(0, end_time - start_time)
+    ax2.set_xlabel('Time (s)')
+    ax2.set_ylabel('Ion. Energy (Ha)')
     ax2.grid(True)
-    ax2.set_title('Mean Relative Error of KNN Model')
+    ax2.set_title('Best Predicted Molecules over Time')
     fig.tight_layout()
     fig.savefig('parsl_ml_in_the_loop.png', dpi=300)
 
-    # Saving results
-    #train_data.to_csv('training_data.csv', index=False)
-    #best_molecules.to_csv('best_molecules.csv', index=False)
+    # Save results
+    train_data.to_csv('training_data.csv', index=False)
+    best_molecules.to_csv('best_molecules.csv', index=False)
     print("All done!")

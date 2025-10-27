@@ -10,13 +10,13 @@ We then provide two hands-on examples to be run on the Polaris supercomputer at 
 
 The first example ([ml-in-the-loop](./ml-in-the-loop/README.md)) demonstrates a full end-to-end, active learning workflow implemented in Parsl inspired from the field of molecular design. This simplified application uses a combination of simulation and machine learning (ML) training and inference to identify which molecules have the largest ionization energies among a large dataset. 
 
-The second example ([producer-consumer](./producer-consumer/)) uses a simplified workflow pattern implemented in Parsl and DragonHPC wherein an ensemble of toy simulations produce data to be consumed by a second ensemble of ML model training. This example is designed to investigate some of the various techniques we use to couple simulations and AI/ML on HPC systems, leveraging different software and hardware solutions to store and transfer data between components.
+The second example ([producer-consumer](./producer-consumer/)) uses a simplified workflow pattern implemented in Parsl and DragonHPC wherein an ensemble of toy simulations produce data to be consumed by a second ensemble of ML model training instances. This example is designed to investigate some of the various techniques we use to couple simulations and AI/ML on HPC systems, leveraging different software and hardware solutions to store and transfer data between components.
 
 ## Slides
 
 The lecture slides can be found in: [slides/ALCF_AI-students-advanced-03.pdf](slides/ALCF_AI-students-advanced-03.pdf).
 
-## Hands On
+## Hands On Exercises
 
 0. Clone the repository or pull form the main branch:
 
@@ -30,7 +30,7 @@ The lecture slides can be found in: [slides/ALCF_AI-students-advanced-03.pdf](sl
     git pull origin main
     ```
 
-1. Submit interactive job:
+1. Submit an interactive job:
 
     ```bash
     qsub -I -l select=1 -l walltime=01:00:00 -q ALCFAITP -l filesystems=home:eagle -A ALCFAITP
@@ -54,7 +54,7 @@ The lecture slides can be found in: [slides/ALCF_AI-students-advanced-03.pdf](sl
     python 3_ml_in_the_loop.py
     ```
 
-4. Run the producer-consumer example:
+4. Run the producer-consumer example with DragonHPC and Parsl:
 
     ```bash
     cd /path/to/desired_location/ai-science-training-series/03-Coupling-Sim-AI/producer-consumer
