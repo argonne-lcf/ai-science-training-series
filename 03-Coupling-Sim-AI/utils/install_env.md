@@ -9,14 +9,14 @@
 
 2. Create a new conda env (can't install xtb-python via pip, so can't use a Python venv)
     ```bash
-    conda create -y --prefix /eagle/datascience/balin/AI4S/_ai4s_simAI python=3.12 pip
-    conda activate /eagle/datascience/balin/AI4S/_ai4s_simAI
+    conda create -y --prefix /eagle/ALCFAITP/03-Coupling-Sim-AI/_ai4s_simAI python=3.12 pip
+    conda activate /eagle/ALCFAITP/03-Coupling-Sim-AI/_ai4s_simAI
     ```
 
 3. Install the packages related to chemistry problem
     ```bash
     pip install ase rdkit pandas scikit-learn tqdm
-    conda install -c conda-forge -y xtb-python
+    conda install -y -c conda-forge xtb-python
     ```
 
 3. Install PyTorch

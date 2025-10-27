@@ -1,26 +1,33 @@
-# Python
-import pandas as pd
-import numpy as np
-from matplotlib import pyplot as plt
-from tqdm.notebook import tqdm
+# Test imports for the AI4S Sim+AI examples on ALCF Polaris
+import sys
 
-# Parsl
-import parsl
+try:
+    import pandas as pd
+    import numpy as np
+    from matplotlib import pyplot as plt
+    from tqdm.notebook import tqdm
 
-# DragonHPC
-import dragon
+    # Parsl
+    import parsl
 
-# Example dependencies
-import ase
-import rdkit
-from xtb.ase.calculator import XTB
+    # DragonHPC
+    import dragon
 
-from sklearn.base import TransformerMixin, BaseEstimator
-from sklearn.neighbors import KNeighborsRegressor
-from sklearn.pipeline import Pipeline
+    # Example dependencies
+    import ase
+    import rdkit
+    from xtb.ase.calculator import XTB
 
-import torch
+    from sklearn.base import TransformerMixin, BaseEstimator
+    from sklearn.neighbors import KNeighborsRegressor
+    from sklearn.pipeline import Pipeline
 
-# Custom dependencies
-import chemfunctions
+    import torch
 
+    # Custom dependencies
+    import chemfunctions
+
+    print("All packages imported successfully!")
+except ImportError as e:
+    print(f"Import error: {e}")
+    sys.exit(1)
