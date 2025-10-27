@@ -118,7 +118,7 @@ if __name__ == "__main__":
     num_nodes = alloc.nnodes
     nodelist = alloc.nodes
     head_node = Node(nodelist[0])
-    num_cores_per_node = head_node.num_cpus
+    num_cores_per_node = head_node.num_cpus // 2 # limit to the physical cores of the node
     num_gpus_per_node = head_node.num_gpus
     print(f"Dragon running on {num_nodes} nodes")
     print([Node(node).hostname for node in nodelist],"\n",flush=True)
@@ -128,7 +128,7 @@ if __name__ == "__main__":
     tot_ddict_mem = int(ddict_mem_per_node * num_nodes)
     managers_per_node = 2
     dd = DDict(managers_per_node, num_nodes, tot_ddict_mem)
-    print(f"Started DDict on {num_nodes} nodes with {tot_ddict_mem/1024/1024/1024:.1f}GB of memory\n",flush=True)
+    print(f"Started DDict on {num_nodes} nodes with {tot_ddict_mem/1024/1024/1024:.1f} GB of memory\n",flush=True)
 
     # Run an ensemble of simulations (producer)
     def setup(dd: DDict):
@@ -137,8 +137,9 @@ if __name__ == "__main__":
         me.stash["ddict"] = dd
 
     num_workers = min(num_cores_per_node * num_nodes, args.num_sims)
+    training_data_size = args.num_sims * args.grid_size**2 * 10 * 8 / 1024**3  # 10 steps per simulation, 8 bytes per float, convert to GB
     sim_args = [(period, args.grid_size) for period in np.linspace(40,80,args.num_sims)]
-    print(f"Launching {args.num_sims} simulations on {num_workers} workers to generate training data ...")
+    print(f"Launching {args.num_sims} simulations on {num_workers} workers to generate training data of size {training_data_size:.2f} GB ...")
     tic = perf_counter()
     pool = DragonPool(num_workers, initializer=setup, initargs=(dd,))
     results = pool.map_async(lambda args: simulation(*args), sim_args).get()

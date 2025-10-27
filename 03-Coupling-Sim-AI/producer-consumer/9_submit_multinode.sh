@@ -2,7 +2,7 @@
 #PBS -A ALCFAITP
 #PBS -l select=2
 #PBS -N producer-consumer
-#PBS -l walltime=0:30:00
+#PBS -l walltime=01:00:00
 #PBS -l filesystems=home:eagle
 #PBS -k doe
 #PBS -j oe
@@ -18,17 +18,27 @@ export TMPDIR=/tmp
 export PATH=$PATH:/opt/pbs/bin
 
 # Set inputs
-NUM_SIMS=32
+NUM_SIMS=64
 GRID_SIZE=512
+
 echo "Running producer-consumer scripts"
 echo "with $NUM_SIMS simulations of $GRID_SIZE x $GRID_SIZE grid"
 echo
 
-echo "Running with DragonHPC"
-dragon 6_dragon_producer_consumer.py --grid_size $GRID_SIZE --num_sims $NUM_SIMS
+# Warmup first
+echo "Let's do a warmup run first with the Parsl + file system implementation (DISCARD THIS DATA)"
+python 6_parsl_fs_producer_consumer.py --grid_size $GRID_SIZE --num_sims $NUM_SIMS
+echo
 
+# Run the tests
 echo "Running with Parsl writing to the file system"
-python 7_parsl_fs_producer_consumer.py --grid_size $GRID_SIZE --num_sims $NUM_SIMS
-    
-echo "Running with Parsl tranfering data through futures"
-python 8_parsl_fut_producer_consumer.py --grid_size $GRID_SIZE --num_sims $NUM_SIMS
+python 6_parsl_fs_producer_consumer.py --grid_size $GRID_SIZE --num_sims $NUM_SIMS
+echo
+
+echo "Running with DragonHPC"
+dragon 8_dragon_producer_consumer.py --grid_size $GRID_SIZE --num_sims $NUM_SIMS
+echo
+
+echo "Running with Parsl tranfering data through futures (last since it will take longer)"
+python 5_parsl_fut_producer_consumer.py --grid_size $GRID_SIZE --num_sims $NUM_SIMS
+echo

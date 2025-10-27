@@ -15,3 +15,36 @@ The resulting ML-in-the-loop workflow proceeds as follows.
 
 ![workflow](../figures/workflow.svg)
 
+## Run Instructions
+
+1. Submit an interactive job:
+
+    ```bash
+    qsub -I -l select=1 -l walltime=01:00:00 -q ALCFAITP -l filesystems=home:eagle -A ALCFAITP
+    ```
+
+2. Source the environment provided:
+
+    ```bash
+    source ../0_activate_env.sh
+    ```
+
+3. Run the Parsl workflow scripts in order of complexity
+
+    ```bash
+    python 1_run_simulation.py
+    python 2_training_and_inference.py
+    python 3_ml_in_the_loop.py
+    ```
+
+
+## Performance of the Active Learning Loop (Homework)
+
+Tune the parameters of the ML-in-the-loop active learning workflow in order to find molecules with the largest ionization energy in the shortest possible time. 
+
+Use the PBS submit script [4_submit_multinode.sh](./4_submit_multinode.sh) to run the full workflow on 1 or multiple nodes of Polaris. 
+Note that all that should be needed for this exercise is to change the values of the `initial_training_count`, `max_training_count` and `batch_size` variables at the top of the `3_ml_in_the_loop.py` script in order to balance pre-training with fine-tuning of the model.
+
+The script will generate a figure with the results of the active learning loop called `parsl_ml_in_the_loop.png`. Use this figure to determine the performance of your tests. Once ready to submit, simply commit the repository with the updated image showing your best results, which will automatically be populated below in this README file.
+
+![results](./parsl_ml_in_the_loop.png)

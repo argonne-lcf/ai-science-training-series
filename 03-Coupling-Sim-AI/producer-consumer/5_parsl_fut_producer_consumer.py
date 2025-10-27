@@ -109,7 +109,7 @@ if __name__ == "__main__":
         training_data_size = args.num_sims * args.grid_size**2 * 10 * 8 / 1024**3  # 10 steps per simulation, 8 bytes per float, convert to GB
 
         # Launch the simulations
-        print(f"Launching {args.num_sims} simulations on {num_workers} workers to generate training data of size {training_data_size:d} GB ...")
+        print(f"Launching {args.num_sims} simulations on {num_workers} workers to generate training data of size {training_data_size:.2f} GB ...")
         sim_args = [(period, args.grid_size) for period in np.linspace(40,80,args.num_sims)]
         tic = perf_counter()
         sim_futures = [simulation(*args) for args in sim_args]

@@ -126,9 +126,10 @@ if __name__ == "__main__":
         num_nodes = polaris_cpu_config.executors[0].provider.nodes_per_block
         num_workers_pn = polaris_cpu_config.executors[0].workers_per_node
         num_workers = min(num_nodes * num_workers_pn, args.num_sims)
+        training_data_size = args.num_sims * args.grid_size**2 * 10 * 8 / 1024**3  # 10 steps per simulation, 8 bytes per float, convert to GB
 
         # Launch the simulations
-        print(f"Launching {args.num_sims} simulations on {num_workers} workers to generate training data ...")
+        print(f"Launching {args.num_sims} simulations on {num_workers} workers to generate training data of size {training_data_size:.2f} GB ...")
         sim_args = [(period, args.grid_size) for period in np.linspace(40,80,args.num_sims)]
         tic = perf_counter()
         sim_futures = [simulation(*args) for args in sim_args]

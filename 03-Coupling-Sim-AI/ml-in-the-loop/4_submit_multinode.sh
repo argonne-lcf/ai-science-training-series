@@ -1,6 +1,6 @@
 #!/bin/bash -l
 #PBS -A ALCFAITP
-#PBS -l select=2
+#PBS -l select=1
 #PBS -N ml_in_the_loop
 #PBS -l walltime=0:30:00
 #PBS -l filesystems=home:eagle
