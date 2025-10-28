@@ -56,13 +56,14 @@ Please note:
 * Parsl and DragonHPC use different methods for launching processes, which can impact the run time reported by the scripts. Focus on the IO time when comparing the DDict and file system performance. 
 
 
-| Implementation   | Number of Nodes | Training Data Size (GB) | Simulation Run/IO Time (sec) | Training Run/IO Time (sec) |
+| Implementation   | Number of Nodes | Training Data Size (GB) | Simulation Run / IO Time (sec) | Training Run / IO Time (sec) |
 |------------------|-----------------|--------------------|-----------------|---------------|
 | Parsl + futures | 1   | 0.62   | 14.38 / NA   | 26.59 / NA   |
 | Parsl + file system | 1   | 0.62   | 11.22 / 0.094   | 14.90 / 0.422   |
 | DragonHPC + DDict | 1   | 0.62   | 7.01 / 0.233   | 17.92 / 1.194   |
-| ...   | ...   | ...   | ...  | ... / ...  | ... / ...  |
+| ...   | ...   | ...   | ... / ...  | ... / ...  |
 
 
 **Observations**
+
 Write a short paragraph on your observations based on the results collected in the table above. Which solution is best depending on the number on the size of data being produced and transferred and the number of nodes used? Does this match your expectations? 

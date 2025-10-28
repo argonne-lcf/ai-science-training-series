@@ -124,9 +124,9 @@ if __name__ == "__main__":
     print([Node(node).hostname for node in nodelist],"\n",flush=True)
 
     # Initialize the DDict on all the nodes
-    ddict_mem_per_node = 0.5 * head_node.physical_mem # dedicate 50% of each node's memory to the DDict
+    ddict_mem_per_node = 0.3 * head_node.physical_mem # dedicate 50% of each node's memory to the DDict
     tot_ddict_mem = int(ddict_mem_per_node * num_nodes)
-    managers_per_node = 2
+    managers_per_node = 4
     dd = DDict(managers_per_node, num_nodes, tot_ddict_mem)
     print(f"Started DDict on {num_nodes} nodes with {tot_ddict_mem/1024/1024/1024:.1f} GB of memory\n",flush=True)
 
