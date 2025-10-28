@@ -16,7 +16,7 @@ For this example, we use [Parsl](https://github.com/Parsl/parsl) to execute func
 
 ### Parsl Setup
 
-We first configure Parsl to make use of available resources. In this case, we configure Parsl to run on the Polaris supercomputer. This example does not use GPUs (both the xTB simulations and the KNN model can run efficiently on CPIs), so we set one worker per physical CPU for a total of 32 workers per node.  For a GPU application, we would change the configuration to pin one worker per GPU as in the [producer-consumer example](../producer-consumer/parsl_config.py).
+We first configure Parsl to make use of available resources. In this case, we configure Parsl to run on the Polaris supercomputer. This example does not use GPUs (both the xTB simulations and the KNN model can run efficiently on CPUs), so we set one worker per physical CPU for a total of 32 workers per node.  For a GPU application, we would change the configuration to pin one worker per GPU as in the [producer-consumer example](../producer-consumer/parsl_config.py).
 
 One of the benefits of Parsl is that we can change this configuration to make use of different resources without modifying the application code. For example, we can configure Parsl to use more cores on the local machine or to use many nodes on a Supercomputer or Cloud. The [Parsl website](https://parsl.readthedocs.io/en/stable/userguide/configuring.html) describes how Parsl can be configured for different resources.
 
