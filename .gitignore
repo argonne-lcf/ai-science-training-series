@@ -82,3 +82,6 @@ scratch/
 # Misc
 .DS_Store
 .vscode
+
+# Parsl
+runinfo/
