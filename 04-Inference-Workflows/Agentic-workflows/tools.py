@@ -1,5 +1,4 @@
 from typing import Any, Dict, Literal
-import json
 import os
 from langchain_core.tools import tool
 
@@ -174,7 +173,8 @@ def run_mace_calculation(
 
     # otherwise run a geometry optimization
     try:
-        opt = BFGS(atoms, logfile=None)  # quiet for tutorial
+        # opt = BFGS(atoms, logfile=None)
+        opt = BFGS(atoms)
         opt.run(fmax=fmax, steps=max_steps)
         converged = True
     except Exception as e:

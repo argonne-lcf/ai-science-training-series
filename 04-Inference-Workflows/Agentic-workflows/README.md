@@ -38,7 +38,7 @@ By the end of this session, you will:
 2. Source the environment provided:
 
     ```bash
-    cd /path/to/desired_location/ai-science-training-series/04-Inference-Workflows
+    cd /path/to/desired_location/ai-science-training-series/04-Inference-Workflows/Agentic-workflows
     source 0_activate_env.sh
     ```
 
@@ -53,8 +53,7 @@ By the end of this session, you will:
 
 ## Tutorials Overview
 
-Each exercise builds upon the previous one.
-The goal is to gradually move from using prebuilt agents to designing your own.
+Each exercise builds upon the previous one. The goal is to gradually move from using prebuilt agents to designing your own.
 
 ### Example 1: 1_simple_react_agent.py
 #### Objective:
