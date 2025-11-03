@@ -5,14 +5,15 @@ Material created by Thang Pham and Murat Keçeli from Argonne National Laborator
 ## 📘 Introduction
 
 This hands-on tutorial introduces **LangGraph** and **LangChain** for constructing agentic AI workflows in scientific computing.  
-Participants will learn how to build **single-agent** and **multi-agent** systems that can use scientific tools (e.g., molecule generation, simulation) to automate research tasks.
+Participants will learn how to build **single-agent** and **multi-agent** systems that can use scientific tools (e.g., molecule generation, simulation) to automate research tasks. 
 
-By the end of the session, you will understand:
+By the end of this session, you will:
 
-- How LangGraph represents agent workflows as graphs.
-- How to create a simple **React agent** using prebuilt tools.
-- How to build a custom **React agent** from scratch.
-- How to design a **multi-agent system** with structured outputs and message passing.
+- Understand how LangGraph represents agent workflows as graphs.
+- Create a simple React agent using prebuilt tools.
+- Build a custom React agent from scratch.
+- Design a multi-agent system with structured outputs and message passing.
+- Develop a simplified version of [ChemGraph](https://github.com/argonne-lcf/ChemGraph), an agentic AI framework for scientific discovery.
 
 ## Hands On Exercises
 
@@ -40,6 +41,16 @@ By the end of the session, you will understand:
     cd /path/to/desired_location/ai-science-training-series/04-Inference-Workflows
     source 0_activate_env.sh
     ```
+
+3. To access the ALCF Inference Endpoints, you need an authentication token.
+
+    ```bash
+    # Download the authentication helper script
+    wget https://raw.githubusercontent.com/argonne-lcf/inference-endpoints/refs/heads/main/inference_auth_token.py
+    # Authenticate with your Globus account
+    python inference_auth_token.py authenticate
+    ```
+
 ## Tutorials Overview
 
 Each exercise builds upon the previous one.
@@ -49,11 +60,8 @@ The goal is to gradually move from using prebuilt agents to designing your own.
 #### Objective:
 Learn how to use the prebuilt React agent provided by LangGraph:
 - Basic LangGraph setup.
-
 - Prompting the agent with natural language.
-
 - Understanding how the agent calls tools automatically.
-
 - Using ALCF Inference Endpoints service.
 
 #### Run:
@@ -65,7 +73,6 @@ python 1_simple_react_agent.py
 Adjust the current query: "Optimize the structure of a water molecule using MACE" to some others and see how the results change:
 
 - "Calculate the energy of a carbon dioxide molecule"
-
 - "Run geometry optimization for a methanol molecule using MACE"
 
 ### Example 2: 2_build_react_agent.py
