@@ -1,6 +1,6 @@
 from typing import TypedDict, Annotated
-from langgraph.graph import add_messages
 
+from langgraph.graph import add_messages
 from langchain_openai import ChatOpenAI
 from langgraph.prebuilt import ToolNode
 from langgraph.graph import StateGraph, START, END
@@ -46,7 +46,7 @@ def route_tools(state: State):
 # ============================================================
 # 3. LLM node: the "agent"
 # ============================================================
-def science_agent(
+def chem_agent(
     state: State,
     llm: ChatOpenAI,
     tools: list,
@@ -84,8 +84,8 @@ graph_builder = StateGraph(State)
 
 # Agent node: calls LLM, which may decide to call tools
 graph_builder.add_node(
-    "science_agent",
-    lambda state: science_agent(state, llm=llm, tools=tools),
+    "chem_agent",
+    lambda state: chem_agent(state, llm=llm, tools=tools),
 )
 
 # Tool node: executes tool calls emitted by the LLM
@@ -93,14 +93,14 @@ tool_node = ToolNode(tools)
 graph_builder.add_node("tools", tool_node)
 
 # Graph logic
-# START -> science_agent
-graph_builder.add_edge(START, "science_agent")
+# START -> chem_agent
+graph_builder.add_edge(START, "chem_agent")
 
-# After science_agent runs, check if we need to run tools
-graph_builder.add_conditional_edges("science_agent", route_tools, {"tools": "tools", "done": END})
+# After chem_agent runs, check if we need to run tools
+graph_builder.add_conditional_edges("chem_agent", route_tools, {"tools": "tools", "done": END})
 
 # After tools run, go back to the agent so it can use tool results
-graph_builder.add_edge("tools", "science_agent")
+graph_builder.add_edge("tools", "chem_agent")
 
 # Compile the graph
 graph = graph_builder.compile()
