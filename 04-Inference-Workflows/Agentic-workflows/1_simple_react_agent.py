@@ -1,7 +1,7 @@
-from langchain.agents import create_agent
+from langgraph.prebuilt import create_react_agent
 from langchain_openai import ChatOpenAI
 
-from tools import molecule_name_to_smiles, calculator
+from tools import molecule_name_to_smiles, smiles_to_coordinate_file, run_mace_calculation
 from inference_auth_token import get_access_token
 
 # Get access token
@@ -16,13 +16,16 @@ llm = ChatOpenAI(
 )
 
 # Build a ReAct agent with the specified tools
-tools = [molecule_name_to_smiles, calculator]
-agent = create_agent(llm, tools=tools)
+tools = [molecule_name_to_smiles, smiles_to_coordinate_file, run_mace_calculation]
+agent = create_react_agent(llm, tools=tools)
 
 # Run the agent and display its responses
 # Note: Sometimes the agent may skip tool calls and answer from its internal knowledge.
 # Adjust the system prompt if consistent tool usage is required, or specifically tell the agent to "use your tools".
-prompt = "What is the smiles string of methanol and the values of 3*5*5*5*5*5?"
+
+# prompt = "Calculate the energy of a carbon dioxide molecule using MACE"
+
+prompt = "Optimize the structure of a water molecule using MACE"
 for chunk in agent.stream(
     {"messages": prompt},
     stream_mode="values",

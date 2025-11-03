@@ -6,7 +6,7 @@ from langgraph.prebuilt import ToolNode
 from langgraph.graph import StateGraph, START, END
 from inference_auth_token import get_access_token
 
-from tools import molecule_name_to_smiles, calculator
+from tools import molecule_name_to_smiles, smiles_to_coordinate_file, run_mace_calculation
 
 
 # ============================================================
@@ -50,7 +50,7 @@ def science_agent(
     state: State,
     llm: ChatOpenAI,
     tools: list,
-    system_prompt: str = "You are an assistant that use tools to solve problems ",
+    system_prompt: str = "You are an assistant that uses tools to solve problems ",
 ):
     messages = [
         {"role": "system", "content": system_prompt},
@@ -75,7 +75,7 @@ llm = ChatOpenAI(
 )
 
 # Tool list that the LLM can call
-tools = [molecule_name_to_smiles, calculator]
+tools = [molecule_name_to_smiles, smiles_to_coordinate_file, run_mace_calculation]
 
 # ============================================================
 # 5. Build the graph
@@ -108,7 +108,9 @@ graph = graph_builder.compile()
 # ============================================================
 # 6. Run / stream the graph
 # ============================================================
-prompt = "What is the smiles string of methanol and the values of 3*5*5*5*5*5?"
+prompt = (
+    "What is the smiles string of methanol the optimized structure of a carbon dioxide molecule?"
+)
 for chunk in graph.stream(
     {"messages": prompt},
     stream_mode="values",

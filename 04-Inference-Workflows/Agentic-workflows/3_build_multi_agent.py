@@ -7,7 +7,7 @@ from langgraph.graph import StateGraph, START, END
 from inference_auth_token import get_access_token
 from pydantic import BaseModel
 
-from tools import molecule_name_to_smiles, calculator
+from tools import molecule_name_to_smiles, smiles_to_coordinate_file, run_mace_calculation
 
 
 # ============================================================
@@ -72,11 +72,7 @@ class ScienceAnswer(BaseModel):
 def structured_output_agent(
     state: State,
     llm: ChatOpenAI,
-    system_prompt: str = (
-        "You are an assistant that returns ONLY JSON that conforms to the given schema. "
-        "Put mathematical results under the key 'math' and chemistry/tool-related or SMILES results "
-        "under the key 'chemistry'. Do not add extra keys."
-    ),
+    system_prompt: str = ("You are an assistant that returns ONLY JSON. "),
 ):
     messages = [
         {"role": "system", "content": system_prompt},
@@ -106,7 +102,7 @@ llm = ChatOpenAI(
 )
 
 # Tool list that the LLM can call
-tools = [molecule_name_to_smiles, calculator]
+tools = [molecule_name_to_smiles, smiles_to_coordinate_file, run_mace_calculation]
 
 # ============================================================
 # 5. Build the graph
@@ -147,7 +143,7 @@ graph = graph_builder.compile()
 # ============================================================
 # 6. Run / stream the graph
 # ============================================================
-prompt = "What is the smiles string of methanol, ethanol and the values of 3*5*5*5*5*5?"
+prompt = "Optimize formic acid and acetic acid with MACE. Return the results in a JSON."
 for chunk in graph.stream(
     {"messages": prompt},
     stream_mode="values",
