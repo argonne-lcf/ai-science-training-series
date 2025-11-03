@@ -78,7 +78,7 @@ Adjust the current query: "Optimize the structure of a water molecule using MACE
 #### Objective:
 Construct your own React agent using LangGraph:
 - Building `StateGraph`.
-- Building `science_agent` and routing logics.
+- Building `chem_agent` and routing logics.
 
 #### Run:
 ```bash
@@ -88,8 +88,8 @@ python 2_build_react_agent.py
 ### Example 3: 3_build_multi_agent.py
 #### Objective:
 Create a simple multi-agent system that combines two agents:
-- A Tool Agent — handles tool calls.
-- A Summary Agent — returns a JSON output.
+- chem_agent — handles tool calls.
+- structured_output_agent — returns a JSON output.
 
 #### Run:
 ```bash

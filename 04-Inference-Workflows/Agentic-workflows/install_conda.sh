@@ -22,3 +22,6 @@ pip install rdkit ase mace-torch
 
 #Jupyter
 pip install jupyter
+
+# grandalf for visualization
+pip install grandalf
