@@ -48,7 +48,7 @@ By the end of this session, you will:
     # Download the authentication helper script
     wget https://raw.githubusercontent.com/argonne-lcf/inference-endpoints/refs/heads/main/inference_auth_token.py
     # Authenticate with your Globus account
-    python inference_auth_token.py authenticate
+    python inference_auth_token.py --force authenticate
     ```
 
 ## Tutorials Overview
@@ -77,8 +77,8 @@ Adjust the current query: "Optimize the structure of a water molecule using MACE
 ### Example 2: 2_build_react_agent.py
 #### Objective:
 Construct your own React agent using LangGraph:
-- Building `StateGraph`.
-- Building `chem_agent` and routing logics.
+- Build a `StateGraph`.
+- Build a `chem_agent` and routing logics.
 
 #### Run:
 ```bash
