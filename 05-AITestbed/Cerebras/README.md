@@ -6,7 +6,7 @@ The ALCF CS-3 Cerebras Wafer-Scale Cluster, is designed to support large-scale m
 
 The Cerebras Wafer-Scale cluster is run as an appliance: a user submits a job to the appliance, and the appliance manages preprocessing and streaming of the data, IO, and device orchestration within the appliance. It provides programming via PyTorch. This installation supports Weight Streaming execution for models being pre-trained or fine-tuned.
 
-![CS-3 connection diagram](./Cerebras_Wafer-Scale_Cluster_login_diagram.png)
+![CS-3 connection diagram](./CS-3.png)
 
 ## Connecting to CS-3
 Users connect via SSH to the login node, cerebras.alcf.anl.gov and then ssh to a user node, using either cer-usn-01 or cer-usn-02.
