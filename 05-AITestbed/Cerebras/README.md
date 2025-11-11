@@ -42,6 +42,7 @@ deactivate
 rm -r venv_cerebras_pt
 /usr/bin/python3.11 -m venv venv_cerebras_pt
 source venv_cerebras_pt/bin/activate
+export HTTPS_PROXY=http://proxy.alcf.anl.gov:3128
 pip install --upgrade pip
 ```
 
