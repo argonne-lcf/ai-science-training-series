@@ -19,7 +19,7 @@ We will cover an overview of the AI accelerators landscape with a focus on Cereb
 * [SambaNova](./SambaNova/README.md)                                    
 
 ## Homework 
-* Cerebras Homework : Run the Llama-7B example for difference batch sizes and compare the performance.
+* Cerebras Homework : Run the Llama-7B example for different batch sizes and compare the performance.
 * Sambanova Homework : Use your choice of huggingface dataset and compare the performance on GptOSS model using both Metis and Sophia, reason out the possible differences. 
 
 ## Documentation 
