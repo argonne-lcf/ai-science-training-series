@@ -29,13 +29,24 @@ or
 ssh cer-usn-02
 ```
 
+## Clone Cerebras modelzoo
+
+We use an example from [Cerebras Modelzoo repository](https://github.com/Cerebras/modelzoo) for this hands-on. 
+```bash
+mkdir ~/R_2.6.0
+cd ~/R_2.6.0
+export HTTPS_PROXY=http://proxy.alcf.anl.gov:3128
+git clone https://github.com/Cerebras/modelzoo.git
+cd modelzoo
+git tag
+git checkout Release_2.6.0
+```
 
 ## Prerequisite: Create Virtual Environment 
 
 ### PyTorch virtual environment
 
 ```bash
-mkdir ~/R_2.6.0
 cd ~/R_2.6.0
 # Note: "deactivate" does not actually work in scripts.
 deactivate
@@ -44,18 +55,10 @@ rm -r venv_cerebras_pt
 source venv_cerebras_pt/bin/activate
 export HTTPS_PROXY=http://proxy.alcf.anl.gov:3128
 pip install --upgrade pip
+pip install -e modelzoo
 ```
 
-## Clone Cerebras modelzoo
 
-We use an example from [Cerebras Modelzoo repository](https://github.com/Cerebras/modelzoo) for this hands-on. 
-```bash
-export HTTPS_PROXY=http://proxy.alcf.anl.gov:3128
-git clone https://github.com/Cerebras/modelzoo.git
-cd modelzoo
-git tag
-git checkout Release_2.6.0
-```
 
 ## Job Queuing and Submission
 
