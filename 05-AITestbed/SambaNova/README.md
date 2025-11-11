@@ -1,7 +1,7 @@
 # SambaNova SN40L (Metis)
 
 
-SambaNova SN40L cluster is  composed of two SambaRacks—each housing 16 advanced Reconfigurable Dataflow Unit (RDU) processors. This dedicated setup delivers high-throughput, low-latency performance for machine learning workloads.
+SambaNova SN40L cluster is  composed of two SambaRacks—each housing 16 Reconfigurable Dataflow Unit (RDU) processors. This dedicated setup delivers high-throughput, low-latency performance for machine learning workloads.
 
 SambaStack is a purpose-built hardware and software platform optimized for AI inference.
 Models running on the cluster are exposed through OpenAI-compatible API endpoints, with each endpoint capable of hosting multiple independently accessible models.
