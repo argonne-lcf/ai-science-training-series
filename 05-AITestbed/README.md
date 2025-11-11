@@ -9,7 +9,7 @@ We will cover an overview of the AI accelerators landscape with a focus on Cereb
 
 ## Slides
 
-* [Intro to AI Series: AI Accelerators]() 
+* [Intro to AI Series: AI Accelerators](./ALCF_HandsOn_AIScience-training-series-Nov2025.pdf) 
  
 
 ## Hands-On Sessions
