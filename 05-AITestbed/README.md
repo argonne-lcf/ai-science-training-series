@@ -20,8 +20,12 @@ We will cover an overview of the AI accelerators landscape with a focus on Samba
 * [SambaNova](./SambaNova/README.md)                                    
 * [Groq](./Groq/README.md)        
 
+## Documentation 
+* [ALCF Documentation](https://docs.alcf.anl.gov/ai-testbed/)
+* [Cerebras Public Documentation on Training](https://training-docs.cerebras.ai/rel-2.5.0/getting-started/overview)
+* [Sambanova Public Documentation on Inference](https://docs.sambanova.ai/docs/en/get-started/overview)
 
-### Director’s Discretionary Allocation Program
+## Director’s Discretionary Allocation Program
 
 To gain access to AI Testbeds at ALCF after current allocation expires apply for [Director’s Discretionary Allocation Program](https://www.alcf.anl.gov/science/directors-discretionary-allocation-program)
 
