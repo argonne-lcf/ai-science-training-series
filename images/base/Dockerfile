@@ -7,4 +7,6 @@ RUN apt-get update
 COPY requirements.txt /tmp/requirements.txt
 RUN python3 -m pip install --root-user-action=ignore -r /tmp/requirements.txt
 
+RUN echo "Rick was here"
+
 USER $NB_UID
