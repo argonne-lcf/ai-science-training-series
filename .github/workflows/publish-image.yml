@@ -31,4 +31,4 @@ jobs:
           context: "{{defaultContext}}:images/base"
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/rpwagner/ai-science-training-series:latest
+          tags: ghcr.io/argonne-lcf/ai-science-training-series:latest
